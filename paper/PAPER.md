@@ -2584,8 +2584,8 @@ are added here.
 - Wan-AI. "Wan2.1-T2V-1.3B." Hugging Face: Wan-AI/Wan2.1-T2V-1.3B-Diffusers.
 - "CogVideoX-2B."
 - Wu, R., et al. "AniClipart." IJCV 2024, arXiv:2404.12347.
-- Zhu, et al. "Differentiable Motion Trajectory for vector sketch
-  animation." CGF 2025/2026.
+- Zhu, Yang, Zheng, Zhang, Gao, Huang, Chen. "Vector Sketch Animation
+  Generation with Differentiable Motion Trajectories." CGF.
 - "Sakuga-42M." arXiv:2405.07425.
 - "AnimeRun." arXiv:2211.05709.
 - "ATD-12K."
@@ -2618,8 +2618,9 @@ are added here.
 - Cho, H., Cha, J., Awasthi, P., Kalyanaraman, S., Gollakota, A., Yun, C.
   "Position Coupling." NeurIPS 2024, arXiv:2405.20671.
 - "Constrained Layout Generation with Factor Graphs." arXiv:2404.00385.
-- Zhao, S., et al. "Scene Graph to Image Generation with Contextualized
-  Object Layout Refinement." arXiv:2009.10939.
+- Ivgi, M., Benny, Y., Ben-David, A., Berant, J., Wolf, L. "Scene Graph to
+  Image Generation with Contextualized Object Layout Refinement."
+  arXiv:2009.10939.
 - Elfeki, M., et al. "GDPP: Learning Diverse Generations Using
   Determinantal Point Processes." ICML 2019, arXiv:1812.00068.
 - Jiang, Z., et al. "LayoutFormer++." CVPR 2023, arXiv:2208.08037.
