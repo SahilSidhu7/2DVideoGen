@@ -1,0 +1,39 @@
+cell                       n   matched      chance    lift
+v3 beam (spatial OOD)     12     50.0%       49.2%    0.8
+v3 sampled (spatial OOD)    12     58.3%       34.8%   23.5
+v2 beam (spatial OOD)     12     58.3%       45.5%   12.9
+v3 beam (in-dist)         97     44.3%       41.7%    2.7
+v3 sampled (in-dist)      99     25.3%       27.3%   -2.0
+
+{
+ "v3 beam (spatial OOD)": {
+  "n": 12,
+  "matched": 50.0,
+  "mismatched_chance": 49.2,
+  "lift": 0.8
+ },
+ "v3 sampled (spatial OOD)": {
+  "n": 12,
+  "matched": 58.3,
+  "mismatched_chance": 34.8,
+  "lift": 23.5
+ },
+ "v2 beam (spatial OOD)": {
+  "n": 12,
+  "matched": 58.3,
+  "mismatched_chance": 45.5,
+  "lift": 12.9
+ },
+ "v3 beam (in-dist)": {
+  "n": 97,
+  "matched": 44.3,
+  "mismatched_chance": 41.7,
+  "lift": 2.7
+ },
+ "v3 sampled (in-dist)": {
+  "n": 99,
+  "matched": 25.3,
+  "mismatched_chance": 27.3,
+  "lift": -2.0
+ }
+}

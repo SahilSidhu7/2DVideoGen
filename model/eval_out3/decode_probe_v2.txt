@@ -1,0 +1,6 @@
+decode probe: model/checkpoints/v2-deconfounded, n=30 prompts
+mode         parse   staging  distinct x modal x share
+beam4          30/30     0.333           6       29.8%  (mode 8.7)
+greedy         30/30     0.393           7       29.8%  (mode 8.7)
+sample         30/30     0.845          20        9.6%  (mode 2.4)
+sample_lo      30/30     0.796          21       12.5%  (mode 7.3)

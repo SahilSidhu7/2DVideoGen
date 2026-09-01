@@ -1,0 +1,44 @@
+ckpt=model/scene_ckpt3  unique_colours=False  space=0.0  max_in=160 max_out=256
+
+in_distribution_v3     n=150
+  parse   148/150 =  98.7%
+  valid    84/150 =  56.0%  (zero structural problems, no repair)
+  render  148/150 =  98.7%  (after repair)
+  exact     0/150 =   0.0%  (byte-identical to the reference DSL)
+  ALL                     83/148 =  56.1%
+  actions_per_character  127/148 =  85.8%
+  background             127/127 = 100.0%
+  ball_interaction       148/148 = 100.0%
+  cast_count             139/139 = 100.0%
+  colors                  33/33  = 100.0%
+  layout                  43/97  =  44.3%
+  props                   69/69  = 100.0%
+  action recall (partial credit) =  97.6%
+  STAGING (n=135 multi-cast of 150): staging 0.178  [sep 0.303 span 0.204 occl 0.027]  min_sep 0.01  mean_sep 0.69  span_frac 0.123  occl_frac 0.730
+  staging >= 0.825 (worst hand-written scene): 0/135 = 0.0%
+  parse errors: {"bad event ['74', '94', 'gu']": 1, "bad event ['76']": 1}
+  structural problems: {'two characters share a colour': 46, 'overlapping kicks on one ball': 10, "event for unknown character 'ell'": 3, 'event ends 11.1 past duration 10.7': 3, 'event ends 7.9 past duration 6.8': 2, 'event ends 12.4 past duration 10.7': 2, 'event ends 7.6 past duration 6.9': 2, 'event ends 7.8 past duration 6.9': 2}
+
+out_of_distribution_v3 n=24
+  parse    24/24 = 100.0%
+  valid    12/24 =  50.0%  (zero structural problems, no repair)
+  render   24/24 = 100.0%  (after repair)
+  exact     0/24 =   0.0%  (byte-identical to the reference DSL)
+  ALL                     17/24  =  70.8%
+  actions_present         20/24  =  83.3%
+  background              24/24  = 100.0%
+  ball_interaction        23/24  =  95.8%
+  cast_count              23/24  =  95.8%
+  colors                   2/2   = 100.0%
+  props                    1/3   =  33.3%
+  action recall (partial credit) =  90.8%
+  STAGING (n=20 multi-cast of 24): staging 0.099  [sep 0.158 span 0.116 occl 0.023]  min_sep 0.00  mean_sep 0.37  span_frac 0.070  occl_frac 0.867
+  staging >= 0.825 (worst hand-written scene): 0/20 = 0.0%
+  by group (render / prompt-match / n):
+    cast_size    3/3   3/3
+    colour       2/2   2/2
+    novel_combo  6/6   4/6
+    phrasing     6/6   3/6
+    scenery      3/3   1/3
+    structure    4/4   4/4
+  structural problems: {'two characters share a colour': 6, "kick target 'bo' is neither cast nor coord": 3, 'overlapping kicks on one ball': 2, "event for unknown character 'gus'": 2, 'kick with no ball prop': 1, 'event ends 7.9 past duration 6.9': 1, 'event ends 7.8 past duration 6.9': 1}

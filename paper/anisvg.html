@@ -1,0 +1,1184 @@
+<title>AniSVG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap">
+
+<style>
+  :root {
+    --paper:   #FCFCFD;
+    --raised:  #F3F5F8;
+    --ink:     #151A21;
+    --muted:   #5B6673;
+    --rule:    #DCE2E9;
+    --accent:  #0E7C6B;
+    --neg:     #A34035;
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --sans:  "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+    --mono:  "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+    --measure: 68ch;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:  #10141A;
+      --raised: #171D25;
+      --ink:    #E4E8ED;
+      --muted:  #98A3B1;
+      --rule:   #2A323C;
+      --accent: #3FB39C;
+      --neg:    #D9756A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:  #10141A;
+    --raised: #171D25;
+    --ink:    #E4E8ED;
+    --muted:  #98A3B1;
+    --rule:   #2A323C;
+    --accent: #3FB39C;
+    --neg:    #D9756A;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.62;
+    margin: 0;
+    padding: 0 24px 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  .col { max-width: var(--measure); }
+
+  /* ---- masthead ---- */
+  header.mast { padding: 72px 0 40px; border-bottom: 2px solid var(--ink); }
+  .kicker {
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--accent);
+    margin: 0 0 20px;
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 700;
+    font-size: clamp(34px, 5.4vw, 56px); line-height: 1.08;
+    letter-spacing: -0.02em; margin: 0 0 18px; text-wrap: balance;
+    max-width: 22ch;
+  }
+  .standfirst {
+    font-size: clamp(18px, 2.1vw, 21px); color: var(--muted);
+    margin: 0; max-width: 60ch; line-height: 1.5;
+  }
+  .byline {
+    font-family: var(--sans); font-size: 13px; color: var(--muted);
+    margin-top: 28px; display: flex; flex-wrap: wrap; gap: 8px 20px;
+  }
+
+  /* ---- abstract ---- */
+  .abstract {
+    background: var(--raised); border-left: 3px solid var(--accent);
+    padding: 26px 30px; margin: 40px 0 8px; max-width: var(--measure);
+  }
+  .abstract p { margin: 0 0 14px; font-size: 17px; }
+  .abstract p:last-child { margin-bottom: 0; }
+  .abstract .lbl {
+    font-family: var(--sans); font-size: 11px; font-weight: 600;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+    display: block; margin-bottom: 12px;
+  }
+
+  /* ---- sections ---- */
+  section { padding-top: 52px; }
+  h2 {
+    font-family: var(--serif); font-size: 27px; font-weight: 700;
+    letter-spacing: -0.01em; margin: 0 0 6px; text-wrap: balance;
+    padding-bottom: 10px; border-bottom: 1px solid var(--rule);
+  }
+  h2 .num {
+    font-family: var(--sans); font-size: 13px; font-weight: 600;
+    color: var(--accent); margin-right: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+  h3 {
+    font-family: var(--sans); font-size: 15px; font-weight: 600;
+    margin: 34px 0 8px; letter-spacing: -0.005em;
+  }
+  p { margin: 0 0 17px; max-width: var(--measure); }
+  ul, ol { max-width: var(--measure); padding-left: 22px; margin: 0 0 17px; }
+  li { margin-bottom: 8px; }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  strong { font-weight: 600; }
+  code {
+    font-family: var(--mono); font-size: .87em;
+    background: var(--raised); padding: 1px 5px; border-radius: 2px;
+  }
+
+  /* ---- figures ---- */
+  figure { margin: 28px 0; }
+  figcaption {
+    font-family: var(--sans); font-size: 13px; color: var(--muted);
+    margin-top: 10px; max-width: 62ch; line-height: 1.5;
+  }
+  figcaption b {
+    color: var(--ink); font-weight: 600;
+  }
+  .scroll { overflow-x: auto; }
+  pre {
+    font-family: var(--mono); font-size: 13.5px; line-height: 1.7;
+    background: var(--raised); border: 1px solid var(--rule);
+    padding: 18px 20px; margin: 0; overflow-x: auto;
+    color: var(--ink);
+  }
+  pre .c { color: var(--muted); }
+
+  table {
+    border-collapse: collapse; width: 100%; font-family: var(--sans);
+    font-size: 14px; font-variant-numeric: tabular-nums;
+  }
+  th, td {
+    text-align: left; padding: 9px 16px 9px 0;
+    border-bottom: 1px solid var(--rule); vertical-align: top;
+  }
+  th {
+    font-weight: 600; font-size: 11.5px; letter-spacing: .09em;
+    text-transform: uppercase; color: var(--muted);
+    border-bottom: 1px solid var(--ink);
+  }
+  td.n, th.n { text-align: right; padding-right: 24px; }
+  tr.hi td { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+  td .neg { color: var(--neg); }
+  td .win { color: var(--accent); font-weight: 600; }
+
+  .callout {
+    border: 1px solid var(--rule); border-top: 3px solid var(--neg);
+    padding: 20px 24px; margin: 26px 0; max-width: var(--measure);
+    background: var(--raised);
+  }
+  .callout .lbl {
+    font-family: var(--sans); font-size: 11px; font-weight: 600;
+    letter-spacing: .13em; text-transform: uppercase; color: var(--neg);
+    display: block; margin-bottom: 8px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+
+  footer {
+    margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--rule);
+    font-family: var(--sans); font-size: 13px; color: var(--muted);
+    max-width: var(--measure);
+  }
+  @media (max-width: 620px) { body { font-size: 17px; padding: 0 18px 64px; } }
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <p class="kicker">Vector animation · small models · consumer hardware</p>
+  <h1>AniSVG: a token budget for generated animation</h1>
+  <p class="standfirst">
+    Text-to-video is priced in pixels. We re-price it in vector deltas — about
+    six tokens per moving shape per frame — and train language models to write
+    animation on a single 8&nbsp;GB laptop GPU.
+  </p>
+  <div class="byline">
+    <span><b>Sahil Sidhu</b> · independent</span>
+    <span>Working paper · rev. 24 August 2026</span>
+  </div>
+  <div class="byline">
+    <span>Hardware for every measurement: RTX 4060 Laptop (8&nbsp;GB), 15.3&nbsp;GB RAM, NVMe, Windows 11</span>
+  </div>
+  <div class="byline">
+    <span><b>Keywords</b> vector animation · structured generation · constrained decoding ·
+    parameter-efficient fine-tuning · consumer-GPU training</span>
+  </div>
+</header>
+
+<div class="abstract">
+  <span class="lbl">Abstract</span>
+  <p>
+    A language model cannot generate video frame-by-frame in pixels: the token
+    cost is prohibitive. We measured a raster-tracing pipeline on real cartoon
+    footage at roughly <b>60,000 tokens per second of video</b>, which forecloses
+    the approach for any model that fits on consumer hardware. We instead
+    introduce <b>AniSVG</b>, a text representation in which a clip declares a
+    cast of shapes once and each frame carries only integer delta operations.
+    Measured with the Qwen3 tokenizer, AniSVG costs <b>~6 tokens per moving
+    shape per frame</b> — a median of 71 tokens per frame against ~4,000 for
+    traced SVG, a <b>19× reduction</b> — which brings a whole clip inside a
+    small model's context.
+  </p>
+  <p>
+    We build a 91,387-clip corpus by converting Lottie animations, and
+    fine-tune Qwen3-8B-Base with LoRA on one 8&nbsp;GB GPU. Three findings
+    generalise beyond this task. First, on a large-vocabulary model the
+    <b>loss, not the weights, bounds training</b>: fp32 logits over a 151,936
+    vocabulary cost ~1.05&nbsp;GB per 1,850-token sample, and chunking the
+    cross-entropy cut peak VRAM 4.92&nbsp;→&nbsp;3.16&nbsp;GB at identical loss.
+    Second, <b>layer streaming from NVMe is nearly free</b> when the run is
+    compute-bound — 315 vs 328 tok/s against an in-RAM store. Third,
+    <b>grammar-constrained decoding is not optional</b> for structured output,
+    and character-level masking is insufficient: valid-generation rate moved
+    from 0% to 94% only once the mask operated on whole tokens.
+  </p>
+  <p>
+    Our central negative result separates what scale fixes from what it does
+    not. Training a 1.7B model on 7&times; the animation signal of an 8B run
+    lowered loss (0.435 &rarr; 0.271) and raised valid output to 100%, and it
+    made <b>colour and object count match the caption</b> &mdash; but left
+    <b>geometry essentially unchanged</b>: no generated clip depicts a
+    recognisable object. The palette line and operation structure are short and
+    repetitive and are learned; the vertex sequences are long runs of exact
+    integers and are not. We attribute the gap to coordinate regression through
+    next-token prediction rather than to model or corpus size, and argue for a
+    hybrid in which the language model supplies motion and pose while a
+    diffusion model supplies appearance, conditioned on guides that are exact
+    rather than estimated.
+  </p>
+</div>
+
+
+<div class="abstract" style="border-left-color:var(--muted)">
+  <span class="lbl">Contributions</span>
+  <ol style="margin:0 0 0 4px">
+    <li><b>AniSVG</b>, a delta-based text format for vector animation costing ~6
+      tokens per moving shape per frame, 19× cheaper than traced SVG (§3).</li>
+    <li>A measured demonstration that on a large-vocabulary model the
+      <b>loss tensor, not the weights, bounds training</b> on a small GPU, with a
+      chunked cross-entropy that cuts peak VRAM 36% at an identical objective (§5).</li>
+    <li>The first published measurement of Soup's <b>disk-tier layer streaming</b>,
+      previously documented as unmeasured: ~4% slower than an in-RAM store (§5).</li>
+    <li>Evidence that <b>token-level</b> grammar masking is necessary for strict
+      formats where character-level masking silently fails, moving valid output
+      from 0% to 94% (§6).</li>
+    <li>A negative result separating what scale fixes from what it does not:
+      7× more training signal improved <b>colour and composition</b> and left
+      <b>geometry</b> essentially unchanged (§8, §9).</li>
+    <li>Open pipeline, two corpora (91,387 converted + 40,000 procedural clips),
+      and a renderability-based evaluation metric (§10).</li>
+  </ol>
+</div>
+
+<section>
+  <h2><span class="num">01</span>The problem is the token budget</h2>
+  <p>
+    Generative video is dominated by diffusion over pixels. That is not
+    available to a small autoregressive model on a laptop, so the question
+    becomes: is there a <em>textual</em> representation of moving pictures cheap
+    enough for one to write?
+  </p>
+  <p>
+    We answered this empirically before designing anything. Public-domain
+    cartoons were vectorised frame-by-frame with <code>vtracer</code>, then
+    encoded as compactly as we could manage, and measured on 144 real traced
+    frames:
+  </p>
+
+  <figure>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Encoding of a traced frame</th><th class="n">Tokens / frame</th><th>Note</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Raw SVG</td><td class="n">6,223</td><td>as emitted</td></tr>
+          <tr><td>Compact, absolute coordinates</td><td class="n">5,341</td><td></td></tr>
+          <tr><td>Compact, relative coordinates</td><td class="n">3,869</td><td></td></tr>
+          <tr><td>+ inter-frame path delta</td><td class="n">3,794</td><td><span class="neg">~2% gain</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figcaption>
+      <b>Raster tracing does not fit any budget.</b> At 15&nbsp;fps the best
+      encoding still costs ~57,000 tokens per second of video.
+    </figcaption>
+  </figure>
+
+  <p>
+    The delta encoding is the informative row. It bought almost nothing because
+    independently traced frames have <b>no path correspondence</b> — shape 4 in
+    one frame is unrelated to shape 4 in the next, so there is nothing to
+    subtract. Two further attempts failed for reasons worth recording:
+    separating a static background from moving foreground scored <b>0.49×</b>
+    (worse than not doing it), because these cartoons pan almost constantly and
+    ragged mask boundaries add path complexity; and the painted, textured
+    backgrounds of the source material consumed roughly 80% of all traced points.
+  </p>
+
+  <div class="callout">
+    <span class="lbl">Negative result, recorded deliberately</span>
+    <p>
+      Raster tracing was pursued to a measured dead end, not abandoned on
+      intuition. We publish the numbers because the approach is the obvious
+      first idea, and knowing its cost saves the next person the same weeks.
+    </p>
+  </div>
+
+  <p>
+    That measurement sets the target. A 0.6–8B model can realistically emit on
+    the order of a few thousand coherent tokens, so a two- to four-second clip
+    allows roughly <b>40–80 tokens per frame</b>. That is not a painted scene.
+    It is a small cast of shapes that move — which is what animation, as opposed
+    to video, actually is.
+  </p>
+</section>
+
+<section>
+  <h2><span class="num">02</span>Related work</h2>
+  <p>
+    <b>Vector generation.</b> DeepSVG [1] models SVG hierarchically and showed
+    latent interpolation between icons; OmniSVG [2] scales text-to-SVG to
+    two million assets with a vision-language backbone, including anime
+    characters. Both generate <em>static</em> graphics. Our concern is motion,
+    and the distinction matters: a static generator can be excellent and still
+    contribute nothing to animation, because it never represents time.
+  </p>
+  <p>
+    <b>Vector animation data.</b> Lottie/Bodymovin [3] is the dominant
+    interchange format for shape animation on the web, and LottieGPT [4]
+    released 660k captioned Lottie animations, which we convert. Lottie is a
+    renderer format rather than a generation target: it is verbose, deeply
+    nested, and its keyframe interpolation must be evaluated rather than read.
+    AniSVG is the flattened, sampled view of the same information.
+  </p>
+  <p>
+    <b>Training under memory limits.</b> LoRA [5] and QLoRA [6] make a large
+    base trainable on one GPU by freezing it; Soup's layer streaming [7] goes
+    further and keeps the frozen base out of VRAM entirely. All three bound the
+    <em>weights</em>. Cut Cross-Entropy [8] targets the term that actually
+    dominates at large vocabulary — the logits — which is the same observation
+    we arrive at independently in §5, and which we implement directly because
+    the published integration no longer imports.
+  </p>
+  <p>
+    <b>Conditioned image synthesis.</b> ControlNet [9] conditions diffusion on
+    pose or edge maps, which are normally <em>estimated</em> per frame by a
+    detector. §7 argues that a vector clip supplies the same signals exactly and
+    coherently, removing the estimator that is a known source of flicker.
+  </p>
+</section>
+
+<section>
+  <h2><span class="num">03</span>The AniSVG representation</h2>
+<figure>
+  <svg viewBox="0 0 830 350" role="img" width="100%" style="max-width:100%;height:auto"
+       aria-label="Raster tracing gives each frame new shape identities so inter-frame deltas save nothing, costing 3794 tokens per frame; sampling one shape tree preserves identity so each frame is a few integer operations, costing 71 tokens per frame.">
+    <defs>
+      <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7"
+              markerHeight="7" orient="auto-start-reverse">
+        <polygon points="0,1 10,5 0,9" fill="currentColor"/>
+      </marker>
+      <marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7"
+              markerHeight="7" orient="auto-start-reverse">
+        <polygon points="0,1 10,5 0,9" fill="#0E7C6B"/>
+      </marker>
+    </defs>
+
+    <!-- ============ row A : tracing ============ -->
+    <text x="0" y="34" font-size="12" font-weight="600" fill="currentColor"
+          letter-spacing="1.2">RASTER TRACING</text>
+    <text x="0" y="52" font-size="11" fill="currentColor" opacity=".62">frames traced</text>
+    <text x="0" y="68" font-size="11" fill="currentColor" opacity=".62">independently</text>
+
+    <g stroke="currentColor" fill="none" opacity=".85">
+      <rect x="250" y="24" width="130" height="104" rx="3"/>
+      <rect x="420" y="24" width="130" height="104" rx="3"/>
+      <rect x="590" y="24" width="130" height="104" rx="3"/>
+    </g>
+    <g font-size="10" fill="currentColor" opacity=".55" text-anchor="middle">
+      <text x="315" y="142">frame 1</text><text x="485" y="142">frame 2</text>
+      <text x="655" y="142">frame 3</text>
+    </g>
+
+    <!-- shapes: same picture, different identities each frame -->
+    <g fill="none" stroke="currentColor" opacity=".8">
+      <circle cx="290" cy="60" r="14"/><rect x="320" y="76" width="30" height="22"/>
+      <circle cx="462" cy="58" r="14"/><rect x="492" y="78" width="30" height="22"/>
+      <circle cx="632" cy="62" r="14"/><rect x="662" y="74" width="30" height="22"/>
+    </g>
+    <g font-size="10" fill="currentColor" opacity=".95" text-anchor="middle" font-weight="600">
+      <text x="290" y="64">7</text><text x="335" y="91">2</text>
+      <text x="462" y="62">1</text><text x="507" y="93">9</text>
+      <text x="632" y="66">4</text><text x="677" y="89">6</text>
+    </g>
+
+    <g stroke="currentColor" opacity=".8">
+      <line x1="384" y1="76" x2="414" y2="76" marker-end="url(#ah)"/>
+      <line x1="554" y1="76" x2="584" y2="76" marker-end="url(#ah)"/>
+    </g>
+    <text x="485" y="166" font-size="11" fill="currentColor" opacity=".72"
+          text-anchor="middle">shape ids differ every frame &mdash; nothing to subtract</text>
+
+    <text x="825" y="70" font-size="20" font-weight="700" fill="currentColor"
+          text-anchor="end">3,794</text>
+    <text x="825" y="86" font-size="10.5" fill="currentColor" opacity=".6"
+          text-anchor="end">tokens / frame</text>
+
+    <line x1="0" y1="196" x2="830" y2="196" stroke="currentColor" opacity=".22"/>
+
+    <!-- ============ row B : sampling one tree ============ -->
+    <text x="0" y="230" font-size="12" font-weight="600" fill="#0E7C6B"
+          letter-spacing="1.2">SHAPE-TREE SAMPLING</text>
+    <text x="0" y="248" font-size="11" fill="currentColor" opacity=".62">one cast,</text>
+    <text x="0" y="264" font-size="11" fill="currentColor" opacity=".62">sampled over time</text>
+
+    <rect x="140" y="220" width="92" height="104" rx="3" fill="none"
+          stroke="#0E7C6B" stroke-dasharray="4 3"/>
+    <text x="186" y="244" font-size="10.5" fill="#0E7C6B" text-anchor="middle"
+          font-weight="600">cast</text>
+    <text x="186" y="262" font-size="10" fill="currentColor" opacity=".7"
+          text-anchor="middle">S0 S1 S2</text>
+    <text x="186" y="280" font-size="10" fill="currentColor" opacity=".7"
+          text-anchor="middle">declared</text>
+    <text x="186" y="294" font-size="10" fill="currentColor" opacity=".7"
+          text-anchor="middle">once</text>
+
+    <g stroke="currentColor" fill="none" opacity=".85">
+      <rect x="250" y="220" width="130" height="104" rx="3"/>
+      <rect x="420" y="220" width="130" height="104" rx="3"/>
+      <rect x="590" y="220" width="130" height="104" rx="3"/>
+    </g>
+
+    <!-- same identities, moved -->
+    <g fill="none" stroke="#0E7C6B">
+      <circle cx="290" cy="256" r="14"/><rect x="320" y="272" width="30" height="22"/>
+      <circle cx="464" cy="252" r="14"/><rect x="492" y="272" width="30" height="22"/>
+      <circle cx="638" cy="250" r="14"/><rect x="664" y="272" width="30" height="22"/>
+    </g>
+    <g font-size="10" fill="#0E7C6B" text-anchor="middle" font-weight="600">
+      <text x="290" y="260">0</text><text x="335" y="287">1</text>
+      <text x="464" y="256">0</text><text x="507" y="287">1</text>
+      <text x="638" y="254">0</text><text x="679" y="287">1</text>
+    </g>
+
+    <g stroke="#0E7C6B">
+      <line x1="234" y1="272" x2="246" y2="272" marker-end="url(#ahA)"/>
+      <line x1="384" y1="272" x2="414" y2="272" marker-end="url(#ahA)"/>
+      <line x1="554" y1="272" x2="584" y2="272" marker-end="url(#ahA)"/>
+    </g>
+    <text x="399" y="212" font-size="10" fill="#0E7C6B" text-anchor="middle"
+          font-family="monospace">@2 t 0 2 -4</text>
+    <text x="569" y="212" font-size="10" fill="#0E7C6B" text-anchor="middle"
+          font-family="monospace">@3 t 0 3 -2 r 1 5</text>
+    <text x="485" y="344" font-size="11" fill="currentColor" opacity=".72"
+          text-anchor="middle">shape k is the same shape at every frame &mdash; a frame is a few integers</text>
+
+    <text x="825" y="266" font-size="20" font-weight="700" fill="#0E7C6B"
+          text-anchor="end">71</text>
+    <text x="825" y="282" font-size="10.5" fill="currentColor" opacity=".6"
+          text-anchor="end">tokens / frame</text>
+  </svg>
+  <figcaption>
+    <b>Figure 1. Correspondence is what makes the encoding cheap.</b> Tracing
+    each frame independently assigns fresh shape identities, so an inter-frame
+    delta has nothing to subtract against and buys ~2%. Sampling a single shape
+    tree over time keeps identity by construction, so a frame reduces to a few
+    integer operations against a cast declared once. The 19&times; gap between
+    the two figures is this property, not a better compressor.
+  </figcaption>
+</figure>
+
+  <p>
+    AniSVG states a clip as a cast plus a sequence of edits. Shapes are declared
+    once with their geometry; every subsequent frame lists only what changed.
+    All values are integers, and a shape not mentioned in a frame holds its pose.
+  </p>
+
+  <figure>
+    <pre><span class="c">H 256 256 15 20</span>                 <span class="c">← canvas, fps, frame count</span>
+<span class="c">P #000000 #12A1F9</span>               <span class="c">← palette</span>
+<span class="c">S 0 0 102 144 151 1 -1 1 -1 …</span>   <span class="c">← shape 0: palette 0, stroke 10.2, then</span>
+                                  <span class="c">  an origin and relative vertex deltas</span>
+<span class="c">@ 1 t 0 2 0 r 0 3 t 1 3 0</span>       <span class="c">← frame 1: translate shape 0 by (2,0),</span>
+                                  <span class="c">  rotate it 3°, translate shape 1…</span></pre>
+    <figcaption>
+      The full grammar. Operations are <code>t</code> translate,
+      <code>r</code> rotate about the shape's centroid, <code>s</code> scale,
+      <code>o</code> opacity, <code>v</code> per-vertex morph, and
+      <code>h</code>/<code>w</code> hide/show.
+    </figcaption>
+  </figure>
+
+  <h3>Motion is four numbers, not a vertex list</h3>
+  <p>
+    A shape usually <em>moves</em> far more than it <em>changes</em>. Each frame
+    fits a similarity transform (translate, rotate, uniform scale) between the
+    cast pose and the frame pose in closed form, so those four numbers absorb
+    the bulk of the motion; only the residual becomes a per-vertex morph. This
+    split is what makes the format cheap: a walking figure costs a few transform
+    operations per frame instead of a full coordinate dump.
+  </p>
+
+  <h3>Quantisation-aware deltas</h3>
+  <p>
+    Every operation is rounded to an integer, so the encoder diffs against the
+    pose the <em>decoder</em> will hold after replaying the rounded stream — not
+    against the true pose. Without this, sub-pixel jitter emits a stream of
+    no-op <code>t id 0 0</code> operations and rounding error accumulates across
+    the clip. This is a small detail that determines whether the format is
+    actually compact in practice.
+  </p>
+
+  <figure>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Representation</th><th class="n">Tokens / frame</th><th class="n">Per 3.2 s clip</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Traced SVG (§1)</td><td class="n">~4,000</td><td class="n">~190,000</td></tr>
+          <tr class="hi"><td><b>AniSVG</b>, 36-shape scene</td><td class="n">~213</td><td class="n">~13,000</td></tr>
+          <tr class="hi"><td><b>AniSVG</b>, corpus median</td><td class="n"><span class="win">71</span></td><td class="n">~1,800</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figcaption>
+      <b>19× cheaper, and it scales with cast size</b> at roughly 6 tokens per
+      moving shape per frame — so a ten-shape character lands near 60 tokens per
+      frame. Measured with the Qwen3 tokenizer.
+    </figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2><span class="num">04</span>Corpus: why Lottie</h2>
+  <p>
+    Tracing fails because it destroys shape correspondence. Lottie
+    (Bodymovin) restores it for free: sampling one shape tree at successive
+    times means shape <em>k</em> at frame <em>t</em> <b>is</b> shape <em>k</em>
+    at frame <em>t+1</em>. That single property is why the conversion work is
+    worth doing.
+  </p>
+  <p>
+    We convert <code>LottieGPT/LottieAnimation-660K</code> (CC-BY-NC-SA-4.0).
+    The repository is 132&nbsp;GB, but 129&nbsp;GB of that is rendered MP4
+    previews that a vector pipeline never reads; only the 2.96&nbsp;GB of
+    metadata shards carry the Lottie JSON and captions. Shards are streamed over
+    HTTP, decompressed and converted in flight, and discarded — peak disk cost
+    is the gzipped output alone, ~0.8&nbsp;KB per clip.
+  </p>
+
+  <figure>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Disposition of a source animation</th><th class="n">Share</th><th>Cause</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Cast outside 2–20 shapes</td><td class="n">46%</td><td>over the token budget</td></tr>
+          <tr><td>Uses an unsupported feature</td><td class="n">17%</td><td>precomp, gradient, trim path</td></tr>
+          <tr><td>No filled shapes / unstable shape count</td><td class="n">9%</td><td>not representable</td></tr>
+          <tr><td>Static</td><td class="n">6%</td><td>no motion to learn</td></tr>
+          <tr><td>Too long / too few frames</td><td class="n">2%</td><td></td></tr>
+          <tr class="hi"><td><b>Converted</b></td><td class="n"><span class="win">20%</span></td><td>91,387 clips</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figcaption>
+      Measured over a 1,500-record sample. Rejecting a clip whose conversion
+      dropped a feature is deliberate: <b>a dropped precomp or trim path does
+      not raise an error, it renders wrongly</b>, and wrong training data is
+      worse than missing training data.
+    </figcaption>
+  </figure>
+
+  <h3>Two corrections that changed the corpus</h3>
+  <p>
+    Null layers (<code>ty:3</code>) were initially counted as unsupported,
+    flagging two thirds of the corpus as lossy. Nulls hold no art at all — they
+    exist to be parented to, and their transform was already being applied
+    through the parent chain. Excluding them lifted the clean share from 38% to
+    62% of convertible clips.
+  </p>
+  <p>
+    Conversion, not download, is the bottleneck: 0.27&nbsp;s/record
+    single-threaded. Moving it to a process pool gave 5.2×, and rejecting on a
+    <em>single sampled frame</em> before paying for a full conversion gave a
+    further 13× — because cast size and unsupported features are both decidable
+    from one frame, while conversion samples every frame.
+  </p>
+
+  <h3>Trim, do not drop</h3>
+  <p>
+    AniSVG frames are individually addressable lines and the header's frame
+    count is derived from the frame list, so an over-long clip can be re-emitted
+    with fewer frames. At a 4,096-token cap this moved clip loss from
+    <b>37% to 11%</b>: a six-second animation truncated to three is a far better
+    trade than a discarded one. The packed corpus is 78,971 clips and 198.3M
+    tokens, median 2,531 tokens per clip.
+  </p>
+
+  <h3>A second corpus, generated rather than collected</h3>
+  <p>
+    The converted corpus contains no characters, so no model trained on it can
+    produce one. Rather than search for character animation that does not exist
+    in vector form at scale, we generate it: an articulated rig maps an action
+    and a phase to joint positions, and sampling it over time yields exactly the
+    shape correspondence AniSVG requires &mdash; limb <em>k</em> is limb
+    <em>k</em> at every frame &mdash; so procedural clips encode at the same cost
+    as converted ones and can be mixed with them.
+  </p>
+  <p>
+    Two variants were produced, 20,000 clips each, balanced across six actions
+    (walk, run, jump, kick, wave, dance) with zero failures: a line-art stick
+    figure, and a cel-style figure with an oversized head, hair silhouette,
+    large eyes, tapered limbs and clothing. The cel figure uses a <b>fixed
+    sixteen-part schema</b> in fixed paint order, so shape index <em>k</em> is
+    the same body part in every clip &mdash; including in generated output,
+    which is what allows a pose skeleton to be recovered from what a model
+    writes rather than only from what the generator produced (&sect;7).
+  </p>
+  <p>
+    Captions are emitted from the parameters that produced the clip, so they are
+    true by construction rather than inferred, a property no scraped corpus has.
+    The cost is density: every limb moves every frame, giving a median of 3,110
+    tokens per clip against 2,531 for converted animations.
+  </p>
+</section>
+
+<section>
+  <h2><span class="num">05</span>What actually bounds an 8 GB GPU</h2>
+  <p>
+    The expectation going in was that model size would decide what we could
+    train. It did not.
+  </p>
+  <p>
+    Every large configuration failed on the <em>same</em> 1.05&nbsp;GiB
+    allocation regardless of model size <em>or</em> context length — the
+    signature of a term that depends on neither. <code>Qwen3ForCausalLM</code>
+    upcasts logits to fp32 for the loss, so a single 1,850-token sample against
+    a 151,936-token vocabulary materialises ~1.05&nbsp;GB, and its gradient the
+    same again. On a small model with a large vocabulary, <b>the loss is the
+    largest tensor in the step.</b>
+  </p>
+  <p>
+    Scoring the sequence in slices, so the full logit tensor never exists,
+    removes it. The objective is unchanged — built-in, manual and chunked
+    cross-entropy agree to four decimals (0.8340) on a fixed batch:
+  </p>
+
+  <figure>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Loss computation</th><th class="n">Peak VRAM</th><th class="n">Train loss</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Built-in (full logits, fp32)</td><td class="n">4.92 GB</td><td class="n">0.674893</td></tr>
+          <tr class="hi"><td>Chunked, 512-token slices</td><td class="n"><span class="win">3.16 GB</span></td><td class="n">0.675162</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figcaption>
+      Qwen3-0.6B, 2,048 context. <b>−36% peak VRAM for a 7% speed cost</b>, at
+      the same objective. This single change decided which models were trainable.
+    </figcaption>
+  </figure>
+
+  <div class="callout">
+    <span class="lbl">Implementation trap</span>
+    <p>
+      Transformers 4.51+ passes <code>num_items_in_batch</code> into
+      <code>compute_loss</code> and then does <em>not</em> divide by the
+      accumulation steps itself. A custom loss returning a plain mean inflates
+      every gradient by exactly the accumulation factor. It presented as train
+      loss 2.678 against 0.675 at accumulation 4 — and the ratio is the tell.
+    </p>
+  </div>
+
+  <figure>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Base model</th><th>Quantisation</th><th class="n">Peak VRAM</th><th class="n">s / clip</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Qwen3-0.6B</td><td>bf16</td><td class="n">3.16 GB</td><td class="n">0.76</td></tr>
+          <tr><td>Qwen3-1.7B</td><td>bf16</td><td class="n">5.30 GB</td><td class="n">1.32</td></tr>
+          <tr><td>Qwen3-4B</td><td>NF4</td><td class="n">6.28 GB</td><td class="n">4.00</td></tr>
+          <tr class="hi"><td>Qwen3-8B</td><td>NF4 + layer streaming</td><td class="n">~3.3 GB</td><td class="n">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figcaption>
+      All four fit only <em>after</em> the chunked loss; before it, every row
+      below 0.6B ran out of memory. Layer streaming keeps the frozen base
+      outside VRAM entirely, bounding peak by one decoder layer.
+    </figcaption>
+  </figure>
+
+  <h3>Streaming from disk is nearly free</h3>
+  <p>
+    Our host had insufficient free RAM to pin the 3.58&nbsp;GB NF4 store, so the
+    8B run fell back to streaming decoder layers from NVMe — each read twice per
+    step, once in the forward pass and once when the backward pass recomputes
+    it. The published benchmark for this tier notes its slowdown was unmeasured.
+    We measured it: <b>315 tok/s from disk against 328 tok/s from RAM</b>, a ~4%
+    penalty, because the run is compute-bound rather than I/O-bound (GPU
+    utilisation held at 92–98%).
+  </p>
+  <div class="callout">
+    <span class="lbl">Measurement caution</span>
+    <p>
+      Our first estimate of this penalty was 4.5×, computed by dividing total
+      steps by elapsed-since-process-start. Roughly an hour of that window was
+      one-time tokenisation and shard preparation. Rates for long runs must be
+      measured across step boundaries in steady state, never from process start.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">06</span>Decoding is where structured generation is won</h2>
+  <p>
+    After a full epoch (28,034 clips, 1,024 context, 29.8&nbsp;h, loss
+    0.86&nbsp;→&nbsp;0.40) the model wrote well-formed AniSVG — correct headers,
+    palettes, cast declarations with plausible vertex deltas. Its
+    valid-generation rate was <b>0%</b>.
+  </p>
+  <p>
+    Every point of that gap was in decoding and evaluation, not in the weights.
+    The sequence of causes is the useful part of this section:
+  </p>
+
+  <figure>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Cause</th><th>Symptom</th><th class="n">Valid rate</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Prompt omitted the template's empty <code>&lt;think&gt;</code> block</td><td>greedy loops one junk token forever</td><td class="n">0%</td></tr>
+          <tr><td>Scorer required output to begin at the header</td><td>base-model warm-up tokens fail the clip</td><td class="n">6%</td></tr>
+          <tr><td>Sampling, unconstrained</td><td>stray token lands inside a number</td><td class="n">17%</td></tr>
+          <tr><td>Greedy, unconstrained</td><td>collapse: 13 of 15 shapes identical, zero extent</td><td class="n">—</td></tr>
+          <tr><td>Character-level vocabulary mask</td><td>hex digits ∩ op letters spell real words</td><td class="n">75%</td></tr>
+          <tr class="hi"><td><b>Token-level grammar mask + sampling</b></td><td>—</td><td class="n"><span class="win">94%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figcaption>
+      Sixteen held-out captions per row. The two unconstrained decoders fail in
+      <b>opposite</b> directions, which is why no temperature setting fixes both.
+    </figcaption>
+  </figure>
+
+  <h3>The prompt prefix must match training exactly</h3>
+  <p>
+    Qwen3's chat template emits an empty reasoning block before the answer, so
+    every training example ran
+    <code>…assistant\n&lt;think&gt;\n\n&lt;/think&gt;\n\nH 256 …</code>. The
+    conventional <code>add_generation_prompt=True</code> stops at the assistant
+    marker, leaving the model to invent that block. Sampling sometimes stumbled
+    through it; greedy never did. Rather than hardcode the block, render a
+    sentinel assistant message and cut the string at it — this recovers the
+    exact prefix whatever the template does.
+  </p>
+
+  <h3>Character-level masking is insufficient</h3>
+  <p>
+    The two failure modes are complementary: less randomness removes corruption
+    <em>and</em> variety; more randomness restores variety <em>and</em>
+    corruption. The resolution is to make invalid tokens unreachable rather than
+    unlikely, so sampling can supply variety without being able to break syntax.
+  </p>
+  <p>
+    A naive character filter is not enough. AniSVG's hex digits
+    (<code>a–f</code>) and operation letters (<code>t r s o v h w</code>) share
+    an alphabet that spells real words, so tokens such as <code>edores</code>,
+    <code>errar</code> and <code>.Dao</code> pass a per-character test and land
+    inside a number. The mask must accept or reject <b>whole tokens</b>: a run
+    of digits, one structural character, or a short hex group. That change alone
+    moved 75% → 94%, retaining 7,970 of 151,669 tokens.
+  </p>
+
+  <div class="callout">
+    <span class="lbl">Evaluation must mean renderable</span>
+    <p>
+      Loss is a poor guide for a structured format. Our scorer initially called
+      a clip valid if it parsed — including clips that crashed on replay. Validity
+      must be established by replaying every operation against the cast and
+      rasterising. A clip can also be structurally perfect and draw nothing:
+      generated shapes under greedy decoding had a median extent of <b>0×0</b>
+      against 15–172 for ground truth. Metrics for generated structure should
+      measure the rendered result, not the emitted symbols.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">07</span>Where a vector-only approach stops</h2>
+  <p>
+    The representation has a ceiling, and it is worth stating precisely because
+    it is easy to misattribute. The limit is <em>not</em> SVG: SVG supports
+    gradients, masks, filters and blur. AniSVG excludes them, and it excludes
+    them for one reason - token cost. The real constraint is that a small
+    autoregressive model can afford roughly 40-80 tokens per frame, and visual
+    style is expensive in tokens while motion is cheap.
+  </p>
+  <p>
+    That suggests splitting the problem along its own grain rather than
+    extending the format: let the language model write <b>motion</b>, which is
+    cheap and which it can be made to write correctly, and let a diffusion model
+    paint <b>style</b>, which is expensive in tokens but free in pixels.
+  </p>
+
+  <h3>The conditioning signal is exact, not estimated</h3>
+  <p>
+    ControlNet conditioning is normally <em>recovered</em> from a rendered image
+    by a preprocessor - a detector guessing joint positions, an edge filter
+    guessing lines. That estimate is a source of error, and because it is
+    recomputed independently per frame it is a source of flicker, which is the
+    dominant failure mode in diffusion-based animation.
+  </p>
+  <p>
+    A vector clip removes the estimator entirely. The cast is declared once and
+    the frames are deltas on it, so limb <em>k</em> is limb <em>k</em> at every
+    timestep <b>by construction</b>. Fixing the part schema - the same sixteen
+    parts, in the same order, in every clip - means a skeleton can be recovered
+    from generated output as well as from the generator, by index rather than by
+    inference. Nothing is detected, so nothing can be detected differently from
+    one frame to the next.
+  </p>
+
+  <figure>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Component</th><th>Provides</th><th class="n">8 GB feasible?</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hi"><td>AniSVG model (this work)</td><td>motion, layout, exact pose + lineart</td><td class="n"><span class="win">trains and runs</span></td></tr>
+          <tr><td>Wan 1.3B / Wan 2.2 5B</td><td>video synthesis</td><td class="n">inference only</td></tr>
+          <tr><td>AnimateDiff-Lightning</td><td>short animation</td><td class="n">inference only</td></tr>
+          <tr><td>LTX-2 LoRA training</td><td>trained video model</td><td class="n"><span class="neg">no - 32-80 GB</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figcaption>
+      Training a video diffusion model is out of reach on this hardware;
+      <b>running one is not</b>. That asymmetry is what makes the hybrid the
+      only locally-trainable route to styled animation.
+    </figcaption>
+  </figure>
+
+  <div class="callout">
+    <span class="lbl">Open question, reported before the outcome is known</span>
+    <p>
+      Whether per-frame diffusion conditioned on exact vector guides yields
+      temporally stable anime is <b>not yet established here</b>. Exact
+      conditioning removes preprocessor flicker, but it does not by itself
+      constrain texture, shading or hair between frames, and those are free to
+      vary under the sampler. This section states the design and its rationale;
+      the measurement follows, and will be reported whether or not it works.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">08</span>Results: what scale fixed, and what it did not</h2>
+  <p>
+    Two models were trained on the same converted corpus, differing in size and
+    in how much of each clip they saw. The 8B ran under layer streaming at a
+    1,024-token context, admitting 29k of 79k clips at ~10 frames each; the
+    1.7B ran resident at 4,096 tokens, taking all 77,397 clips at ~25 frames
+    each — roughly <b>7× the animation signal per epoch</b>.
+  </p>
+
+  <figure>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>Table 4</th><th>v1 — Qwen3-8B</th><th>v2 — Qwen3-1.7B</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Context / clips seen</td><td>1,024 · 28,034</td><td>4,096 · 77,397</td></tr>
+          <tr><td>Frames per training clip</td><td>~10</td><td>~25</td></tr>
+          <tr><td>Wall clock, 1 epoch</td><td>29.8 h</td><td>64.2 h</td></tr>
+          <tr><td>Final train loss</td><td>0.4349</td><td><span class="win">0.2709</span></td></tr>
+          <tr class="hi"><td>Valid generations</td><td>94%</td><td><span class="win">100%</span></td></tr>
+          <tr><td>Frames per generated clip</td><td>11-30</td><td>18-33</td></tr>
+          <tr><td>Colour / object count vs caption</td><td><span class="neg">rarely correct</span></td><td><span class="win">usually correct</span></td></tr>
+          <tr><td>Recognisable geometry</td><td><span class="neg">no</span></td><td><span class="neg">no</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figcaption>
+      <b>Scale moved one axis and not the other.</b> Both models were evaluated
+      on 16 held-out captions with token-level constrained sampling.
+    </figcaption>
+  </figure>
+
+  <p>
+    The qualitative difference is specific and repeatable. Given
+    <em>"two four-pointed star-shaped figures, a larger purple one and a smaller
+    pink one"</em>, v2 emits a large pink form and a small purple one: the
+    palette is right, the count is right, the relative sizes are right, and
+    neither form is a star. Given <em>"a blue and a red speech bubble"</em> it
+    emits exactly two shapes, one blue and one red. v1, by contrast, produced
+    near-monochrome scribbles.
+  </p>
+
+  <div class="callout" style="border-top-color:var(--accent)">
+    <span class="lbl" style="color:var(--accent)">The finding</span>
+    <p>
+      The two halves of an AniSVG clip are learned at very different rates. The
+      palette line and the operation structure are short, low-entropy and highly
+      repetitive, and they are learned well. The <b>vertex sequences</b> are long
+      runs of precise integers in which a single wrong digit deforms the shape,
+      and they are barely learned at all. Multiplying the training signal by
+      seven moved colour fidelity substantially and geometry almost not at all.
+    </p>
+    <p>
+      We therefore attribute the depiction gap to <b>coordinate regression
+      through next-token prediction</b> rather than to model size or corpus size.
+      That is a property of the interface between the task and the architecture,
+      not a shortage of compute — and it is the result that motivates §7.
+    </p>
+  </div>
+
+  <h3>Limitations</h3>
+  <p>
+    No generated clip depicts a recognisable object. The corpus is
+    motion-graphics iconography, so the learned motion vocabulary is rotation
+    and translation rather than articulated movement. The source licence is
+    non-commercial. The representation cannot express gradients, image layers or
+    trim-path reveals, which is why 17% of source animations are rejected rather
+    than approximated. Every number here comes from a single machine and a
+    single seed.
+  </p>
+
+</section>
+
+<section>
+  <h2><span class="num">09</span>Negative results, in full</h2>
+  <p>
+    Each of these cost real time, and each is reported because the approach is
+    plausible enough that someone else will try it.
+  </p>
+
+  <h3>Raster tracing of real footage (§1)</h3>
+  <p>
+    ~57,000-60,000 tokens per second of video after every compaction we could
+    devise. Inter-frame delta encoding bought ~2% because independently traced
+    frames share no path identity. Separating static background from moving
+    foreground scored <b>0.49×</b> — worse than not doing it — because the source
+    cartoons pan almost constantly and mask boundaries add path complexity.
+  </p>
+
+  <h3>Greedy decoding collapses this format</h3>
+  <p>
+    Greedy produced <b>13 of 15 shapes identical at zero extent</b> — clips that
+    parse, replay and render as a blank canvas. Sampling produced good geometry
+    and corrupted numbers. The two decoders fail in opposite directions, so no
+    temperature setting fixes both; only constraining the vocabulary does.
+  </p>
+
+  <h3>Character-level vocabulary masking is insufficient</h3>
+  <p>
+    AniSVG's hex digits (<code>a-f</code>) and operation letters
+    (<code>t r s o v h w</code>) share an alphabet that spells words, so
+    <code>edores</code>, <code>errar</code> and <code>.Dao</code> pass a
+    per-character filter and land inside numbers. 75% valid; token-level
+    masking reached 94%.
+  </p>
+
+  <h3>Cut Cross-Entropy cannot be switched on</h3>
+  <p>
+    The intended fix for the logits bound is unusable on any current stack: its
+    transformers integration imports private symbols
+    (<code>_CONFIG_FOR_DOC</code>) that modern versions no longer export, and it
+    eagerly imports a gemma2 patcher, so a non-gemma model trips a gemma2
+    incompatibility [8]. We reimplemented the idea instead (§5).
+  </p>
+
+  <h3>The hybrid, first measurement: style yes, control no, stability no</h3>
+  <p>
+    We rendered a procedural clip's exact pose guides through SD1.5 with
+    ControlNet-OpenPose, one fixed seed and identical settings on every frame,
+    so that the only thing varying between frames was the conditioning image.
+    Measured as mean absolute inter-frame change:
+  </p>
+  <figure>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Table 6</th><th class="n">Inter-frame change</th><th>Reading</th></tr></thead>
+        <tbody>
+          <tr><td>Pose guides (input)</td><td class="n">1.29</td><td>the motion we asked for</td></tr>
+          <tr><td>Styled frames (output)</td><td class="n">30.44</td><td>what the sampler produced</td></tr>
+          <tr class="hi"><td><b>Ratio</b></td><td class="n"><span class="neg">23.6&times;</span></td><td>added by the sampler</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figcaption>
+      A fixed seed and a temporally exact guide are <b>not sufficient</b> for
+      temporal stability in per-frame diffusion.
+    </figcaption>
+  </figure>
+  <p>
+    One half of the hybrid worked immediately: the output is genuine anime -
+    a cel-style character with large eyes, hair and clothing, at a quality the
+    token budget could never buy. The other half failed twice, and the two
+    failures have different causes.
+  </p>
+  <p>
+    <b>The pose was not followed.</b> The guides show an arm raised in a wave;
+    the rendered characters stand with hands on hips. Our skeleton is
+    OpenPose-<em>like</em> - limb axes recovered from the part schema and drawn
+    in the OpenPose palette - but it is not the COCO-18 keypoint topology the
+    ControlNet was trained on: it has no explicit neck, nose, eye or ear
+    keypoints, and its joints are limb endpoints rather than named body points.
+    The conditioning was therefore weak enough to be largely ignored. This is an
+    implementation defect on our side, not a limit of the method, and it is
+    fixable precisely because the rig gives exact joints.
+  </p>
+  <p>
+    <b>Identity was not preserved.</b> Every frame is a different character -
+    different hair length, different face, and a background that reorganises
+    completely. This is the expected behaviour of per-frame diffusion with no
+    temporal mechanism, and a fixed seed does not address it: the seed fixes the
+    starting noise, not the trajectory the sampler takes once the conditioning
+    changes. Exact conditioning removes <em>preprocessor</em> flicker, which was
+    the claim in &sect;7, but preprocessor flicker was evidently not the dominant
+    term.
+  </p>
+  <div class="callout">
+    <span class="lbl">Correction to &sect;7</span>
+    <p>
+      &sect;7 argued that exact conditioning would buy temporal stability
+      because it removes the per-frame estimator. That argument was stated
+      before measurement and is <b>wrong as stated</b>. Removing estimator
+      flicker is necessary but nowhere near sufficient; the sampler's own
+      freedom dominates by more than an order of magnitude. Any route to stable
+      output needs an explicit temporal mechanism - a motion module, latent
+      chaining between frames, or cross-frame attention - not merely a better
+      guide.
+    </p>
+  </div>
+
+  <h3>Two of our own measurement errors</h3>
+  <p>
+    We first computed the disk-tier penalty as <b>4.5×</b> by dividing total
+    steps by elapsed-since-process-start; roughly an hour of that window was
+    one-time tokenisation and shard preparation. Measured across step boundaries
+    in steady state it is ~4%. Separately, a throughput estimate taken from a
+    probe on 2048-token data under-predicted a 4096-token run by 1.9×. Both
+    errors share a cause: <b>extrapolating from a window that is not the run</b>.
+  </p>
+
+  <h3>The corpus does not contain what we wanted</h3>
+  <p>
+    LottieAnimation-660K is motion-graphics iconography. A model trained on it
+    produces animated icons however well it is trained — no amount of scale
+    yields characters, because characters are absent from the data. We report
+    this because "train longer" is the default response to weak output, and here
+    it would have been wrong.
+  </p>
+</section>
+
+<section>
+  <h2><span class="num">10</span>Reproducibility</h2>
+  <p>
+    Every number in this paper was measured on one machine: an RTX 4060 Laptop
+    (8&nbsp;GB), 15.3&nbsp;GB host RAM, NVMe, Windows 11, with PyTorch
+    2.13+cu126 and Transformers 4.51/4.57. Windows figures are systematically
+    pessimistic against Linux, and <code>expandable_segments</code> — which was
+    nonetheless necessary to reach 4,096 context at 0.6B — is silently ignored
+    on some Windows configurations.
+  </p>
+  <figure>
+    <pre><span class="c"># corpus: stream, convert, filter (never stores source shards)</span>
+python svg/stream_corpus.py -o data/corpus --max-clips 0
+
+<span class="c"># pack: dedup, trim to budget, deterministic split</span>
+python svg/pack_dataset.py --corpus data/corpus -o data/train
+
+<span class="c"># train (chunked loss; --load-4bit for larger bases)</span>
+python svg/train_lora.py --base Qwen/Qwen3-1.7B-Base --data data/train
+
+<span class="c"># generate, score on renderability, and encode to video</span>
+python svg/generate.py --adapter data/lora --constrain --eval 32
+python svg/to_video.py 'out/*.anisvg' -o reel.mp4 --loops 3</pre>
+    <figcaption>
+      The pipeline end to end. Splits are hashed per clip, so a rerun cannot
+      leak validation clips into training regardless of shard order.
+    </figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2><span class="num">11</span>What transfers</h2>
+  <p>
+    Three results are independent of animation and apply to anyone training a
+    modern large-vocabulary model on a small GPU, or generating any strict
+    format:
+  </p>
+  <ol>
+    <li>
+      <b>Profile the loss, not just the weights.</b> With a 151,936-token
+      vocabulary, fp32 logits and their gradient can exceed everything else in
+      the step. If an out-of-memory error recurs at the same size regardless of
+      model or sequence length, the cause depends on neither.
+    </li>
+    <li>
+      <b>Verify the prompt prefix against real training text.</b> Chat templates
+      insert content — an empty reasoning block, in our case — that
+      <code>add_generation_prompt</code> does not reproduce. Greedy decoding is
+      unforgiving of the mismatch, and it presents as a model failure.
+    </li>
+    <li>
+      <b>Constrain decoding at the token level, and score on the artefact.</b>
+      For strict grammars, masking makes malformed output impossible rather than
+      improbable — but only if the mask reasons about whole tokens. And a
+      structured-output metric should render the result: parsing proves nothing
+      about whether anything was drawn.
+    </li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="num">12</span>References</h2>
+  <ol style="font-family:var(--sans);font-size:14px;line-height:1.6">
+    <li>Carlier, A., Danelljan, M., Alahi, A., Timofte, R. <i>DeepSVG: A
+      Hierarchical Generative Network for Vector Graphics Animation.</i>
+      NeurIPS 2020. <a href="https://arxiv.org/abs/2007.11301">arXiv:2007.11301</a></li>
+    <li>Yang, Y. et al. <i>OmniSVG: A Unified Scalable Vector Graphics Generation
+      Model.</i> NeurIPS 2025.
+      <a href="https://github.com/OmniSVG/OmniSVG">github.com/OmniSVG/OmniSVG</a>.
+      MMSVG-2M; the Character subset was still unreleased at the time of writing.</li>
+    <li>Airbnb. <i>Lottie / Bodymovin.</i>
+      <a href="https://airbnb.io/lottie/">airbnb.io/lottie</a></li>
+    <li>Chen, J. et al. <i>LottieGPT: Tokenizing Vector Animation for
+      Autoregressive Generation.</i> CVPR 2026. Dataset:
+      <a href="https://huggingface.co/datasets/LottieGPT/LottieAnimation-660K">LottieAnimation-660K</a>,
+      CC-BY-NC-SA-4.0.</li>
+    <li>Hu, E. et al. <i>LoRA: Low-Rank Adaptation of Large Language Models.</i>
+      <a href="https://arxiv.org/abs/2106.09685">arXiv:2106.09685</a></li>
+    <li>Dettmers, T. et al. <i>QLoRA: Efficient Finetuning of Quantized LLMs.</i>
+      <a href="https://arxiv.org/abs/2305.14314">arXiv:2305.14314</a></li>
+    <li>Makazhan, A. <i>Soup: exact layer streaming for LoRA fine-tuning.</i>
+      <a href="https://github.com/MakazhanAlpamys/Soup">github.com/MakazhanAlpamys/Soup</a>,
+      Apache-2.0. Benchmark records under <code>benchmarks/</code>.</li>
+    <li>Apple. <i>Cut Cross-Entropy.</i>
+      <a href="https://github.com/apple/ml-cross-entropy">github.com/apple/ml-cross-entropy</a></li>
+    <li>Zhang, L., Rao, A., Agrawala, M. <i>Adding Conditional Control to
+      Text-to-Image Diffusion Models.</i>
+      <a href="https://arxiv.org/abs/2302.05543">arXiv:2302.05543</a></li>
+    <li>Qwen Team. <i>Qwen3.</i>
+      <a href="https://huggingface.co/Qwen">huggingface.co/Qwen</a></li>
+    <li>Umeyama, S. <i>Least-squares estimation of transformation parameters
+      between two point patterns.</i> IEEE TPAMI, 1991. Used for the
+      similarity fit in §3.</li>
+    <li>visioncortex. <i>VTracer.</i>
+      <a href="https://github.com/visioncortex/vtracer">github.com/visioncortex/vtracer</a></li>
+  </ol>
+</section>
+
+<footer>
+  <p>
+    Working paper accompanying an open pipeline for text-conditioned vector
+    animation. Corpus derived from LottieAnimation-660K (CC-BY-NC-SA-4.0,
+    non-commercial). Negative results are reported in full, in the order they
+    were found.
+  </p>
+</footer>
+
+</div>

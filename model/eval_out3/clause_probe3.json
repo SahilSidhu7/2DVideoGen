@@ -1,0 +1,251 @@
+{
+ "ckpt": "model/scene_ckpt3",
+ "rows": [
+  {
+   "numeral": 1,
+   "clauses": 1,
+   "prompt": "one people in the park: one waves",
+   "cast": 2,
+   "raw": "bg park dur 69 | cast ana amber 69 90 ; bo pink 94 90 | prop | tl 1 23 ana wave"
+  },
+  {
+   "numeral": 2,
+   "clauses": 1,
+   "prompt": "two people in the park: one waves",
+   "cast": 2,
+   "raw": "bg park dur 69 | cast ana pink 94 90 ; bo pink 94 90 | prop | tl 2 27 bo wave ; 7 24 ana wave"
+  },
+  {
+   "numeral": 2,
+   "clauses": 2,
+   "prompt": "two people in the park: one waves, then another jumps",
+   "cast": 2,
+   "raw": "bg park dur 69 | cast ana white 96 100 ; bo amber 94 90 | prop | tl 3 20 bo jump ; 6 23 ana wave ; 34 53 ana jump"
+  },
+  {
+   "numeral": 3,
+   "clauses": 1,
+   "prompt": "three people in the park: one waves",
+   "cast": 3,
+   "raw": "bg park dur 69 | cast ana violet 94 90 ; bo orange 94 90 ; cy amber 68 90 | prop | tl 1 18 bo wave ; 2 19 cy walk 92 ; 6 24 ana wave ; 24 43 bo jump ; 32 52 cy jump ; 37 57 ana wave"
+  },
+  {
+   "numeral": 3,
+   "clauses": 2,
+   "prompt": "three people in the park: one waves, then another jumps",
+   "cast": 3,
+   "raw": "bg park dur 69 | cast ana orange 94 90 ; bo orange 94 90 ; cy amber 94 90 | prop | tl 1 23 bo jump ; 2 19 cy jump ; 6 23 ana wave ; 29 49 ana jump"
+  },
+  {
+   "numeral": 3,
+   "clauses": 3,
+   "prompt": "three people in the park: one waves, then another jumps, then the third dances",
+   "cast": 3,
+   "raw": "bg park dur 69 | cast ana orange 94 90 ; bo violet 94 90 ; cy amber 94 90 | prop | tl 1 23 bo jump ; 2 19 cy dance ; 6 23 ana wave ; 26 46 cy dance"
+  },
+  {
+   "numeral": 4,
+   "clauses": 1,
+   "prompt": "four people in the park: one waves",
+   "cast": 4,
+   "raw": "bg park dur 69 | cast ana violet 94 100 ; bo amber 94 90 ; cy pink 94 90 ; dee violet 94 90 | prop | tl 1 23 bo wave ; 2 20 dee wave ; 4 21 cy wave ; 7 24 ana wave ; 11 33 cy wave ; 33 57 dee walk 92 ; 34 57 bo wave ; 39 61 cy wave"
+  },
+  {
+   "numeral": 4,
+   "clauses": 2,
+   "prompt": "four people in the park: one waves, then another jumps",
+   "cast": 4,
+   "raw": "bg park dur 69 | cast ana orange 94 60 ; bo orange 94 60 ; cy orange 94 60 ; dee amber 63 60 | prop | tl 1 23 bo jump ; 2 19 ana wave ; 4 21 cy wave ; 7 24 dee wave ; 24 43 ana wave ; 29 49 cy jump"
+  },
+  {
+   "numeral": 4,
+   "clauses": 3,
+   "prompt": "four people in the park: one waves, then another jumps, then the third dances",
+   "cast": 4,
+   "raw": "bg park dur 69 | cast ana orange 94 90 ; bo violet 94 100 ; cy amber 63 100 ; dee blue 94 100 | prop | tl 1 23 bo jump ; 2 19 dee jump ; 4 22 ana wave ; 6 23 cy dance ; 29 49 dee jump ; 33 57 ana wave"
+  },
+  {
+   "numeral": 4,
+   "clauses": 4,
+   "prompt": "four people in the park: one waves, then another jumps, then the third dances, then the fourth walks across",
+   "cast": 4,
+   "raw": "bg park dur 69 | cast ana orange 94 90 ; bo orange 94 90 ; cy amber 94 90 ; dee blue 94 90 | prop | tl 1 23 dee walk 92 ; 3 20 bo jump ; 5 30 cy dance ; 8 26 ana wave ; 29 49 dee walk 92 ; 33 57 ana wave"
+  },
+  {
+   "numeral": 5,
+   "clauses": 1,
+   "prompt": "five people in the park: one waves",
+   "cast": 5,
+   "raw": "bg park dur 69 | cast ana violet 94 90 ; bo green 94 90 ; cy lime 94 90 ; dee amber 68 90 ; ell blue 94 90 | prop | tl 1 23 ell walk 92 ; 2 19 cy wave ; 3 19 dee wave ; 5 24 bo wave ; 7 24 ana wave ; 11 31 cy wave ; 31 50 dee wave ; 33 57 ell wave ; 37 57 cy wave"
+  },
+  {
+   "numeral": 5,
+   "clauses": 2,
+   "prompt": "five people in the park: one waves, then another jumps",
+   "cast": 5,
+   "raw": "bg park dur 68 | cast ana orange 94 60 ; bo green 94 60 ; cy pink 94 60 ; dee amber 68 60 ; ell blue 94 60 | prop | tl 1 23 bo jump ; 2 19 cy wave ; 3 19 ana wave ; 6 23 dee wave ; 8 26 ell wave ; 29 49 cy wave ; 33 53 ana wave ; 34 57 dee wave ; 39 59 bo jump"
+  },
+  {
+   "numeral": 5,
+   "clauses": 3,
+   "prompt": "five people in the park: one waves, then another jumps, then the third dances",
+   "cast": 5,
+   "raw": "bg park dur 68 | cast ana violet 94 100 ; bo green 94 100 ; cy amber 63 100 ; dee red 94 100 ; ell blue 94 100 | prop | tl 1 18 bo jump ; 2 19 cy dance ; 3 19 dee walk 92 ; 6 23 ana wave ; 8 26 ell walk 92 ; 29 49 cy dance ; 33 58 bo jump"
+  },
+  {
+   "numeral": 5,
+   "clauses": 4,
+   "prompt": "five people in the park: one waves, then another jumps, then the third dances, then the fourth walks across",
+   "cast": 5,
+   "raw": "bg park dur 68 | cast ana white 96 60 ; bo green 94 60 ; cy amber 63 60 ; dee blue 94 60 ; ell blue 94 60 | prop | tl 1 23 bo jump ; 2 19 cy dance ; 4 29 dee walk 92 ; 6 23 ana wave ; 8 26 ell walk 92 ; 29 49 cy dance ; 33 58 dee walk 92"
+  },
+  {
+   "numeral": 5,
+   "clauses": 5,
+   "prompt": "five people in the park: one waves, then another jumps, then the third dances, then the fourth walks across, then the fifth just stands there",
+   "cast": 5,
+   "raw": "bg park dur 69 | cast ana orange 94 90 ; bo green 94 90 ; cy amber 94 90 ; dee blue 94 90 ; ell blue 94 90 | prop | tl 1 23 ell idle ; 2 19 cy dance ; 4 29 dee walk 92 ; 6 31 ana wave ; 8 31 bo jump ; 29 49 cy dance ; 33 53 dee walk 92 ; 39 59 ana jump"
+  },
+  {
+   "numeral": 6,
+   "clauses": 1,
+   "prompt": "six people in the park: one waves",
+   "cast": 6,
+   "raw": "bg park dur 68 | cast ana violet 94 100 ; bo amber 94 90 ; cy pink 94 90 ; dee pink 94 90 ; ell violet 94 90 ; fay lime 94 90 | prop | tl 1 18 ell walk 92 ; 2 19 cy wave ; 3 19 bo wave ; 4 21 dee wave ; 6 24 fay wave ; 8 24 ana wave ; 11 31 cy wave ; 11 31 ell wave ; 11 31 gus wave ; 26 47 fay walk 92 ; 31 57 ell wave ; 33 58 gus wave ; 38 58 fay wave ; 57 76 fay wave"
+  },
+  {
+   "numeral": 6,
+   "clauses": 2,
+   "prompt": "six people in the park: one waves, then another jumps",
+   "cast": 6,
+   "raw": "bg park dur 69 | cast ana orange 94 90 ; bo violet 94 100 ; cy amber 63 100 ; dee red 94 100 ; ell pink 94 100 ; fay blue 94 100 | prop | tl 1 23 ell walk 92 ; 2 19 fay walk 92 ; 3 19 cy wave ; 4 21 bo jump ; 6 23 ana wave ; 7 24 dee wave ; 11 29 fay walk 92 ; 27 49 cy jump ; 31 51 dee walk 92 ; 34 57 ell jump ; 37 57 fay jump ; 39 61 cy jump ; 58 78 fay walk 92"
+  },
+  {
+   "numeral": 6,
+   "clauses": 3,
+   "prompt": "six people in the park: one waves, then another jumps, then the third dances",
+   "cast": 6,
+   "raw": "bg park dur 68 | cast ana violet 94 100 ; bo green 94 100 ; cy amber 63 100 ; dee red 94 100 ; ell cyan 94 100 ; fay violet 94 100 | prop | tl 1 18 ell walk 92 ; 2 19 fay dance ; 3 19 cy dance ; 5 22 bo jump ; 7 23 ana wave ; 9 29 dee wave ; 29 49 cy dance ; 32 57 ana wave ; 34 57 ell jump ; 37 58 fay jump ; 39 61 cy dance"
+  },
+  {
+   "numeral": 6,
+   "clauses": 4,
+   "prompt": "six people in the park: one waves, then another jumps, then the third dances, then the fourth walks across",
+   "cast": 6,
+   "raw": "bg park dur 69 | cast ana orange 94 90 ; bo violet 94 100 ; cy amber 63 100 ; dee red 94 100 ; ell cyan 94 100 ; fay violet 94 100 | prop | tl 1 23 ell walk 92 ; 2 19 fay dance ; 3 20 cy dance ; 4 21 dee walk 92 ; 6 23 bo jump ; 7 23 ana wave ; 11 29 fay walk 92 ; 27 49 cy dance ; 31 57 dee walk 92 ; 34 57 ell jump ; 39 61 cy dance"
+  },
+  {
+   "numeral": 6,
+   "clauses": 5,
+   "prompt": "six people in the park: one waves, then another jumps, then the third dances, then the fourth walks across, then the fifth just stands there",
+   "cast": 6,
+   "raw": "bg park dur 68 | cast ana orange 94 90 ; bo violet 94 100 ; cy amber 63 100 ; dee red 94 100 ; ell cyan 94 100 ; fay violet 94 100 | prop | tl 1 17 cy dance ; 2 20 dee walk 92 ; 3 20 ell idle ; 5 22 fay dance ; 7 23 bo jump ; 9 29 ana wave ; 11 33 cy dance ; 28 49 dee walk 92 ; 33 57 ell idle ; 34 57 cy dance ; 37 57 bo jump ; 39 61 dee walk 92"
+  },
+  {
+   "numeral": 7,
+   "clauses": 1,
+   "prompt": "seven people in the park: one waves",
+   "cast": 7,
+   "raw": "bg park dur 66 | cast ana violet 94 100 ; bo amber 94 90 ; cy pink 94 90 ; dee pink 94 90 ; ell violet 94 90 ; fay lime 94 90 ; gus pink 94 90 | prop | tl 1 18 ell walk 92 ; 2 19 gus wave ; 3 19 fay wave ; 4 21 cy wave ; 6 23 dee wave ; 7 24 gus wave ; 9 34 bo wave ; 11 34 fay wave ; 11 31 ell wave ; 11 31 gus wave ; 12 34 gus wave ; 31 52 fay wave ; 33 57 cy wave ; 37 57 dee wave ; 39 61 ell wave ; 57 78 fay wave"
+  },
+  {
+   "numeral": 7,
+   "clauses": 2,
+   "prompt": "seven people in the park: one waves, then another jumps",
+   "cast": 7,
+   "raw": "bg park dur 66 | cast ana violet 94 100 ; bo green 94 60 ; cy green 94 60 ; dee amber 68 60 ; ell blue 94 60 ; fay lime 94 100 ; gus violet 94 100 | prop | tl 1 23 ell walk 92 ; 2 19 gus wave ; 3 19 fay wave ; 4 21 cy wave ; 6 23 bo jump ; 7 23 ana wave ; 9 29 gus wave ; 11 31 dee wave ; 11 31 fay walk 92 ; 27 47 ell jump ; 31 57 gus wave ; 33 57 fay wave ; 37 57 cy jump ; 39 58 fay jump"
+  },
+  {
+   "numeral": 7,
+   "clauses": 3,
+   "prompt": "seven people in the park: one waves, then another jumps, then the third dances",
+   "cast": 7,
+   "raw": "bg park dur 68 | cast ana violet 94 100 ; bo green 94 100 ; cy amber 68 60 ; dee red 94 100 ; ell blue 94 100 ; fay lime 94 100 ; gus green 57 100 | prop | tl 1 18 ell jump ; 2 19 gus wave ; 3 19 fay dance ; 4 21 cy dance ; 5 22 bo jump ; 6 23 ana wave ; 7 23 dee jump ; 9 29 gus wave ; 11 31 fay wave ; 28 49 ell jump ; 31 58 cy dance ; 34 57 dee wave ; 38 58 gus wave ; 39 58 fay wave ; 57 79 gus wave"
+  },
+  {
+   "numeral": 7,
+   "clauses": 4,
+   "prompt": "seven people in the park: one waves, then another jumps, then the third dances, then the fourth walks across",
+   "cast": 7,
+   "raw": "bg park dur 66 | cast ana violet 94 100 ; bo green 94 100 ; cy white 94 100 ; dee amber 94 100 ; ell blue 94 100 ; fay lime 94 100 ; gus violet 94 100 | prop | tl 1 23 ell walk 92 ; 2 19 fay dance ; 3 19 gus wave ; 4 21 cy dance ; 6 23 dee walk 92 ; 7 26 bo jump ; 9 34 ana wave ; 11 34 fay walk 92 ; 29 49 gus wave ; 34 57 cy dance ; 37 57 dee walk 92 ; 39 61 ell jump ; 58 78 fay walk 92"
+  },
+  {
+   "numeral": 7,
+   "clauses": 5,
+   "prompt": "seven people in the park: one waves, then another jumps, then the third dances, then the fourth walks across, then the fifth just stands there",
+   "cast": 7,
+   "raw": "bg park dur 66 | cast ana violet 94 100 ; bo green 94 100 ; cy amber 63 100 ; dee red 94 100 ; ell blue 94 100 ; fay blue 94 100 ; gus red 94 100 | prop | tl 1 16 ell idle ; 2 19 fay dance ; 3 19 gus wave ; 4 21 cy dance ; 6 23 dee walk 92 ; 7 23 bo jump ; 9 34 ana wave ; 11 34 gus idle ; 11 34 fay dance ; 28 49 cy dance ; 31 57 dee walk 92 ; 34 57 ell idle ; 38 58 fay dance ; 39 61 gus wave"
+  },
+  {
+   "numeral": 8,
+   "clauses": 1,
+   "prompt": "eight people in the park: one waves",
+   "cast": 8,
+   "raw": "bg park dur 66 | cast ana violet 94 100 ; bo amber 94 100 ; cy pink 94 100 ; dee lime 94 100 ; ell pink 94 100 ; fay lime 58 100 ; gus pink 94 100 ; hal pink 94 100 | prop | tl 1 23 ell walk 92 ; 2 19 fay jump ; 3 19 gus jump ; 4 21 cy wave ; 6 24 ana wave ; 8 24 hal wave ; 8 24 hal wave ; 10 34 gus wave ; 11 31 dee wave ; 11 31 ell wave ; 11 34 gus wave ; 11 31 hal wave ; 28 47 fay walk 92 ; 31 57 hal wave ; 33 57 gus wave ; 38 58 hal wave ; 38 58 fay wave"
+  },
+  {
+   "numeral": 8,
+   "clauses": 2,
+   "prompt": "eight people in the park: one waves, then another jumps",
+   "cast": 8,
+   "raw": "bg park dur 66 | cast ana violet 94 100 ; bo green 94 100 ; cy amber 68 60 ; dee red 67 60 ; ell pink 94 60 ; fay lime 68 60 ; gus green 57 60 ; hal lime 58 100 | prop | tl 1 23 ell jump ; 2 19 fay jump ; 3 19 gus jump ; 3 19 cy jump ; 4 24 ana wave ; 6 28 bo jump ; 8 34 gus wave ; 9 34 hal wave ; 11 34 fay jump ; 11 34 hal wave ; 28 49 cy jump ; 30 50 dee jump ; 32 57 fay jump ; 36 57 hal wave ; 38 58 gus wave ; 41 61 ell jump ; 57 76 fay jump"
+  },
+  {
+   "numeral": 8,
+   "clauses": 3,
+   "prompt": "eight people in the park: one waves, then another jumps, then the third dances",
+   "cast": 8,
+   "raw": "bg park dur 68 | cast ana violet 94 100 ; bo green 94 100 ; cy amber 63 100 ; dee red 94 100 ; ell lime 94 100 ; fay lime 94 100 ; gus green 57 100 ; hal green 67 100 | prop | tl 1 23 ell jump ; 2 20 fay dance ; 3 19 gus wave ; 3 20 cy dance ; 6 23 ana wave ; 8 28 bo jump ; 8 28 gus wave ; 10 30 hal wave ; 11 31 dee wave ; 28 49 ell jump ; 31 57 fay dance ; 34 57 cy dance ; 36 58 dee wave ; 38 58 gus wave ; 38 58 hal wave ; 41 58 fay wave"
+  },
+  {
+   "numeral": 8,
+   "clauses": 4,
+   "prompt": "eight people in the park: one waves, then another jumps, then the third dances, then the fourth walks across",
+   "cast": 8,
+   "raw": "bg park dur 67 | cast ana violet 94 100 ; bo green 94 100 ; cy green 94 100 ; dee amber 68 60 ; ell white 67 60 ; fay lime 94 100 ; gus violet 94 100 ; hal violet 67 100 | prop | tl 1 23 ell walk 92 ; 2 19 fay dance ; 3 19 gus wave ; 3 19 cy dance ; 4 27 dee walk 92 ; 6 32 bo jump ; 8 28 hal wave ; 10 30 gus wave ; 11 31 ana wave ; 11 31 hal wave ; 28 49 fay walk 92 ; 31 57 cy dance ; 34 57 dee walk 92 ; 38 58 gus wave ; 39 58 hal wave ; 58 78 ell walk 92"
+  },
+  {
+   "numeral": 8,
+   "clauses": 5,
+   "prompt": "eight people in the park: one waves, then another jumps, then the third dances, then the fourth walks across, then the fifth just stands there",
+   "cast": 8,
+   "raw": "bg park dur 66 | cast ana violet 94 100 ; bo green 94 100 ; cy amber 63 100 ; dee red 94 100 ; ell white 67 60 ; fay lime 94 100 ; gus white 67 100 ; hal green 67 100 | prop | tl 1 17 ell idle ; 2 19 fay dance ; 3 20 gus idle ; 3 20 cy dance ; 4 26 dee walk 92 ; 5 25 hal wave ; 6 28 bo jump ; 7 31 gus wave ; 11 31 hal wave ; 28 49 fay idle ; 31 57 cy dance ; 34 57 dee walk 92 ; 36 58 ell idle ; 38 58 gus wave ; 39 58 fay idle ; 41 61 gus wave"
+  },
+  {
+   "numeral": 9,
+   "clauses": 1,
+   "prompt": "nine people in the park: one waves",
+   "cast": 6,
+   "raw": "bg park dur 69 | cast ana violet 94 100 ; bo amber 94 90 ; cy lime 94 90 ; dee pink 94 90 ; ell violet 94 90 ; fay lime 94 90 | prop | tl 0 23 cy wave ; 1 20 dee wave ; 2 19 ell wave ; 3 19 fay wave ; 4 21 bo wave ; 6 23 cy wave ; 9 29 ana wave ; 11 31 ell wave ; 11 31 fay wave ; 11 31 gus wave ; 12 33 fay wave ; 31 51 gus wave ; 33 57 cy wave ; 38 58 dee wave ; 41 61 ell wave ; 57 78 fay wave"
+  },
+  {
+   "numeral": 9,
+   "clauses": 2,
+   "prompt": "nine people in the park: one waves, then another jumps",
+   "cast": 6,
+   "raw": "bg park dur 68 | cast ana violet 94 100 ; bo green 94 100 ; cy amber 68 60 ; dee red 94 100 ; ell blue 94 100 ; fay lime 94 100 | prop | tl 1 23 ell walk 92 ; 2 19 fay jump ; 3 19 cy jump ; 4 21 bo jump ; 6 23 ana wave ; 7 23 fay jump ; 9 34 cy wave ; 11 31 dee wave ; 11 31 ell jump ; 28 49 fay jump ; 31 57 cy jump ; 33 57 bo jump"
+  },
+  {
+   "numeral": 9,
+   "clauses": 3,
+   "prompt": "nine people in the park: one waves, then another jumps, then the third dances",
+   "cast": 6,
+   "raw": "bg park dur 66 | cast ana violet 94 100 ; bo green 94 100 ; cy amber 63 60 ; dee red 94 60 ; ell blue 94 60 ; fay lime 94 100 | prop | tl 1 23 ell walk 92 ; 2 19 fay dance ; 3 19 cy dance ; 4 21 bo jump ; 5 23 ana wave ; 7 23 dee walk 92 ; 9 29 fay walk 92 ; 11 35 cy dance ; 29 49 ell jump ; 34 57 dee walk 92 ; 37 58 fay jump ; 39 61 cy dance"
+  },
+  {
+   "numeral": 9,
+   "clauses": 4,
+   "prompt": "nine people in the park: one waves, then another jumps, then the third dances, then the fourth walks across",
+   "cast": 6,
+   "raw": "bg park dur 66 | cast ana violet 94 100 ; bo green 94 100 ; cy amber 63 60 ; dee red 94 60 ; ell blue 94 60 ; fay lime 94 100 | prop | tl 1 23 ell walk 92 ; 2 19 fay dance ; 3 19 cy dance ; 4 29 bo jump ; 6 31 dee walk 92 ; 8 31 ana wave ; 11 31 fay walk 92 ; 11 31 cy dance ; 29 49 ell walk 92 ; 34 57 cy dance ; 38 58 dee walk 92"
+  },
+  {
+   "numeral": 9,
+   "clauses": 5,
+   "prompt": "nine people in the park: one waves, then another jumps, then the third dances, then the fourth walks across, then the fifth just stands there",
+   "cast": 6,
+   "raw": "bg park dur 68 | cast ana violet 94 100 ; bo green 94 100 ; cy amber 63 100 ; dee red 94 100 ; ell blue 94 100 ; fay lime 94 100 | prop | tl 1 23 ell idle ; 2 19 cy dance ; 3 20 dee walk 92 ; 4 21 fay dance ; 6 23 bo jump ; 7 23 ana wave ; 9 31 cy dance ; 11 31 gus idle ; 28 49 dee walk 92 ; 31 57 ell idle ; 34 57 cy dance ; 37 57 bo jump ; 39 58 fay idle"
+  }
+ ],
+ "table": "| stated numeral | 1 | 2 | 3 | 4 | 5 |\n|---|--:|--:|--:|--:|--:|\n| \"one people...\" | 2 |  |  |  |  |\n| \"two people...\" | **2** | **2** |  |  |  |\n| \"three people...\" | **3** | **3** | **3** |  |  |\n| \"four people...\" | **4** | **4** | **4** | **4** |  |\n| \"five people...\" | **5** | **5** | **5** | **5** | **5** |\n| \"six people...\" | **6** | **6** | **6** | **6** | **6** |\n| \"seven people...\" | **7** | **7** | **7** | **7** | **7** |\n| \"eight people...\" | **8** | **8** | **8** | **8** | **8** |\n| \"nine people...\" | 6 | 6 | 6 | 6 | 6 |\n\nnumeral read correctly: 29/35\n  1-5, the Attempt 22 range          14/15\n  6-8, new in the Attempt 23 range   15/15\n  9, one past the trained ceiling    0/5"
+}

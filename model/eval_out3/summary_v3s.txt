@@ -1,0 +1,45 @@
+ckpt=model/scene_ckpt3  unique_colours=True  space=0.0  max_in=160 max_out=256
+colour processor masked at 694 decode steps
+
+in_distribution_v3s    n=150
+  parse   149/150 =  99.3%
+  valid    91/150 =  60.7%  (zero structural problems, no repair)
+  render  149/150 =  99.3%  (after repair)
+  exact     0/150 =   0.0%  (byte-identical to the reference DSL)
+  ALL                     60/149 =  40.3%
+  actions_per_character  108/149 =  72.5%
+  background             128/128 = 100.0%
+  ball_interaction       147/149 =  98.7%
+  cast_count             140/140 = 100.0%
+  colors                  33/33  = 100.0%
+  layout                  25/99  =  25.3%
+  props                   69/69  = 100.0%
+  action recall (partial credit) =  93.9%
+  STAGING (n=136 multi-cast of 150): staging 0.875  [sep 0.900 span 0.870 occl 0.855]  min_sep 0.51  mean_sep 3.41  span_frac 0.592  occl_frac 0.049
+  staging >= 0.825 (worst hand-written scene): 101/136 = 74.3%
+  parse errors: {"bad cast entry ['dee', 'cy', 'white', '84', '80']": 1}
+  structural problems: {'overlapping kicks on one ball': 11, 'event ends 5.8 past duration 5.7': 2, 'event ends 7.4 past duration 7.3': 2, 'hal has no timeline event': 2, 'event ends 10.2 past duration 10.1': 2, "event for unknown character 'fay'": 2, 'event ends 8.5 past duration 8.3': 1, 'event ends 8.3 past duration 8.2': 1}
+
+out_of_distribution_v3s n=24
+  parse    24/24 = 100.0%
+  valid    10/24 =  41.7%  (zero structural problems, no repair)
+  render   24/24 = 100.0%  (after repair)
+  exact     0/24 =   0.0%  (byte-identical to the reference DSL)
+  ALL                     18/24  =  75.0%
+  actions_present         21/24  =  87.5%
+  background              24/24  = 100.0%
+  ball_interaction        24/24  = 100.0%
+  cast_count              23/24  =  95.8%
+  colors                   2/2   = 100.0%
+  props                    1/3   =  33.3%
+  action recall (partial credit) =  92.9%
+  STAGING (n=20 multi-cast of 24): staging 0.804  [sep 0.845 span 0.770 occl 0.796]  min_sep 0.81  mean_sep 3.16  span_frac 0.523  occl_frac 0.114
+  staging >= 0.825 (worst hand-written scene): 13/20 = 65.0%
+  by group (render / prompt-match / n):
+    cast_size    3/3   3/3
+    colour       2/2   2/2
+    novel_combo  6/6   4/6
+    phrasing     6/6   4/6
+    scenery      3/3   1/3
+    structure    4/4   4/4
+  structural problems: {'event ends 5.8 past duration 5.7': 2, "kick target 'bo' is neither cast nor coord": 2, "event for unknown character 'bo'": 1, 'event ends 5.7 past duration 5.3': 1, 'overlapping kicks on one ball': 1, 'event ends 5.1 past duration 4.3': 1, 'event ends 5.3 past duration 5.0': 1, "event for unknown character 'gus'": 1}

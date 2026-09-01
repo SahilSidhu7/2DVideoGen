@@ -1,0 +1,41 @@
+ckpt=model/scene_ckpt3  unique_colours=False  space=0.0  max_in=160 max_out=256
+
+in_distribution_sp_v3beam n=4
+  parse     4/4 = 100.0%
+  valid     3/4 =  75.0%  (zero structural problems, no repair)
+  render    4/4 = 100.0%  (after repair)
+  exact     0/4 =   0.0%  (byte-identical to the reference DSL)
+  ALL                      4/4   = 100.0%
+  actions_per_character    4/4   = 100.0%
+  background               3/3   = 100.0%
+  ball_interaction         4/4   = 100.0%
+  cast_count               4/4   = 100.0%
+  colors                   1/1   = 100.0%
+  layout                   1/1   = 100.0%
+  props                    2/2   = 100.0%
+  action recall (partial credit) = 100.0%
+  STAGING (n=4 multi-cast of 4): staging 0.100  [sep 0.192 span 0.096 occl 0.012]  min_sep 0.05  mean_sep 0.39  span_frac 0.045  occl_frac 0.829
+  staging >= 0.825 (worst hand-written scene): 0/4 = 0.0%
+  structural problems: {"event for unknown character 'dee'": 1}
+
+out_of_distribution_sp_v3beam n=12
+  parse    12/12 = 100.0%
+  valid     8/12 =  66.7%  (zero structural problems, no repair)
+  render   12/12 = 100.0%  (after repair)
+  exact     0/12 =   0.0%  (byte-identical to the reference DSL)
+  ALL                      6/12  =  50.0%
+  actions_present          6/6   = 100.0%
+  background              12/12  = 100.0%
+  ball_interaction         2/2   = 100.0%
+  cast_count              12/12  = 100.0%
+  layout                   6/12  =  50.0%
+  action recall (partial credit) = 100.0%
+  STAGING (n=12 multi-cast of 12): staging 0.115  [sep 0.214 span 0.132 occl 0.000]  min_sep 0.02  mean_sep 0.45  span_frac 0.074  occl_frac 0.847
+  staging >= 0.825 (worst hand-written scene): 0/12 = 0.0%
+  by group (render / prompt-match / n):
+    between      2/2   0/2
+    cluster      2/2   2/2
+    depth        2/2   2/2
+    facing       3/3   0/3
+    left_right   3/3   2/3
+  structural problems: {'two characters share a colour': 2, 'event ends 9.3 past duration 9.1': 1, 'overlapping kicks on one ball': 1, 'event ends 7.9 past duration 6.7': 1, 'event ends 8.2 past duration 6.8': 1}

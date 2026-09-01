@@ -1,0 +1,31 @@
+[
+{"group":"phrasing","prompt":"a solitary stick figure loiters on an empty soundstage, then salutes the camera","intent":{"n_cast":1,"bg":"studio","acts_any":["idle","wave"],"kick":false,"props":[],"colors":{}}},
+{"group":"phrasing","prompt":"picture a quiet park. one guy jogs from the left, pauses, and twirls on the spot","intent":{"n_cast":1,"bg":"park","acts_any":["run","dance"],"kick":false,"props":[],"colors":{}}},
+{"group":"phrasing","prompt":"can you animate a couple of characters in a dark alley greeting each other and then bounding into the air?","intent":{"n_cast":2,"bg":"night","acts_any":["wave","jump"],"kick":false,"props":[],"colors":{}}},
+{"group":"phrasing","prompt":"two mates in a meadow, one boots a ball at the other and the other boots it straight back","intent":{"n_cast":2,"bg":"park","acts_any":["kick"],"kick":true,"props":[],"colors":{}}},
+{"group":"phrasing","prompt":"an empty studio, two figures, no scenery: they simply stand around doing nothing","intent":{"n_cast":2,"bg":"studio","acts_any":["idle"],"kick":false,"props":[],"colors":{}}},
+{"group":"phrasing","prompt":"scene: nightfall on a city street. a trio of strangers wander past each other without stopping","intent":{"n_cast":3,"bg":"night","acts_any":["walk"],"kick":false,"props":[],"colors":{}}},
+
+{"group":"cast_size","prompt":"six stick figures in the park, all of them dancing","intent":{"n_cast":6,"bg":"park","acts_any":["dance"],"kick":false,"props":[],"colors":{}}},
+{"group":"cast_size","prompt":"half a dozen people on a night street, some walking and some waving","intent":{"n_cast":6,"bg":"night","acts_any":["walk","wave"],"kick":false,"props":[],"colors":{}}},
+{"group":"cast_size","prompt":"a crowd of six characters in a studio: three dance while three jump","intent":{"n_cast":6,"bg":"studio","acts_any":["dance","jump"],"kick":false,"props":[],"colors":{}}},
+
+{"group":"novel_combo","prompt":"one lone player in the park kicks a ball as far as he can","intent":{"n_cast":1,"bg":"park","acts_any":["kick"],"kick":true,"props":[],"colors":{}}},
+{"group":"novel_combo","prompt":"a single figure at night kicks a ball away and then runs after it","intent":{"n_cast":1,"bg":"night","acts_any":["kick","run"],"kick":true,"props":[],"colors":{}}},
+{"group":"novel_combo","prompt":"five friends in the park all dance at the same time","intent":{"n_cast":5,"bg":"park","acts_any":["dance"],"kick":false,"props":[],"colors":{}}},
+{"group":"novel_combo","prompt":"four characters in a studio, and every single one of them waves","intent":{"n_cast":4,"bg":"studio","acts_any":["wave"],"kick":false,"props":[],"colors":{}}},
+{"group":"novel_combo","prompt":"three people in the park: one walks, then runs, then jumps, then waves, then dances","intent":{"n_cast":3,"bg":"park","acts_any":["walk","run","jump","wave","dance"],"kick":false,"props":[],"colors":{}}},
+{"group":"novel_combo","prompt":"two friends on a dark street pass a ball to each other four times without stopping","intent":{"n_cast":2,"bg":"night","acts_any":["kick"],"kick":true,"props":[],"colors":{}}},
+
+{"group":"scenery","prompt":"a park with a tree, a bush, a rock, a crate, a cloud and the sun, and two people waving under it all","intent":{"n_cast":2,"bg":"park","acts_any":["wave"],"kick":false,"props":["tree","bush","rock","box","cloud","sun"],"colors":{}}},
+{"group":"scenery","prompt":"two characters dancing beside a huge tree in a park","intent":{"n_cast":2,"bg":"park","acts_any":["dance"],"kick":false,"props":["tree"],"colors":{}}},
+{"group":"scenery","prompt":"three figures on a night street next to a stack of crates, one runs past them","intent":{"n_cast":3,"bg":"night","acts_any":["run"],"kick":false,"props":["box"],"colors":{}}},
+
+{"group":"colour","prompt":"a red character and a blue character in a studio, the red one dances and the blue one jumps","intent":{"n_cast":2,"bg":"studio","acts_any":["dance","jump"],"kick":false,"props":[],"colors":{"0":"red","1":"blue"}}},
+{"group":"colour","prompt":"a green figure, a pink figure and a white figure in the park, all three waving","intent":{"n_cast":3,"bg":"park","acts_any":["wave"],"kick":false,"props":[],"colors":{"0":"green","1":"pink","2":"white"}}},
+
+{"group":"structure","prompt":"three friends in the park: all three dance at the same time, then two of them pass a ball while the third one just watches","intent":{"n_cast":3,"bg":"park","acts_any":["dance","kick"],"kick":true,"props":[],"colors":{}}},
+{"group":"structure","prompt":"a long clip in the park where four people take turns: first one waves, then the next runs across, then the third jumps, then the fourth dances","intent":{"n_cast":4,"bg":"park","acts_any":["wave","run","jump","dance"],"kick":false,"props":[],"colors":{}}},
+{"group":"structure","prompt":"two friends meet in the park, one waves, then they kick a ball around","intent":{"n_cast":2,"bg":"park","acts_any":["wave","kick"],"kick":true,"props":[],"colors":{}}},
+{"group":"structure","prompt":"nobody moves for the whole clip: three stick figures standing still on a night street","intent":{"n_cast":3,"bg":"night","acts_any":["idle"],"kick":false,"props":[],"colors":{}}}
+]

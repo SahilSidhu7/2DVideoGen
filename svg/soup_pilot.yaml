@@ -1,0 +1,51 @@
+# Pilot: Qwen3-8B-Base -> AniSVG, via Soup layer streaming.
+#
+# Sized to ~1M training tokens, which Soup's own figure puts at ~2.3 h at 8B on
+# a 4 GB RTX 3050. The point is not a good model - 400 clips cannot give one -
+# it is a measured tok/s on THIS card plus renderable samples, so the full run
+# can be sized from a number instead of an extrapolation.
+#
+#   .venv-soup\Scripts\soup train --config svg/soup_pilot.yaml
+
+base: Qwen/Qwen3-8B-Base
+task: sft
+backend: transformers
+
+data:
+  train: svg/data/soup_pilot_1024/train.jsonl
+  format: alpaca
+  val_split: 0.05
+  # 4096 is refused: Soup predicts 13.49 GB against 7.43 GB free. Streaming
+  # bounds the weights, not the logits, and Qwen3's 151936 vocab makes those
+  # the dominant term. Cut Cross-Entropy would lift this but cannot import on
+  # any current transformers (see benchmarks/probe-v0.73.0, blocker 3).
+  max_length: 1024
+
+training:
+  epochs: 1
+  lr: 1e-4
+  batch_size: 1
+  gradient_accumulation_steps: 16
+  scheduler: cosine
+  warmup_ratio: 0.03
+
+  # Layer streaming: frozen base pinned in host RAM, decoder layers copied into
+  # two small VRAM buffers on a side stream. NF4 is what gets the 8B store down
+  # to ~3.6 GB so it fits under the page-locked ceiling and the copies actually
+  # overlap compute.
+  stream_layers: true
+  stream_source: auto
+  stream_buffers: 2
+  quantization: 4bit
+  gradient_checkpointing: true
+
+  logging_steps: 5
+  save_steps: 25
+
+  lora:
+    r: 32
+    alpha: 64
+    dropout: 0.05
+    target_modules: auto
+
+output: ./svg/data/soup_pilot

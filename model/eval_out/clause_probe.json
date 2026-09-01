@@ -1,0 +1,122 @@
+[
+ {
+  "stated": 1,
+  "clauses": 1,
+  "cast": 1,
+  "actors": 1,
+  "prompt": "one people in the park: one waves",
+  "raw": "bg park dur 45 | cast ana white 69 100 | prop | tl 6 23 ana wave"
+ },
+ {
+  "stated": 2,
+  "clauses": 1,
+  "cast": 1,
+  "actors": 1,
+  "prompt": "two people in the park: one waves",
+  "raw": "bg park dur 45 | cast ana white 69 100 | prop | tl 5 23 ana wave"
+ },
+ {
+  "stated": 2,
+  "clauses": 2,
+  "cast": 2,
+  "actors": 2,
+  "prompt": "two people in the park: one waves, another waves",
+  "raw": "bg park dur 45 | cast ana white 69 60 ; bo amber 69 60 | prop | tl 4 23 bo wave ; 8 29 ana wave"
+ },
+ {
+  "stated": 3,
+  "clauses": 1,
+  "cast": 1,
+  "actors": 1,
+  "prompt": "three people in the park: one waves",
+  "raw": "bg park dur 45 | cast ana white 69 100 | prop | tl 5 23 ana wave"
+ },
+ {
+  "stated": 3,
+  "clauses": 2,
+  "cast": 2,
+  "actors": 2,
+  "prompt": "three people in the park: one waves, another waves",
+  "raw": "bg park dur 45 | cast ana white 69 60 ; bo amber 69 60 | prop | tl 4 23 bo wave ; 6 23 ana wave"
+ },
+ {
+  "stated": 3,
+  "clauses": 3,
+  "cast": 3,
+  "actors": 3,
+  "prompt": "three people in the park: one waves, another waves, the third waves",
+  "raw": "bg park dur 45 | cast ana white 69 60 ; bo lime 73 60 ; cy green 73 60 | prop | tl 1 18 bo wave ; 3 20 cy wave ; 6 23 ana wave"
+ },
+ {
+  "stated": 4,
+  "clauses": 1,
+  "cast": 1,
+  "actors": 1,
+  "prompt": "four people in the park: one waves",
+  "raw": "bg park dur 45 | cast ana white 69 100 | prop | tl 5 23 ana wave"
+ },
+ {
+  "stated": 4,
+  "clauses": 2,
+  "cast": 2,
+  "actors": 2,
+  "prompt": "four people in the park: one waves, another waves",
+  "raw": "bg park dur 45 | cast ana white 69 60 ; bo amber 69 60 | prop | tl 4 23 bo wave ; 6 23 ana wave"
+ },
+ {
+  "stated": 4,
+  "clauses": 3,
+  "cast": 3,
+  "actors": 3,
+  "prompt": "four people in the park: one waves, another waves, the third waves",
+  "raw": "bg park dur 45 | cast ana white 69 60 ; bo lime 96 60 ; cy lime 73 60 | prop | tl 1 18 bo wave ; 3 20 cy wave ; 6 23 ana wave"
+ },
+ {
+  "stated": 4,
+  "clauses": 4,
+  "cast": 4,
+  "actors": 3,
+  "prompt": "four people in the park: one waves, another waves, the third waves, the fourth waves",
+  "raw": "bg park dur 63 | cast ana pink 92 90 ; bo lime 92 90 ; cy lime 96 90 ; dee amber 96 90 | prop | tl 1 18 bo wave ; 3 19 cy wave ; 6 23 ana wave"
+ },
+ {
+  "stated": 5,
+  "clauses": 1,
+  "cast": 1,
+  "actors": 1,
+  "prompt": "five people in the park: one waves",
+  "raw": "bg park dur 45 | cast ana white 69 100 | prop | tl 5 23 ana wave"
+ },
+ {
+  "stated": 5,
+  "clauses": 2,
+  "cast": 2,
+  "actors": 2,
+  "prompt": "five people in the park: one waves, another waves",
+  "raw": "bg park dur 45 | cast ana white 69 60 ; bo amber 69 60 | prop | tl 4 23 bo wave ; 6 23 ana wave"
+ },
+ {
+  "stated": 5,
+  "clauses": 3,
+  "cast": 3,
+  "actors": 3,
+  "prompt": "five people in the park: one waves, another waves, the third waves",
+  "raw": "bg park dur 63 | cast ana white 69 60 ; bo lime 96 60 ; cy lime 96 60 | prop | tl 1 18 bo wave ; 3 19 cy wave ; 6 23 ana wave"
+ },
+ {
+  "stated": 5,
+  "clauses": 4,
+  "cast": 4,
+  "actors": 3,
+  "prompt": "five people in the park: one waves, another waves, the third waves, the fourth waves",
+  "raw": "bg park dur 63 | cast ana white 69 60 ; bo lime 96 60 ; cy lime 96 60 ; dee amber 96 60 | prop | tl 1 18 bo wave ; 3 19 cy wave ; 6 23 ana wave"
+ },
+ {
+  "stated": 5,
+  "clauses": 5,
+  "cast": 5,
+  "actors": 5,
+  "prompt": "five people in the park: one waves, another waves, the third waves, the fourth waves, the fifth waves",
+  "raw": "bg park dur 63 | cast ana pink 92 90 ; bo lime 96 90 ; cy pink 96 60 ; dee lime 96 60 ; ell white 87 60 | prop | tl 1 18 bo wave ; 3 19 ell wave ; 4 21 ana wave ; 6 23 cy wave ; 9 29 dee wave ; 29 49 cy wave"
+ }
+]

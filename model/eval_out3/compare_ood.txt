@@ -1,0 +1,221 @@
+                             v2  v2+uc     v3  v3+uc
+n                            24     24     24     24
+n_multicast                  20     20     20     20
+parse                     100.0  100.0  100.0  100.0
+valid                      54.2   58.3   50.0   70.8
+render                    100.0  100.0  100.0  100.0
+cast_count                 83.3   83.3   95.8   95.8
+background                100.0  100.0  100.0  100.0
+actions_present            87.5   87.5   83.3   83.3
+ball_interaction           95.8   95.8   95.8   95.8
+props                      33.3   33.3   33.3   33.3
+colors                    100.0  100.0  100.0  100.0
+ALL_nolayout               62.5   62.5   70.8   70.8
+ALL                        62.5   62.5   70.8   70.8
+dup_colour                    7      0      6      0
+staging                   0.323  0.307  0.099  0.099
+sep_score                 0.465  0.456  0.158  0.158
+span_score                0.245  0.246  0.116  0.116
+occl_score                0.259  0.220  0.023  0.023
+decl_min_sep              0.145  0.145  0.010  0.010
+min_sep                   0.095  0.095  0.001  0.001
+span_frac                 0.141  0.143  0.070  0.070
+occl_frac                 0.417  0.416  0.867  0.867
+staging_ok                0.000  0.000  0.000  0.000
+staging_spaced            0.638  0.632  0.586  0.585
+sep_score_spaced          0.809  0.794  0.715  0.715
+span_score_spaced         0.409  0.396  0.399  0.399
+occl_score_spaced         0.696  0.706  0.645  0.641
+decl_min_sep_spaced       1.210  1.210  1.235  1.235
+min_sep_spaced            0.688  0.683  0.601  0.601
+span_frac_spaced          0.238  0.232  0.242  0.242
+occl_frac_spaced          0.146  0.148  0.226  0.227
+staging_ok_spaced          40.0   40.0   30.0   30.0
+spacing_moved                20     20     20     20
+
+{
+ "v2": {
+  "file": "out_of_distribution_v2.json",
+  "n": 24,
+  "parse": 100.0,
+  "valid": 54.166666666666664,
+  "render": 100.0,
+  "cast_count": 83.33333333333333,
+  "background": 100.0,
+  "actions_present": 87.5,
+  "ball_interaction": 95.83333333333333,
+  "props": 33.333333333333336,
+  "colors": 100.0,
+  "ALL": 62.5,
+  "ALL_nolayout": 62.5,
+  "dup_colour": 7,
+  "problems": {
+   "two characters share a colour": 7,
+   "event ends 7.9 past duration 6.3": 4,
+   "kick target 'bo' is neither cast nor coord": 3,
+   "event ends 8.1 past duration 6.3": 2,
+   "kick with no ball prop": 1,
+   "overlapping kicks on one ball": 1
+  },
+  "staging": 0.323,
+  "sep_score": 0.465,
+  "span_score": 0.245,
+  "occl_score": 0.259,
+  "decl_min_sep": 0.145,
+  "min_sep": 0.095,
+  "mean_sep": 0.857,
+  "span_frac": 0.141,
+  "occl_frac": 0.417,
+  "staging_ok": 0.0,
+  "n_multicast": 20,
+  "staging_spaced": 0.638,
+  "sep_score_spaced": 0.809,
+  "span_score_spaced": 0.409,
+  "occl_score_spaced": 0.696,
+  "decl_min_sep_spaced": 1.21,
+  "min_sep_spaced": 0.688,
+  "mean_sep_spaced": 1.45,
+  "span_frac_spaced": 0.238,
+  "occl_frac_spaced": 0.146,
+  "staging_ok_spaced": 40.0,
+  "spacing_moved": 20
+ },
+ "v2+uc": {
+  "file": "out_of_distribution_v2uc.json",
+  "n": 24,
+  "parse": 100.0,
+  "valid": 58.333333333333336,
+  "render": 100.0,
+  "cast_count": 83.33333333333333,
+  "background": 100.0,
+  "actions_present": 87.5,
+  "ball_interaction": 95.83333333333333,
+  "props": 33.333333333333336,
+  "colors": 100.0,
+  "ALL": 62.5,
+  "ALL_nolayout": 62.5,
+  "dup_colour": 0,
+  "problems": {
+   "event ends 7.9 past duration 6.3": 4,
+   "kick target 'bo' is neither cast nor coord": 3,
+   "event ends 8.1 past duration 6.3": 2,
+   "kick with no ball prop": 1,
+   "overlapping kicks on one ball": 1,
+   "event for unknown character 'bo'": 1
+  },
+  "staging": 0.307,
+  "sep_score": 0.456,
+  "span_score": 0.246,
+  "occl_score": 0.22,
+  "decl_min_sep": 0.145,
+  "min_sep": 0.095,
+  "mean_sep": 0.85,
+  "span_frac": 0.143,
+  "occl_frac": 0.416,
+  "staging_ok": 0.0,
+  "n_multicast": 20,
+  "staging_spaced": 0.632,
+  "sep_score_spaced": 0.794,
+  "span_score_spaced": 0.396,
+  "occl_score_spaced": 0.706,
+  "decl_min_sep_spaced": 1.21,
+  "min_sep_spaced": 0.683,
+  "mean_sep_spaced": 1.397,
+  "span_frac_spaced": 0.232,
+  "occl_frac_spaced": 0.148,
+  "staging_ok_spaced": 40.0,
+  "spacing_moved": 20
+ },
+ "v3": {
+  "file": "out_of_distribution_v3.json",
+  "n": 24,
+  "parse": 100.0,
+  "valid": 50.0,
+  "render": 100.0,
+  "cast_count": 95.83333333333333,
+  "background": 100.0,
+  "actions_present": 83.33333333333333,
+  "ball_interaction": 95.83333333333333,
+  "props": 33.333333333333336,
+  "colors": 100.0,
+  "ALL": 70.83333333333333,
+  "ALL_nolayout": 70.83333333333333,
+  "dup_colour": 6,
+  "problems": {
+   "two characters share a colour": 6,
+   "kick target 'bo' is neither cast nor coord": 3,
+   "overlapping kicks on one ball": 2,
+   "event for unknown character 'gus'": 2,
+   "kick with no ball prop": 1,
+   "event ends 7.9 past duration 6.9": 1
+  },
+  "staging": 0.099,
+  "sep_score": 0.158,
+  "span_score": 0.116,
+  "occl_score": 0.023,
+  "decl_min_sep": 0.01,
+  "min_sep": 0.001,
+  "mean_sep": 0.366,
+  "span_frac": 0.07,
+  "occl_frac": 0.867,
+  "staging_ok": 0.0,
+  "n_multicast": 20,
+  "staging_spaced": 0.586,
+  "sep_score_spaced": 0.715,
+  "span_score_spaced": 0.399,
+  "occl_score_spaced": 0.645,
+  "decl_min_sep_spaced": 1.235,
+  "min_sep_spaced": 0.601,
+  "mean_sep_spaced": 1.403,
+  "span_frac_spaced": 0.242,
+  "occl_frac_spaced": 0.226,
+  "staging_ok_spaced": 30.0,
+  "spacing_moved": 20
+ },
+ "v3+uc": {
+  "file": "out_of_distribution_v3uc.json",
+  "n": 24,
+  "parse": 100.0,
+  "valid": 70.83333333333333,
+  "render": 100.0,
+  "cast_count": 95.83333333333333,
+  "background": 100.0,
+  "actions_present": 83.33333333333333,
+  "ball_interaction": 95.83333333333333,
+  "props": 33.333333333333336,
+  "colors": 100.0,
+  "ALL": 70.83333333333333,
+  "ALL_nolayout": 70.83333333333333,
+  "dup_colour": 0,
+  "problems": {
+   "kick target 'bo' is neither cast nor coord": 3,
+   "overlapping kicks on one ball": 2,
+   "event for unknown character 'gus'": 2,
+   "kick with no ball prop": 1,
+   "event ends 7.9 past duration 6.9": 1,
+   "event ends 7.8 past duration 6.9": 1
+  },
+  "staging": 0.099,
+  "sep_score": 0.158,
+  "span_score": 0.116,
+  "occl_score": 0.023,
+  "decl_min_sep": 0.01,
+  "min_sep": 0.001,
+  "mean_sep": 0.366,
+  "span_frac": 0.07,
+  "occl_frac": 0.867,
+  "staging_ok": 0.0,
+  "n_multicast": 20,
+  "staging_spaced": 0.585,
+  "sep_score_spaced": 0.715,
+  "span_score_spaced": 0.399,
+  "occl_score_spaced": 0.641,
+  "decl_min_sep_spaced": 1.235,
+  "min_sep_spaced": 0.601,
+  "mean_sep_spaced": 1.403,
+  "span_frac_spaced": 0.242,
+  "occl_frac_spaced": 0.227,
+  "staging_ok_spaced": 30.0,
+  "spacing_moved": 20
+ }
+}

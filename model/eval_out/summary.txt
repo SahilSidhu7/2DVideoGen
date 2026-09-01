@@ -1,0 +1,36 @@
+in_distribution        n=150
+  parse   150/150 = 100.0%
+  valid   103/150 =  68.7%  (zero structural problems, no repair)
+  render  150/150 = 100.0%  (after repair)
+  exact     0/150 =   0.0%  (byte-identical to the reference DSL)
+  ALL                    136/150 =  90.7%
+  actions_per_character  137/150 =  91.3%
+  background             121/121 = 100.0%
+  ball_interaction       149/150 =  99.3%
+  cast_count             145/145 = 100.0%
+  colors                  40/40  = 100.0%
+  props                   82/82  = 100.0%
+  action recall (partial credit) =  99.0%
+  structural problems: {'two characters share a colour': 28, 'overlapping kicks on one ball': 10, 'event ends 12.7 past duration 10.3': 3, 'event ends 7.7 past duration 7.6': 3, 'event ends 10.4 past duration 10.3': 2, 'event ends 10.6 past duration 10.3': 2, 'event ends 9.4 past duration 9.2': 2, 'event ends 8.4 past duration 7.9': 1}
+
+out_of_distribution    n=24
+  parse    24/24 = 100.0%
+  valid    15/24 =  62.5%  (zero structural problems, no repair)
+  render   24/24 = 100.0%  (after repair)
+  exact     0/24 =   0.0%  (byte-identical to the reference DSL)
+  ALL                      6/24  =  25.0%
+  actions_present         19/24  =  79.2%
+  background              24/24  = 100.0%
+  ball_interaction        24/24  = 100.0%
+  cast_count               8/24  =  33.3%
+  colors                   1/2   =  50.0%
+  props                    2/3   =  66.7%
+  action recall (partial credit) =  86.7%
+  by group (render / prompt-match / n):
+    cast_size    3/3   0/3
+    colour       2/2   1/2
+    novel_combo  6/6   2/6
+    phrasing     6/6   1/6
+    scenery      3/3   0/3
+    structure    4/4   2/4
+  structural problems: {"kick target 'bo' is neither cast nor coord": 7, "event for unknown character 'bo'": 3, 'event ends 4.9 past duration 4.5': 2, 'event ends 7.9 past duration 4.5': 2, 'overlapping kicks on one ball': 2, 'event ends 5.8 past duration 4.5': 2, 'event ends 6.2 past duration 4.5': 1, "unknown action 'tree'": 1}

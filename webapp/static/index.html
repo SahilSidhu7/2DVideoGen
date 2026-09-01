@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EquationVideo — prompt to math video</title>
+<style>
+  :root {
+    --bg:#0b0d13; --panel:#12151f; --panel2:#171b28; --line:#232838;
+    --txt:#e6e9f2; --dim:#8b93a7; --accent:#5ad2ff; --accent2:#b27cff;
+    --user:#1d2740; --danger:#ff5d6c; --ok:#4ade80; --radius:12px;
+  }
+  * { box-sizing:border-box; }
+  html,body { height:100%; margin:0; }
+  body {
+    font:14px/1.5 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--txt); display:flex; overflow:hidden;
+  }
+  button { font:inherit; cursor:pointer; border:none; border-radius:8px; }
+  ::-webkit-scrollbar { width:10px; height:10px; }
+  ::-webkit-scrollbar-thumb { background:#2a3042; border-radius:8px; }
+
+  /* ---- sidebar ---- */
+  #sidebar {
+    width:260px; flex:none; background:var(--panel); border-right:1px solid var(--line);
+    display:flex; flex-direction:column;
+  }
+  .brand { padding:16px 16px 12px; font-weight:700; font-size:16px;
+    letter-spacing:.3px; display:flex; align-items:center; gap:8px; }
+  .brand .dot { width:10px;height:10px;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent2)); }
+  .newbtn { margin:0 12px 10px; padding:10px; background:var(--panel2);
+    color:var(--txt); border:1px solid var(--line); font-weight:600; }
+  .newbtn:hover { border-color:var(--accent); }
+  .navtabs { display:flex; gap:6px; padding:0 12px 10px; }
+  .navtabs button { flex:1; padding:8px; background:transparent; color:var(--dim);
+    border:1px solid var(--line); font-weight:600; }
+  .navtabs button.on { color:var(--txt); background:var(--panel2);
+    border-color:var(--accent); }
+  #chatlist { flex:1; overflow-y:auto; padding:4px 8px 12px; }
+  .chatitem { padding:10px 10px; border-radius:8px; margin-bottom:3px;
+    display:flex; align-items:center; gap:8px; color:var(--dim); }
+  .chatitem:hover { background:var(--panel2); color:var(--txt); }
+  .chatitem.on { background:var(--panel2); color:var(--txt); }
+  .chatitem .t { flex:1; overflow:hidden; text-overflow:ellipsis;
+    white-space:nowrap; font-size:13px; }
+  .chatitem .cnt { font-size:11px; color:var(--dim); }
+  .chatitem .x { opacity:0; color:var(--dim); background:none; padding:2px 6px;
+    font-size:15px; }
+  .chatitem:hover .x { opacity:1; }
+  .chatitem .x:hover { color:var(--danger); }
+  .foot { padding:10px 16px; font-size:11px; color:var(--dim);
+    border-top:1px solid var(--line); }
+
+  /* ---- main ---- */
+  #main { flex:1; display:flex; flex-direction:column; min-width:0; }
+  #stream { flex:1; overflow-y:auto; padding:24px; }
+  .wrap { max-width:760px; margin:0 auto; }
+  .empty { text-align:center; color:var(--dim); margin-top:12vh; }
+  .empty h2 { color:var(--txt); font-weight:700; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; justify-content:center;
+    margin-top:18px; }
+  .chip { padding:8px 12px; background:var(--panel); border:1px solid var(--line);
+    border-radius:20px; color:var(--dim); font-size:12px; }
+  .chip:hover { border-color:var(--accent); color:var(--txt); }
+
+  .msg { margin-bottom:20px; display:flex; gap:12px; }
+  .msg .av { width:30px;height:30px;flex:none;border-radius:8px; font-size:15px;
+    display:flex;align-items:center;justify-content:center; }
+  .msg.user .av { background:var(--user); }
+  .msg.assistant .av { background:linear-gradient(135deg,var(--accent),var(--accent2)); }
+  .msg .body { flex:1; min-width:0; }
+  .msg .who { font-size:12px; color:var(--dim); margin-bottom:4px; }
+  .bubble { background:var(--panel); border:1px solid var(--line);
+    border-radius:var(--radius); padding:12px 14px; }
+  .msg.user .bubble { background:var(--user); border-color:#2a3a5c; }
+  .specrow { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+  .tag { font-size:11px; padding:3px 8px; border-radius:6px; background:var(--panel2);
+    border:1px solid var(--line); color:var(--accent); font-family:ui-monospace,monospace; }
+  video { width:100%; border-radius:10px; margin-top:10px; background:#000;
+    display:block; }
+  .vidbar { display:flex; gap:8px; margin-top:8px; }
+  .vidbar a, .vidbar button { font-size:12px; padding:5px 10px; color:var(--dim);
+    background:var(--panel2); border:1px solid var(--line); border-radius:7px;
+    text-decoration:none; }
+  .vidbar a:hover { color:var(--txt); }
+  .vidbar button:hover { color:var(--danger); border-color:var(--danger); }
+  .status { display:flex; align-items:center; gap:10px; color:var(--dim);
+    font-size:13px; }
+  .spinner { width:16px;height:16px;border-radius:50%;
+    border:2px solid var(--line); border-top-color:var(--accent);
+    animation:spin .8s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  /* ---- composer ---- */
+  #composer { border-top:1px solid var(--line); padding:14px 24px 18px;
+    background:var(--bg); }
+  .cwrap { max-width:760px; margin:0 auto; }
+  .inrow { display:flex; gap:10px; align-items:flex-end;
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:10px 12px; }
+  .inrow:focus-within { border-color:var(--accent); }
+  textarea { flex:1; resize:none; background:none; border:none; color:var(--txt);
+    font:inherit; outline:none; max-height:120px; }
+  .send { background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#08111a; font-weight:700; padding:9px 16px; }
+  .send:disabled { opacity:.5; cursor:not-allowed; }
+  .upl { background:var(--panel2); color:var(--dim); border:1px solid var(--line);
+    padding:8px 11px; font-size:15px; align-self:center; }
+  .upl:hover { color:var(--txt); border-color:var(--accent); }
+  .opts { display:flex; align-items:center; gap:10px; color:var(--dim);
+    font-size:12px; margin-top:8px; }
+  .opts input[type=range] { accent-color:var(--accent); }
+
+  /* ---- gallery ---- */
+  #gallery { flex:1; overflow-y:auto; padding:24px; display:none; }
+  .grid { max-width:1000px; margin:0 auto; display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:16px; }
+  .card { background:var(--panel); border:1px solid var(--line);
+    border-radius:var(--radius); overflow:hidden; }
+  .card video { margin:0; border-radius:0; }
+  .card .meta { padding:10px 12px; }
+  .card .p { font-size:13px; overflow:hidden; text-overflow:ellipsis;
+    white-space:nowrap; }
+  .card .sub { font-size:11px; color:var(--dim); margin-top:3px; }
+  .toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
+    background:var(--panel2); border:1px solid var(--line); padding:10px 16px;
+    border-radius:10px; color:var(--txt); opacity:0; transition:.3s;
+    pointer-events:none; z-index:50; }
+  .toast.show { opacity:1; }
+</style>
+</head>
+<body>
+  <aside id="sidebar">
+    <div class="brand"><span class="dot"></span> EquationVideo</div>
+    <button class="newbtn" onclick="newChat()">＋ New chat</button>
+    <div class="navtabs">
+      <button id="tab-chat" class="on" onclick="view('chat')">Chats</button>
+      <button id="tab-gallery" onclick="view('gallery')">Gallery</button>
+    </div>
+    <div id="chatlist"></div>
+    <div class="foot" id="foot">model: …</div>
+  </aside>
+
+  <main id="main">
+    <div id="stream"><div class="wrap" id="streamwrap"></div></div>
+    <div id="gallery"><div class="grid" id="grid"></div></div>
+    <div id="composer">
+      <div class="cwrap">
+        <div class="inrow">
+          <button class="upl" id="uplbtn" title="Vectorize a real image or video" onclick="document.getElementById('file').click()">📎</button>
+          <input type="file" id="file" accept="image/*,video/*" style="display:none" onchange="submitUpload(this)">
+          <textarea id="prompt" rows="1" placeholder="Describe a video, or 📎 upload a real photo/clip to vectorize"></textarea>
+          <button class="send" id="send" onclick="submitPrompt()">Generate</button>
+        </div>
+        <div class="opts">
+          <label>duration <span id="durval">6</span>s</label>
+          <input type="range" id="dur" min="2" max="15" value="6"
+                 oninput="durval.textContent=this.value">
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="toast" id="toast"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+let state = { chat:null, chats:[], view:'chat', busy:false };
+
+function toast(t){ const el=$('#toast'); el.textContent=t; el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),1800); }
+async function api(url,opt){ const r=await fetch(url,opt); if(!r.ok) throw new Error(await r.text());
+  return r.headers.get('content-type')?.includes('json')?r.json():r; }
+const jpost=(u,b)=>api(u,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b||{})});
+const jpatch=(u,b)=>api(u,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify(b||{})});
+const jdel=u=>api(u,{method:'DELETE'});
+const esc=s=>(s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+/* ---- chats ---- */
+async function loadChats(){
+  state.chats = await api('/api/chats');
+  const el=$('#chatlist'); el.innerHTML='';
+  for(const c of state.chats){
+    const d=document.createElement('div');
+    d.className='chatitem'+(c.id===state.chat?' on':'');
+    d.innerHTML=`<span class="t">${esc(c.title)}</span>`+
+      (c.videos?`<span class="cnt">${c.videos}🎬</span>`:'')+
+      `<button class="x" title="delete">×</button>`;
+    d.querySelector('.t').onclick=()=>openChat(c.id);
+    d.ondblclick=()=>renameChat(c);
+    d.querySelector('.x').onclick=e=>{e.stopPropagation();delChat(c.id);};
+    el.appendChild(d);
+  }
+}
+async function newChat(){ const c=await jpost('/api/chats'); state.chat=c.id;
+  await loadChats(); openChat(c.id); $('#prompt').focus(); }
+async function openChat(id){ state.chat=id; view('chat'); await loadChats(); await loadMessages(); }
+async function renameChat(c){ const t=prompt('Rename chat:',c.title); if(t){await jpatch('/api/chats/'+c.id,{title:t}); loadChats();} }
+async function delChat(id){ if(!confirm('Delete this chat and its videos?'))return;
+  await jdel('/api/chats/'+id); if(state.chat===id)state.chat=null;
+  await loadChats(); await loadMessages(); }
+
+/* ---- messages ---- */
+async function loadMessages(){
+  const w=$('#streamwrap');
+  if(!state.chat){ w.innerHTML=emptyHTML(); return; }
+  const msgs=await api(`/api/chats/${state.chat}/messages`);
+  if(!msgs.length){ w.innerHTML=emptyHTML(); return; }
+  w.innerHTML=msgs.map(renderMsg).join('');
+  scrollDown();
+}
+function emptyHTML(){
+  const ideas=['a stickman walking across the screen','a slow glowing blue rose with 5 petals',
+    'fast fire-colored water ripples','a purple mandala with 8-fold symmetry',
+    'green stick figure walking','a moody dark logarithmic spiral','neon spirograph, spinning quickly'];
+  return `<div class="empty"><h2>Describe a video</h2>
+    <p>Type a prompt below. A small trained model turns it into an animated equation.</p>
+    <div class="chips">${ideas.map(i=>`<button class="chip" onclick="useChip(this)">${i}</button>`).join('')}</div>
+    </div>`;
+}
+function useChip(b){ $('#prompt').value=b.textContent; $('#prompt').focus(); }
+function renderMsg(m){
+  const who=m.role==='user'?'You':'EquationVideo';
+  const av=m.role==='user'?'🧑':'✦';
+  let inner=`<div class="bubble">${esc(m.content)}`;
+  if(m.spec && m.role==='assistant')
+    inner+=`<div class="specrow">${m.spec.split(' ').map(s=>`<span class="tag">${esc(s)}</span>`).join('')}</div>`;
+  if(m.video_file){
+    const url='/videos/'+m.video_file;
+    const eq=m.eqfile?`<a href="/videos/${m.eqfile}" download>∑ equations</a>`:'';
+    inner+=`<video src="${url}" controls loop muted autoplay playsinline></video>
+      <div class="vidbar"><a href="${url}" download>⬇ download</a>${eq}
+      <button onclick="delVideo('${m.video_id}')">🗑 delete</button></div>`;
+  }
+  inner+='</div>';
+  return `<div class="msg ${m.role}"><div class="av">${av}</div>
+    <div class="body"><div class="who">${who}</div>${inner}</div></div>`;
+}
+function pendingHTML(text,status){
+  return `<div class="msg assistant" id="pending"><div class="av">✦</div>
+   <div class="body"><div class="who">EquationVideo</div>
+   <div class="bubble"><div class="status"><div class="spinner"></div>
+   <span id="pstatus">${status}</span></div></div></div></div>`;
+}
+function scrollDown(){ const s=$('#stream'); s.scrollTop=s.scrollHeight; }
+
+/* ---- generate ---- */
+async function submitPrompt(){
+  const p=$('#prompt').value.trim(); if(!p||state.busy)return;
+  if(!state.chat){ const c=await jpost('/api/chats'); state.chat=c.id; }
+  state.busy=true; $('#send').disabled=true; $('#prompt').value='';
+  // optimistic user bubble
+  const w=$('#streamwrap');
+  if(w.querySelector('.empty'))w.innerHTML='';
+  w.insertAdjacentHTML('beforeend',
+    `<div class="msg user"><div class="av">🧑</div><div class="body">
+     <div class="who">You</div><div class="bubble">${esc(p)}</div></div></div>`);
+  w.insertAdjacentHTML('beforeend', pendingHTML(p,'understanding prompt…'));
+  scrollDown();
+  try{
+    const dur=+$('#dur').value;
+    const {job_id}=await jpost(`/api/chats/${state.chat}/generate`,{prompt:p,duration:dur});
+    await pollJob(job_id);
+  }catch(e){ $('#pstatus') && ($('#pstatus').textContent='error: '+e.message); }
+  state.busy=false; $('#send').disabled=false;
+  await loadChats(); await loadMessages();
+}
+async function submitUpload(input){
+  const file=input.files[0]; if(!file||state.busy)return;
+  input.value='';
+  if(!state.chat){ const c=await jpost('/api/chats'); state.chat=c.id; }
+  state.busy=true; $('#send').disabled=true;
+  const w=$('#streamwrap'); if(w.querySelector('.empty'))w.innerHTML='';
+  w.insertAdjacentHTML('beforeend',
+    `<div class="msg user"><div class="av">🧑</div><div class="body">
+     <div class="who">You</div><div class="bubble">📎 ${esc(file.name)}</div></div></div>`);
+  w.insertAdjacentHTML('beforeend', pendingHTML('','detecting pose…'));
+  scrollDown();
+  try{
+    const fd=new FormData(); fd.append('file',file);
+    const r=await fetch(`/api/chats/${state.chat}/vectorize`,{method:'POST',body:fd});
+    if(!r.ok) throw new Error(await r.text());
+    const {job_id}=await r.json();
+    await pollJob(job_id);
+  }catch(e){ $('#pstatus') && ($('#pstatus').textContent='error: '+e.message); }
+  state.busy=false; $('#send').disabled=false;
+  await loadChats(); await loadMessages();
+}
+async function pollJob(id){
+  const label={understanding:'understanding prompt…',rendering:'rendering frames…',
+    queued:'queued…','detecting pose':'detecting pose (YOLO)…'};
+  while(true){
+    const j=await api('/api/jobs/'+id);
+    const ps=$('#pstatus');
+    if(ps) ps.textContent=label[j.status]||j.status;
+    if(j.status==='done'||j.status==='error') return j;
+    await new Promise(r=>setTimeout(r,600));
+  }
+}
+
+async function delVideo(id){ if(!confirm('Delete this video?'))return;
+  await jdel('/api/videos/'+id); toast('video deleted');
+  await loadMessages(); if(state.view==='gallery')loadGallery(); await loadChats(); }
+
+/* ---- gallery ---- */
+async function loadGallery(){
+  const vids=await api('/api/videos'); const g=$('#grid');
+  if(!vids.length){ g.innerHTML='<div class="empty" style="grid-column:1/-1"><h2>No videos yet</h2><p>Generate one from a chat.</p></div>'; return; }
+  g.innerHTML=vids.map(v=>`<div class="card">
+    <video src="/videos/${v.file}" controls loop muted playsinline></video>
+    <div class="meta"><div class="p" title="${esc(v.prompt)}">${esc(v.prompt)}</div>
+    <div class="sub">${esc(v.spec||'')}</div>
+    <div class="vidbar"><a href="/videos/${v.file}" download>⬇</a>
+    ${v.eqfile?`<a href="/videos/${v.eqfile}" download>∑</a>`:''}
+    <button onclick="delVideo('${v.id}')">🗑</button></div></div></div>`).join('');
+}
+function view(v){
+  state.view=v;
+  $('#tab-chat').classList.toggle('on',v==='chat');
+  $('#tab-gallery').classList.toggle('on',v==='gallery');
+  $('#stream').style.display=v==='chat'?'':'none';
+  $('#composer').style.display=v==='chat'?'':'none';
+  $('#gallery').style.display=v==='gallery'?'flex':'none';
+  if(v==='gallery')loadGallery();
+}
+
+/* ---- init ---- */
+$('#prompt').addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); submitPrompt(); }
+});
+$('#prompt').addEventListener('input',function(){ this.style.height='auto';
+  this.style.height=Math.min(this.scrollHeight,120)+'px'; });
+(async()=>{ await loadChats();
+  if(state.chats.length)openChat(state.chats[0].id); else loadMessages();
+  try{ const h=await api('/api/health');
+    $('#foot').textContent='model: '+h.backend+' · '+h.archetypes.length+' shapes';
+  }catch{} })();
+</script>
+</body>
+</html>

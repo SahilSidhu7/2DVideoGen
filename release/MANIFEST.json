@@ -1,0 +1,98 @@
+[
+  {
+    "version": "v1-8b-icons",
+    "origin": "GENERATED - Qwen3-8B LoRA, 1024 ctx",
+    "note": "Trained on LottieAnimation-660K. 94% valid; colour weak, geometry abstract.",
+    "clips": 6,
+    "frames": 172,
+    "video": "release\\v1-8b-icons\\v1-8b-icons.mp4",
+    "shapes": [
+      10,
+      6,
+      9,
+      6,
+      8,
+      4
+    ],
+    "clip_frames": [
+      11,
+      10,
+      12,
+      11,
+      8,
+      10
+    ]
+  },
+  {
+    "version": "v2-1.7b-icons",
+    "origin": "GENERATED - Qwen3-1.7B LoRA, 4096 ctx",
+    "note": "7x the animation signal. 100% valid; colour and object count correct, geometry still abstract.",
+    "clips": 6,
+    "frames": 410,
+    "video": "release\\v2-1.7b-icons\\v2-1.7b-icons.mp4",
+    "shapes": [
+      8,
+      8,
+      4,
+      10,
+      11,
+      21
+    ],
+    "clip_frames": [
+      30,
+      30,
+      28,
+      33,
+      30,
+      30
+    ]
+  },
+  {
+    "version": "corpus-stickman",
+    "origin": "PROCEDURAL - training data, not model output",
+    "note": "Articulated rig -> AniSVG. Shows what the format carries.",
+    "clips": 6,
+    "frames": 304,
+    "video": "release\\corpus-stickman\\corpus-stickman.mp4",
+    "shapes": [
+      10,
+      10,
+      10,
+      10,
+      10,
+      10
+    ],
+    "clip_frames": [
+      25,
+      25,
+      19,
+      23,
+      17,
+      19
+    ]
+  },
+  {
+    "version": "corpus-anime",
+    "origin": "PROCEDURAL - training data, not model output",
+    "note": "Cel-style character, fixed 16-part schema. Target for the next model.",
+    "clips": 6,
+    "frames": 304,
+    "video": "release\\corpus-anime\\corpus-anime.mp4",
+    "shapes": [
+      16,
+      16,
+      16,
+      16,
+      16,
+      16
+    ],
+    "clip_frames": [
+      29,
+      22,
+      27,
+      16,
+      16,
+      18
+    ]
+  }
+]

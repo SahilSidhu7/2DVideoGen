@@ -1,0 +1,34 @@
+# Attempt 21 - the FRESH script. Written after the engine was frozen, to test
+# whether the mechanism generalises or whether park_meet.scene was a one-off.
+# Different cast size, different background, different props, different
+# action mix, a three-way ball relay instead of a two-way pass.
+title      Night street relay
+size       854 480
+fps        30
+seconds    14
+background night
+
+prop cloud haze   at 6.80 scale 1.40 y 4.30
+prop box   crate1 at 0.70 scale 1.00
+prop box   crate2 at 1.15 scale 0.90 y 1.63
+prop rock  kerb   at 4.60 scale 1.20
+prop bush  weeds  at 8.10 scale 0.70 y 1.42
+prop ball  ball   at 2.60
+
+cast dee  color lime    at 9.60 scale 1.00
+cast ell  color violet  at 5.40 scale 0.86 y 1.32
+cast fay  color amber   at 0.60 scale 0.55
+cast gus  color white   at 4.00 scale 0.70 y 1.48
+
+0.0  2.6  dee run to 5.20
+0.0  4.5  fay walk to 4.30
+0.4  3.0  ell dance
+2.8  4.6  dee kick ball at ell
+4.8  6.6  ell kick ball at dee
+5.0  8.0  gus walk to 8.60
+6.8  8.6  dee kick ball at 1.20
+7.0  9.5  fay wave
+8.8 11.0  ell run to 1.90
+9.0 11.5  gus dance
+11.2 13.0 ell jump
+11.8 14.0 fay dance

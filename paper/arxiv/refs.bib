@@ -1,0 +1,590 @@
+% refs.bib
+% Bibliography for "Two Routes to 2D Animation on an 8 GB Consumer GPU"
+%
+% Every entry below is sourced from paper/RESEARCH.md and paper/RESEARCH2.md,
+% the project's own two literature surveys. Where a survey did not record a
+% complete bibliographic detail (full author list, arXiv id, venue, or exact
+% title), the entry is filled in with what IS known and marked with a
+% "% TODO" comment directly above the missing field. Every such entry is
+% also listed in paper/arxiv/README.md so it can be found and completed
+% before submission without re-reading this whole file. Nothing below is
+% invented: no author name, year, or identifier has been guessed.
+
+% ---------------------------------------------------------------------
+% From paper/RESEARCH.md (diffusion route, temporal consistency, datasets,
+% evaluation metrics)
+% ---------------------------------------------------------------------
+
+@article{guo2023animatediff,
+  title         = {AnimateDiff: Animate Your Personalized Text-to-Image Diffusion Models without Specific Tuning},
+  author        = {Guo, Yuwei and others},
+  year          = {2023},
+  eprint        = {2307.04725},
+  archivePrefix = {arXiv}
+}
+
+@article{lin2024animatedifflightning,
+  title         = {AnimateDiff-Lightning: Cross-Model Diffusion Distillation},
+  author        = {Lin, Shanchuan and Yang, Xiao},
+  year          = {2024},
+  eprint        = {2403.12706},
+  archivePrefix = {arXiv},
+  note          = {ByteDance}
+}
+
+@inproceedings{khachatryan2023text2videozero,
+  title         = {Text2Video-Zero: Text-to-Image Diffusion Models are Zero-Shot Video Generators},
+  author        = {Khachatryan, Levon and others},
+  booktitle     = {ICCV},
+  year          = {2023},
+  eprint        = {2303.13439},
+  archivePrefix = {arXiv}
+}
+
+% TODO: full author list and arXiv id not recorded in paper/RESEARCH.md --
+% only "Yang et al., CVPR 2024" and the project-page/GitHub links were
+% captured. Fill in before submission.
+@inproceedings{yang2024fresco,
+  title     = {FRESCO: Spatial-Temporal Correspondence for Zero-Shot Video Translation},
+  author    = {Yang, Shuai and others},
+  booktitle = {CVPR},
+  year      = {2024},
+  note      = {TODO: arXiv id and full author list not in paper/RESEARCH.md; code at github.com/williamyang1991/FRESCO, project page mmlab-ntu.com/project/fresco}
+}
+
+% TODO: full author list and arXiv id not recorded in paper/RESEARCH.md.
+@inproceedings{yang2023rerender,
+  title     = {Rerender-A-Video},
+  author    = {Yang, Shuai and others},
+  booktitle = {SIGGRAPH Asia},
+  year      = {2023},
+  note      = {TODO: arXiv id and full author list not in paper/RESEARCH.md}
+}
+
+@article{geyer2023tokenflow,
+  title         = {TokenFlow: Consistent Diffusion Features for Consistent Video Editing},
+  author        = {Geyer, Michal and others},
+  year          = {2023},
+  eprint        = {2307.10373},
+  archivePrefix = {arXiv}
+}
+
+% TODO: authors and full title not recorded in paper/RESEARCH.md -- only
+% "PipeFlow, arXiv 2512.24026" was captured (cited as 9.6x faster than
+% TokenFlow on the same 240-frame/RTX-3090 benchmark).
+@misc{pipeflow2025,
+  title = {PipeFlow},
+  author = {{Unknown}},
+  year  = {2025},
+  eprint        = {2512.24026},
+  archivePrefix = {arXiv},
+  note  = {TODO: full title and authors not recorded in paper/RESEARCH.md}
+}
+
+% TODO: authors and full title not recorded in paper/RESEARCH.md.
+@misc{sparseforcing2026,
+  title = {Sparse Forcing},
+  author = {{Unknown}},
+  year  = {2026},
+  eprint        = {2604.21221},
+  archivePrefix = {arXiv},
+  note  = {TODO: full title and authors not recorded in paper/RESEARCH.md}
+}
+
+% TODO: authors and full title not recorded in paper/RESEARCH.md.
+@misc{liteattention2025,
+  title = {LiteAttention},
+  author = {{Unknown}},
+  year  = {2025},
+  eprint        = {2511.11062},
+  archivePrefix = {arXiv},
+  note  = {TODO: full title and authors not recorded in paper/RESEARCH.md}
+}
+
+% TODO: arXiv id and authors not recorded in paper/RESEARCH.md -- only the
+% GitHub link (github.com/svg-project/Sparse-VideoGen) and venue
+% "ICML/NeurIPS 2025" were captured.
+@misc{sparsevideogen2025,
+  title = {Sparse VideoGen},
+  author = {{Unknown}},
+  year  = {2025},
+  note  = {TODO: arXiv id and authors not recorded in paper/RESEARCH.md; code at github.com/svg-project/Sparse-VideoGen}
+}
+
+% TODO: authors and full title not recorded in paper/RESEARCH.md.
+@misc{hypervattention2026,
+  title = {HyperVAttention},
+  author = {{Unknown}},
+  year  = {2026},
+  eprint        = {2607.03012},
+  archivePrefix = {arXiv},
+  note  = {TODO: full title and authors not recorded in paper/RESEARCH.md}
+}
+
+% TODO: authors not recorded in paper/RESEARCH.md -- cited there only as
+% "Animate-X (cites AnimateAnyone, MagicAnimate)".
+@misc{animatex2024,
+  title = {Animate-X},
+  author = {{Unknown}},
+  year  = {2024},
+  eprint        = {2410.10306},
+  archivePrefix = {arXiv},
+  note  = {TODO: authors not recorded in paper/RESEARCH.md; cites AnimateAnyone and MagicAnimate}
+}
+
+% TODO: arXiv id, authors, and venue not recorded in paper/RESEARCH.md --
+% only a ResearchGate record was captured.
+@misc{magicanimate2023,
+  title = {MagicAnimate: Temporally Consistent Human Image Animation using Diffusion Model},
+  author = {{Unknown}},
+  year  = {2023},
+  note  = {TODO: arXiv id, authors, and venue not recorded in paper/RESEARCH.md; ResearchGate record only (researchgate.net/publication/384132413)}
+}
+
+@inproceedings{lin2024videodirectorgpt,
+  title         = {VideoDirectorGPT: Consistent Multi-Scene Video Generation via LLM-Guided Planning},
+  author        = {Lin, Han and Zala, Abhay and Cho, Jaemin and Bansal, Mohit},
+  booktitle     = {COLM},
+  year          = {2024},
+  eprint        = {2309.15091},
+  archivePrefix = {arXiv}
+}
+
+% TODO: authors and formal venue not recorded in paper/RESEARCH.md -- code
+% repository only.
+@misc{vimax2025,
+  title = {ViMax},
+  author = {{Unknown}},
+  year  = {2025},
+  howpublished = {\url{https://github.com/hkuds/vimax}},
+  note  = {TODO: authors and formal venue not recorded in paper/RESEARCH.md}
+}
+
+% TODO: no paper/arXiv id recorded in paper/RESEARCH.md -- Hugging Face
+% model card only.
+@misc{wanai2025wan21,
+  title = {Wan2.1-T2V-1.3B},
+  author = {{Wan-AI}},
+  year  = {2025},
+  howpublished = {Hugging Face: Wan-AI/Wan2.1-T2V-1.3B-Diffusers},
+  note  = {TODO: no paper/arXiv id recorded in paper/RESEARCH.md}
+}
+
+% TODO: authors and arXiv id not recorded in paper/RESEARCH.md.
+@misc{cogvideox2b,
+  title = {CogVideoX-2B},
+  author = {{Unknown}},
+  year  = {2024},
+  note  = {TODO: authors and arXiv id not recorded in paper/RESEARCH.md}
+}
+
+@article{wu2024aniclipart,
+  title         = {AniClipart: Clipart Animation with Text-to-Video Priors},
+  author        = {Wu, Ronghuan and others},
+  year          = {2024},
+  eprint        = {2404.12347},
+  archivePrefix = {arXiv},
+  note          = {IJCV 2024}
+}
+
+% TODO: full author list not recorded in paper/RESEARCH.md.
+@article{zhu2025dmt,
+  title  = {Differentiable Motion Trajectory for Vector Sketch Animation},
+  author = {Zhu, Zhiyuan and others},
+  year   = {2025},
+  journal = {Computer Graphics Forum},
+  doi    = {10.1111/cgf.70335},
+  note   = {TODO: full author list not recorded in paper/RESEARCH.md; CGF 2025/2026}
+}
+
+% TODO: authors not recorded in paper/RESEARCH.md.
+@misc{sakuga42m2024,
+  title = {Sakuga-42M Dataset},
+  author = {{Unknown}},
+  year  = {2024},
+  eprint        = {2405.07425},
+  archivePrefix = {arXiv},
+  note  = {TODO: authors not recorded in paper/RESEARCH.md; code at github.com/KytraScript/SakugaDataset}
+}
+
+% TODO: authors not recorded in paper/RESEARCH.md.
+@misc{animerun2022,
+  title = {AnimeRun},
+  author = {{Unknown}},
+  year  = {2022},
+  eprint        = {2211.05709},
+  archivePrefix = {arXiv},
+  note  = {TODO: authors not recorded in paper/RESEARCH.md}
+}
+
+% TODO: authors, venue, and arXiv id (if any) not recorded in
+% paper/RESEARCH.md -- dataset name only.
+@misc{atd12k,
+  title = {ATD-12K},
+  author = {{Unknown}},
+  year  = {2021},
+  note  = {TODO: authors, venue, and identifier not recorded in paper/RESEARCH.md}
+}
+
+% TODO: authors, venue, and arXiv id (if any) not recorded in
+% paper/RESEARCH.md -- dataset name only.
+@misc{creativeflowplus,
+  title = {CreativeFlow+},
+  author = {{Unknown}},
+  year  = {2019},
+  note  = {TODO: authors, venue, and identifier not recorded in paper/RESEARCH.md}
+}
+
+% TODO: formal dataset citation (paper, if any) not recorded in
+% paper/RESEARCH.md -- Hugging Face dataset card only.
+@misc{lottieanimation660k,
+  title = {LottieAnimation-660K},
+  author = {{LottieGPT}},
+  year  = {2024},
+  howpublished = {Hugging Face Datasets: LottieGPT/LottieAnimation-660K},
+  note  = {TODO: formal citation (paper, if any) not recorded in paper/RESEARCH.md; CC-BY-NC-SA-4.0}
+}
+
+% TODO: formal paper citation not recorded in paper/RESEARCH.md -- GitHub
+% repository only.
+@misc{humanml3d,
+  title = {HumanML3D},
+  author = {{Unknown}},
+  year  = {2022},
+  howpublished = {\url{https://github.com/EricGuo5513/HumanML3D}},
+  note  = {TODO: formal paper citation not recorded in paper/RESEARCH.md}
+}
+
+% TODO: formal citation not recorded in paper/RESEARCH.md.
+@misc{amass,
+  title = {AMASS},
+  author = {{Unknown}},
+  year  = {2019},
+  note  = {TODO: formal citation not recorded in paper/RESEARCH.md}
+}
+
+% TODO: authors not recorded in paper/RESEARCH.md.
+@misc{motionx2025,
+  title = {Motion-X / Motion-X++},
+  author = {{Unknown}},
+  year  = {2025},
+  eprint        = {2501.05098},
+  archivePrefix = {arXiv},
+  note  = {TODO: authors not recorded in paper/RESEARCH.md}
+}
+
+% TODO: arXiv id and authors not recorded in paper/RESEARCH.md -- parameter
+% count (44.85M) is cited there via the Light-T2M paper, not from a source
+% for MoMask itself.
+@misc{momask2024,
+  title = {MoMask},
+  author = {{Unknown}},
+  year  = {2024},
+  note  = {TODO: arXiv id and authors not recorded in paper/RESEARCH.md; parameter count cited there via Light-T2M (arXiv:2412.11193)}
+}
+
+% TODO: authors not recorded in paper/RESEARCH.md.
+@misc{lightt2m2024,
+  title = {Light-T2M},
+  author = {{Unknown}},
+  year  = {2024},
+  eprint        = {2412.11193},
+  archivePrefix = {arXiv},
+  note  = {TODO: authors not recorded in paper/RESEARCH.md}
+}
+
+% TODO: authors not recorded in paper/RESEARCH.md.
+@misc{tricmotion2026,
+  title = {TriC-Motion},
+  author = {{Unknown}},
+  year  = {2026},
+  eprint        = {2602.08462},
+  archivePrefix = {arXiv},
+  note  = {TODO: authors not recorded in paper/RESEARCH.md}
+}
+
+% TODO: arXiv id not recorded in paper/RESEARCH.md.
+@misc{tevet2022mdm,
+  title = {MDM: Human Motion Diffusion Model},
+  author = {Tevet, Guy and others},
+  year  = {2022},
+  note  = {TODO: arXiv id not recorded in paper/RESEARCH.md}
+}
+
+% TODO: arXiv id and full author list not recorded in paper/RESEARCH.md.
+@misc{motiongpt2023,
+  title = {MotionGPT},
+  author = {{OpenMotionLab}},
+  year  = {2023},
+  howpublished = {NeurIPS 2023; \url{https://github.com/OpenMotionLab/MotionGPT}},
+  note  = {TODO: arXiv id and full author list not recorded in paper/RESEARCH.md}
+}
+
+% TODO: authors and arXiv id not recorded in paper/RESEARCH.md.
+@inproceedings{fvdcontentbias2024,
+  title     = {On the Content Bias in Fr\'echet Video Distance},
+  author    = {{Unknown}},
+  booktitle = {CVPR},
+  year      = {2024},
+  note      = {TODO: authors and arXiv id not recorded in paper/RESEARCH.md}
+}
+
+% TODO: paper citation (if any) not recorded in paper/RESEARCH.md -- code
+% repository only.
+@misc{contentdebiasedfvd,
+  title = {Content-debiased FVD},
+  author = {{Unknown}},
+  year  = {2024},
+  howpublished = {\url{https://github.com/songweige/content-debiased-fvd}},
+  note  = {TODO: paper citation not recorded in paper/RESEARCH.md}
+}
+
+% TODO: paper citation and authors not recorded in paper/RESEARCH.md --
+% code repository only.
+@misc{jedi2024,
+  title = {JEDi: Beyond FVD},
+  author = {{Unknown}},
+  year  = {2024},
+  howpublished = {\url{https://github.com/oooolga/JEDi}},
+  note  = {TODO: paper citation and authors not recorded in paper/RESEARCH.md}
+}
+
+% TODO: arXiv id not recorded in paper/RESEARCH.md.
+@inproceedings{hessel2021clipscore,
+  title     = {CLIPScore: A Reference-free Evaluation Metric for Image Captioning},
+  author    = {Hessel, Jack and others},
+  booktitle = {EMNLP},
+  year      = {2021},
+  note      = {TODO: arXiv id not recorded in paper/RESEARCH.md}
+}
+
+% TODO: arXiv id and authors not recorded in paper/RESEARCH.md -- described
+% there only as "GODIVA, arXiv 2021" (first video application of CLIPSIM).
+@misc{godiva2021,
+  title = {GODIVA},
+  author = {{Unknown}},
+  year  = {2021},
+  note  = {TODO: arXiv id and authors not recorded in paper/RESEARCH.md}
+}
+
+% TODO: paper citation not recorded in paper/RESEARCH.md -- code repository
+% only.
+@misc{vqascore,
+  title = {VQAScore / t2v\_metrics},
+  author = {{Unknown}},
+  year  = {2024},
+  howpublished = {\url{https://github.com/linzhiqiu/t2v_metrics}},
+  note  = {TODO: paper citation not recorded in paper/RESEARCH.md}
+}
+
+% TODO: paper citation and authors not recorded in paper/RESEARCH.md --
+% code repository only.
+@misc{fvmd,
+  title = {FVMD: Fr\'echet Video Motion Distance},
+  author = {{Unknown}},
+  year  = {2024},
+  howpublished = {\url{https://github.com/DSL-Lab/FVMD-frechet-video-motion-distance}},
+  note  = {TODO: paper citation and authors not recorded in paper/RESEARCH.md}
+}
+
+% TODO: authors not recorded in paper/RESEARCH.md.
+@misc{evalcrafter2023,
+  title = {EvalCrafter},
+  author = {{Unknown}},
+  year  = {2023},
+  eprint        = {2310.11440},
+  archivePrefix = {arXiv},
+  note  = {TODO: authors not recorded in paper/RESEARCH.md}
+}
+
+% ---------------------------------------------------------------------
+% From paper/RESEARCH2.md (staging, counting, and constrained-decoding
+% survey)
+% ---------------------------------------------------------------------
+
+@inproceedings{andreas2020geca,
+  title     = {Good-Enough Compositional Data Augmentation},
+  author    = {Andreas, Jacob},
+  booktitle = {ACL},
+  year      = {2020},
+  howpublished = {\url{https://aclanthology.org/2020.acl-main.676}}
+}
+
+@article{yehudai2024counttransformers,
+  title         = {When Can Transformers Count to n?},
+  author        = {Yehudai, Gilad and Kaplan, Haim and Ghandeharioun, Asma and Geva, Mor and Globerson, Amir},
+  year          = {2024},
+  eprint        = {2407.15160},
+  archivePrefix = {arXiv}
+}
+
+@inproceedings{cho2024positioncoupling,
+  title     = {Position Coupling: Leveraging Task Structure for Improved Length Generalization of Transformers},
+  author    = {Cho, Hanseul and Cha, Jaeyoung and Awasthi, Pranjal and Kalyanaraman, Srinadh and Gollakota, Anupam and Yun, Chulhee},
+  booktitle = {NeurIPS},
+  year      = {2024},
+  eprint        = {2405.20671},
+  archivePrefix = {arXiv}
+}
+
+% TODO: authors not recorded in paper/RESEARCH2.md.
+@misc{factorgraphs2024,
+  title = {Constrained Layout Generation with Factor Graphs},
+  author = {{Unknown}},
+  year  = {2024},
+  eprint        = {2404.00385},
+  archivePrefix = {arXiv},
+  note  = {TODO: authors not recorded in paper/RESEARCH2.md; code not confirmed public}
+}
+
+% TODO: full author list not recorded in paper/RESEARCH2.md.
+@article{zhao2020scenegraphlayout,
+  title  = {Scene Graph to Image Generation with Contextualized Object Layout Refinement},
+  author = {Zhao, Sitong and others},
+  year   = {2020},
+  eprint        = {2009.10939},
+  archivePrefix = {arXiv},
+  note   = {TODO: full author list not recorded in paper/RESEARCH2.md}
+}
+
+@inproceedings{elfeki2019gdpp,
+  title     = {GDPP: Learning Diverse Generations Using Determinantal Point Processes},
+  author    = {Elfeki, Mohamed and others},
+  booktitle = {ICML},
+  year      = {2019},
+  eprint        = {1812.00068},
+  archivePrefix = {arXiv},
+  note      = {TODO: full author list not recorded in paper/RESEARCH2.md}
+}
+
+@inproceedings{jiang2023layoutformerpp,
+  title     = {LayoutFormer++: Conditional Graphic Layout Generation via Constraint Serialization and Decoding Space Restriction},
+  author    = {Jiang, Zhaoyun and others},
+  booktitle = {CVPR},
+  year      = {2023},
+  eprint        = {2208.08037},
+  archivePrefix = {arXiv},
+  note      = {TODO: full author list not recorded in paper/RESEARCH2.md; code at github.com/microsoft/LayoutGeneration}
+}
+
+@inproceedings{kong2022blt,
+  title     = {BLT: Bidirectional Layout Transformer for Controllable Layout Generation},
+  author    = {Kong, Xiang and others},
+  booktitle = {ECCV},
+  year      = {2022},
+  eprint        = {2112.05112},
+  archivePrefix = {arXiv},
+  note      = {TODO: full author list not recorded in paper/RESEARCH2.md}
+}
+
+@inproceedings{park2024asap,
+  title     = {Grammar-Aligned Decoding},
+  author    = {Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and others},
+  booktitle = {NeurIPS},
+  year      = {2024},
+  eprint        = {2405.21047},
+  archivePrefix = {arXiv},
+  note      = {ASAp; TODO: full author list and public code status not confirmed in paper/RESEARCH2.md}
+}
+
+% TODO: authors not recorded in paper/RESEARCH2.md.
+@misc{abs2025,
+  title = {ABS: Enforcing Constraint Satisfaction on Generated Sequences via Automata-Guided Beam Search},
+  author = {{Unknown}},
+  year  = {2025},
+  eprint        = {2506.09701},
+  archivePrefix = {arXiv},
+  note  = {TODO: authors not recorded in paper/RESEARCH2.md}
+}
+
+% TODO: arXiv id not recorded in paper/RESEARCH2.md -- only the GitHub
+% repository (github.com/facebookresearch/detr) was captured there.
+@inproceedings{carion2020detr,
+  title     = {End-to-End Object Detection with Transformers},
+  author    = {Carion, Nicolas and others},
+  booktitle = {ECCV},
+  year      = {2020},
+  note      = {TODO: arXiv id not recorded in paper/RESEARCH2.md; code at github.com/facebookresearch/detr}
+}
+
+@misc{llamacppgbnf,
+  title = {GBNF Grammars (llama.cpp)},
+  author = {{ggml-org}},
+  year  = {2024},
+  howpublished = {\url{https://github.com/ggml-org/llama.cpp/blob/master/grammars/README.md}}
+}
+
+@misc{outlines,
+  title = {Outlines},
+  author = {{dottxt-ai}},
+  year  = {2024},
+  howpublished = {\url{https://github.com/dottxt-ai/outlines}}
+}
+
+@misc{guidance,
+  title = {Guidance},
+  author = {{guidance-ai}},
+  year  = {2024},
+  howpublished = {\url{https://github.com/guidance-ai/guidance}}
+}
+
+% TODO: authors not recorded in paper/RESEARCH2.md.
+@misc{animaker2025,
+  title = {AniMaker},
+  author = {{Unknown}},
+  year  = {2025},
+  eprint        = {2506.10540},
+  archivePrefix = {arXiv},
+  note  = {TODO: authors not recorded in paper/RESEARCH2.md; SIGGRAPH Asia 2025}
+}
+
+% TODO: authors not recorded in paper/RESEARCH2.md.
+@misc{anime2025,
+  title = {AniME},
+  author = {{Unknown}},
+  year  = {2025},
+  eprint        = {2508.18781},
+  archivePrefix = {arXiv},
+  note  = {TODO: authors not recorded in paper/RESEARCH2.md}
+}
+
+% TODO: authors not recorded in paper/RESEARCH2.md.
+@misc{planandwrite2025,
+  title = {Plan-and-Write: Structure-Guided Length Control for LLMs without Model Retraining},
+  author = {{Unknown}},
+  year  = {2025},
+  eprint        = {2511.01807},
+  archivePrefix = {arXiv},
+  note  = {TODO: authors not recorded in paper/RESEARCH2.md}
+}
+
+% TODO: authors not recorded in paper/RESEARCH2.md.
+@misc{positionid2024,
+  title = {PositionID: LLMs can Control Lengths, Copy and Paste with Explicit Positional Awareness},
+  author = {{Unknown}},
+  year  = {2024},
+  eprint        = {2410.07035},
+  archivePrefix = {arXiv},
+  note  = {TODO: authors not recorded in paper/RESEARCH2.md}
+}
+
+% TODO: authors not recorded in paper/RESEARCH2.md.
+@misc{mangapanel2024,
+  title = {How Panel Layouts Define Manga},
+  author = {{Unknown}},
+  year  = {2024},
+  eprint        = {2412.19141},
+  archivePrefix = {arXiv},
+  note  = {TODO: authors not recorded in paper/RESEARCH2.md}
+}
+
+% TODO: exact title and authors not recorded in paper/RESEARCH2.md -- cited
+% there only as "the comics-understanding survey, arXiv 2409.09502".
+@misc{comicsurvey2024,
+  title = {Comics Understanding: A Survey},
+  author = {{Unknown}},
+  year  = {2024},
+  eprint        = {2409.09502},
+  archivePrefix = {arXiv},
+  note  = {TODO: exact title and authors not recorded in paper/RESEARCH2.md}
+}

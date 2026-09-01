@@ -1,0 +1,62 @@
+{
+ "a23_six.scene": {
+  "n_cast": 6,
+  "seconds": 11.3,
+  "min_sep": 0.026,
+  "mean_sep": 3.387,
+  "min_clearance": -1.331,
+  "span_frac": 0.898,
+  "span_target": 0.75,
+  "occl_frac": 0.067,
+  "edge_clearance": 0.039,
+  "sep_score": 0.91,
+  "span_score": 1.0,
+  "occl_score": 0.8,
+  "even_score": 0.147,
+  "edge_score": 0.078,
+  "staging": 0.903,
+  "hidden_behind_prop": [],
+  "declared_x": [
+   9.4,
+   1.2,
+   3.7,
+   5.5,
+   3.8,
+   3.6
+  ],
+  "declared_scale": [
+   0.7,
+   0.7,
+   0.7,
+   0.7,
+   0.7,
+   0.9
+  ]
+ },
+ "a23_generated.scene": {
+  "n_cast": 2,
+  "seconds": 13.6,
+  "min_sep": 1.385,
+  "mean_sep": 2.723,
+  "min_clearance": 0.324,
+  "span_frac": 0.296,
+  "span_target": 0.45,
+  "occl_frac": 0.0,
+  "edge_clearance": 1.32,
+  "sep_score": 1.0,
+  "span_score": 0.658,
+  "occl_score": 1.0,
+  "even_score": 1.0,
+  "edge_score": 1.0,
+  "staging": 0.886,
+  "hidden_behind_prop": [],
+  "declared_x": [
+   7.9,
+   3.1
+  ],
+  "declared_scale": [
+   0.8,
+   0.7
+  ]
+ }
+}

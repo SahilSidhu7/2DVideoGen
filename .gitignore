@@ -1,0 +1,58 @@
+# The working tree is ~13 GB. Almost all of it is regenerable: datasets,
+# model weights, and rendered frames. What gets pushed is the code, the
+# documents, the scene scripts, and the three showcase videos.
+
+# ---- environments and caches ----
+.venv-soup/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
+# ---- vendored third-party source (clone it separately) ----
+tools/Soup/
+
+# ---- datasets (~2.3 GB, rebuildable from the build scripts) ----
+datasets/
+model/data/
+svg/data/
+
+# ---- model weights: single files exceed GitHub's 100 MB limit ----
+# Provenance for every checkpoint is recorded in model/MODELS.md instead.
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.onnx
+model/checkpoints/
+model/scene_ckpt*/
+model/checkpoint/
+svg/checkpoint/
+
+# ---- generated renders (~10 GB) ----
+svg/out/
+critic/out/
+critic/tmp/
+
+# Keep the showcase videos, drop the frame dumps they were made from.
+out/*
+!out/*.mp4
+
+# ---- logs and archives ----
+*.log
+*.zip
+*.tar.gz
+
+# ---- scratch inputs pulled from upstream projects ----
+bus.jpg
+zidane.jpg
+
+# ---- private working notes, not for publication ----
+ARXIV_SUBMISSION.md
+
+# ---- old web demo: re-encoded third-party clips, unclear to redistribute ----
+webapp/videos/
+webapp/data.db

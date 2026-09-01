@@ -1,0 +1,422 @@
+{
+ "park_meet.scene": {
+  "n_cast": 3,
+  "seconds": 12.5,
+  "min_sep": 0.039,
+  "mean_sep": 3.559,
+  "min_clearance": -0.953,
+  "span_frac": 0.58,
+  "span_target": 0.55,
+  "occl_frac": 0.0,
+  "edge_clearance": -0.087,
+  "sep_score": 1.0,
+  "span_score": 1.0,
+  "occl_score": 1.0,
+  "even_score": 0.637,
+  "edge_score": 0.0,
+  "staging": 1.0,
+  "hidden_behind_prop": [
+   [
+    "cy",
+    "tree",
+    0.54
+   ]
+  ],
+  "declared_x": [
+   1.7,
+   9.4,
+   0.9
+  ],
+  "declared_scale": [
+   1.0,
+   0.94,
+   0.6
+  ]
+ },
+ "street_relay.scene": {
+  "n_cast": 4,
+  "seconds": 14.0,
+  "min_sep": 0.014,
+  "mean_sep": 3.048,
+  "min_clearance": -1.603,
+  "span_frac": 0.602,
+  "span_target": 0.65,
+  "occl_frac": 0.085,
+  "edge_clearance": -0.596,
+  "sep_score": 0.803,
+  "span_score": 0.926,
+  "occl_score": 0.746,
+  "even_score": 0.442,
+  "edge_score": 0.0,
+  "staging": 0.825,
+  "hidden_behind_prop": [
+   [
+    "fay",
+    "rock",
+    0.7
+   ]
+  ],
+  "declared_x": [
+   9.6,
+   5.4,
+   0.6,
+   4.0
+  ],
+  "declared_scale": [
+   1.0,
+   0.86,
+   0.55,
+   0.7
+  ]
+ },
+ "a22_generated.scene": {
+  "n_cast": 2,
+  "seconds": 9.1,
+  "min_sep": 0.4,
+  "mean_sep": 1.434,
+  "min_clearance": -0.806,
+  "span_frac": 0.156,
+  "span_target": 0.45,
+  "occl_frac": 0.344,
+  "edge_clearance": -0.07,
+  "sep_score": 0.651,
+  "span_score": 0.346,
+  "occl_score": 0.0,
+  "even_score": 1.0,
+  "edge_score": 0.0,
+  "staging": 0.332,
+  "hidden_behind_prop": [],
+  "declared_x": [
+   9.6,
+   9.2
+  ],
+  "declared_scale": [
+   1.0,
+   0.9
+  ]
+ },
+ "a22_generated3.scene": {
+  "n_cast": 3,
+  "seconds": 9.2,
+  "min_sep": 0.0,
+  "mean_sep": 1.599,
+  "min_clearance": -1.578,
+  "span_frac": 0.261,
+  "span_target": 0.55,
+  "occl_frac": 0.186,
+  "edge_clearance": 0.429,
+  "sep_score": 0.778,
+  "span_score": 0.474,
+  "occl_score": 0.443,
+  "even_score": 0.458,
+  "edge_score": 0.858,
+  "staging": 0.565,
+  "hidden_behind_prop": [
+   [
+    "ana",
+    "bush",
+    1.0
+   ],
+   [
+    "cy",
+    "bush",
+    0.9
+   ]
+  ],
+  "declared_x": [
+   7.3,
+   8.7,
+   8.7
+  ],
+  "declared_scale": [
+   1.0,
+   0.9,
+   0.9
+  ]
+ },
+ "a22_batch_ind0.scene": {
+  "n_cast": 2,
+  "seconds": 8.2,
+  "min_sep": 0.0,
+  "mean_sep": 0.264,
+  "min_clearance": -1.114,
+  "span_frac": 0.029,
+  "span_target": 0.45,
+  "occl_frac": 0.721,
+  "edge_clearance": 0.001,
+  "sep_score": 0.22,
+  "span_score": 0.064,
+  "occl_score": 0.0,
+  "even_score": 1.0,
+  "edge_score": 0.003,
+  "staging": 0.095,
+  "hidden_behind_prop": [],
+  "declared_x": [
+   8.2,
+   8.2
+  ],
+  "declared_scale": [
+   0.8,
+   0.8
+  ]
+ },
+ "a22_batch_ind1.scene": {
+  "n_cast": 2,
+  "seconds": 10.3,
+  "min_sep": 0.0,
+  "mean_sep": 2.626,
+  "min_clearance": -1.343,
+  "span_frac": 0.285,
+  "span_target": 0.45,
+  "occl_frac": 0.377,
+  "edge_clearance": 0.23,
+  "sep_score": 0.598,
+  "span_score": 0.634,
+  "occl_score": 0.0,
+  "even_score": 1.0,
+  "edge_score": 0.46,
+  "staging": 0.411,
+  "hidden_behind_prop": [],
+  "declared_x": [
+   8.2,
+   8.2
+  ],
+  "declared_scale": [
+   1.0,
+   1.0
+  ]
+ },
+ "a22_batch_ind2.scene": {
+  "n_cast": 3,
+  "seconds": 8.2,
+  "min_sep": 0.5,
+  "mean_sep": 0.933,
+  "min_clearance": -0.271,
+  "span_frac": 0.152,
+  "span_target": 0.55,
+  "occl_frac": 0.0,
+  "edge_clearance": 0.015,
+  "sep_score": 0.827,
+  "span_score": 0.277,
+  "occl_score": 1.0,
+  "even_score": 0.714,
+  "edge_score": 0.029,
+  "staging": 0.701,
+  "hidden_behind_prop": [],
+  "declared_x": [
+   9.6,
+   8.2,
+   8.7
+  ],
+  "declared_scale": [
+   0.8,
+   0.8,
+   0.8
+  ]
+ },
+ "a22_batch_ind3.scene": {
+  "n_cast": 3,
+  "seconds": 8.0,
+  "min_sep": 0.0,
+  "mean_sep": 0.095,
+  "min_clearance": -1.607,
+  "span_frac": 0.016,
+  "span_target": 0.55,
+  "occl_frac": 0.284,
+  "edge_clearance": -0.196,
+  "sep_score": 0.101,
+  "span_score": 0.028,
+  "occl_score": 0.148,
+  "even_score": 0.104,
+  "edge_score": 0.0,
+  "staging": 0.092,
+  "hidden_behind_prop": [],
+  "declared_x": [
+   6.9,
+   6.9,
+   6.9
+  ],
+  "declared_scale": [
+   1.0,
+   0.6,
+   0.6
+  ]
+ },
+ "a22_batch_ind4.scene": {
+  "n_cast": 4,
+  "seconds": 10.3,
+  "min_sep": 0.005,
+  "mean_sep": 1.599,
+  "min_clearance": -1.427,
+  "span_frac": 0.32,
+  "span_target": 0.65,
+  "occl_frac": 0.068,
+  "edge_clearance": -0.483,
+  "sep_score": 0.795,
+  "span_score": 0.492,
+  "occl_score": 0.795,
+  "even_score": 0.609,
+  "edge_score": 0.0,
+  "staging": 0.694,
+  "hidden_behind_prop": [],
+  "declared_x": [
+   9.6,
+   8.7,
+   9.2,
+   8.2
+  ],
+  "declared_scale": [
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ]
+ },
+ "a22_batch_ood0.scene": {
+  "n_cast": 1,
+  "seconds": 6.3,
+  "min_sep": NaN,
+  "mean_sep": NaN,
+  "min_clearance": NaN,
+  "span_frac": 0.0,
+  "span_target": null,
+  "occl_frac": 0.0,
+  "edge_clearance": -0.501,
+  "sep_score": NaN,
+  "span_score": NaN,
+  "occl_score": NaN,
+  "even_score": NaN,
+  "edge_score": 0.0,
+  "staging": NaN,
+  "hidden_behind_prop": [],
+  "declared_x": [
+   9.6
+  ],
+  "declared_scale": [
+   0.9
+  ]
+ },
+ "a22_batch_ood1.scene": {
+  "n_cast": 2,
+  "seconds": 6.3,
+  "min_sep": 1.0,
+  "mean_sep": 1.0,
+  "min_clearance": 0.504,
+  "span_frac": 0.109,
+  "span_target": 0.45,
+  "occl_frac": 0.0,
+  "edge_clearance": 0.552,
+  "sep_score": 1.0,
+  "span_score": 0.242,
+  "occl_score": 1.0,
+  "even_score": 1.0,
+  "edge_score": 1.0,
+  "staging": 0.747,
+  "hidden_behind_prop": [],
+  "declared_x": [
+   9.2,
+   8.2
+  ],
+  "declared_scale": [
+   0.6,
+   0.6
+  ]
+ },
+ "a22_batch_ood2.scene": {
+  "n_cast": 4,
+  "seconds": 6.3,
+  "min_sep": 0.0,
+  "mean_sep": 1.35,
+  "min_clearance": -0.975,
+  "span_frac": 0.293,
+  "span_target": 0.65,
+  "occl_frac": 0.5,
+  "edge_clearance": -0.381,
+  "sep_score": 0.0,
+  "span_score": 0.452,
+  "occl_score": 0.0,
+  "even_score": 0.0,
+  "edge_score": 0.0,
+  "staging": 0.151,
+  "hidden_behind_prop": [],
+  "declared_x": [
+   9.6,
+   6.9,
+   6.9,
+   6.9
+  ],
+  "declared_scale": [
+   1.0,
+   0.6,
+   0.6,
+   0.6
+  ]
+ },
+ "a22_batch_ood3.scene": {
+  "n_cast": 4,
+  "seconds": 8.2,
+  "min_sep": 0.0,
+  "mean_sep": 0.2,
+  "min_clearance": -0.855,
+  "span_frac": 0.043,
+  "span_target": 0.65,
+  "occl_frac": 0.801,
+  "edge_clearance": -0.07,
+  "sep_score": 0.192,
+  "span_score": 0.067,
+  "occl_score": 0.0,
+  "even_score": 0.0,
+  "edge_score": 0.0,
+  "staging": 0.086,
+  "hidden_behind_prop": [],
+  "declared_x": [
+   9.6,
+   9.2,
+   9.2,
+   9.2
+  ],
+  "declared_scale": [
+   1.0,
+   0.9,
+   0.9,
+   0.9
+  ]
+ },
+ "a22_batch_ood4.scene": {
+  "n_cast": 2,
+  "seconds": 6.3,
+  "min_sep": 0.0,
+  "mean_sep": 0.0,
+  "min_clearance": -1.268,
+  "span_frac": 0.0,
+  "span_target": 0.45,
+  "occl_frac": 1.0,
+  "edge_clearance": 1.166,
+  "sep_score": 0.0,
+  "span_score": 0.0,
+  "occl_score": 0.0,
+  "even_score": 1.0,
+  "edge_score": 1.0,
+  "staging": 0.0,
+  "hidden_behind_prop": [
+   [
+    "ana",
+    "tree",
+    1.0
+   ],
+   [
+    "bo",
+    "tree",
+    1.0
+   ]
+  ],
+  "declared_x": [
+   8.2,
+   8.2
+  ],
+  "declared_scale": [
+   0.8,
+   0.8
+  ]
+ }
+}

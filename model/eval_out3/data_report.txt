@@ -1,0 +1,20 @@
+scene_train.jsonl  n=6000
+  cast size: {1: 477, 2: 1524, 3: 1839, 4: 1421, 5: 739}
+  clause count: not recorded in this dataset (pre-Attempt-23 file); see ATTEMPTS.md for the historical 99.9% / 68.0% figures
+  prompts stating a spatial fact: 0/6000 = 0.0%   kinds: {}
+  target staging (n=564 multi-cast of 600): mean 0.873  median 0.914  p10 0.704  frac<0.5 0.037  frac<0.825 0.273
+  tokens (n=400): input mean 55.6 max 97 | target mean 97.5 p95 151 max 166
+
+scene2_train.jsonl  n=6000
+  cast size: {1: 508, 2: 1542, 3: 1797, 4: 1457, 5: 696}
+  clause count: not recorded in this dataset (pre-Attempt-23 file); see ATTEMPTS.md for the historical 99.9% / 68.0% figures
+  prompts stating a spatial fact: 0/6000 = 0.0%   kinds: {}
+  target staging (n=552 multi-cast of 600): mean 0.866  median 0.904  p10 0.695  frac<0.5 0.031  frac<0.825 0.266
+  tokens (n=400): input mean 45.7 max 92 | target mean 96.2 p95 152 max 172
+
+scene3_train.jsonl  n=6000
+  cast size: {1: 379, 2: 1270, 3: 1460, 4: 1226, 5: 638, 6: 433, 7: 325, 8: 269}
+  clause count == cast size: 2789/6000 = 46.5%   pearson r=0.610
+  prompts stating a spatial fact: 3673/6000 = 61.2%   kinds: {'spread': 1262, 'rightmost': 1073, 'leftmost': 1037, 'front': 659, 'back': 622, 'middle': 547, 'close': 327}
+  target staging (n=564 multi-cast of 600): mean 0.949  median 0.988  p10 0.835  frac<0.5 0.002  frac<0.825 0.082
+  tokens (n=400): input mean 54.4 max 152 | target mean 113.9 p95 200 max 241

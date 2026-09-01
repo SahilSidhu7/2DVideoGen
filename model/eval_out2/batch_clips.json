@@ -1,0 +1,52 @@
+[
+ {
+  "name": "ind0",
+  "prompt": "build a clip on the grass with a couple of figures. one hangs back, then strolls over, after that another breaks into a dance and then stands still and then runs across with a cloud in the sky and the sun",
+  "mp4": "out/a22_batch_ind0.mp4"
+ },
+ {
+  "name": "ind1",
+  "prompt": "two stick figures in a sunny park, the first waves, while the second says hi then goes for a walk, then the two of them play with a ball",
+  "mp4": "out/a22_batch_ind1.mp4"
+ },
+ {
+  "name": "ind2",
+  "prompt": "build a clip against a plain backdrop with 3 stick figures. every one of them raises a hand and waves with clouds overhead",
+  "mp4": "out/a22_batch_ind2.mp4"
+ },
+ {
+  "name": "ind3",
+  "prompt": "3 kids in a sunny park, one runs across and then leaps into the air and then sprints over",
+  "mp4": "out/a22_batch_ind3.mp4"
+ },
+ {
+  "name": "ind4",
+  "prompt": "draw 4 stick figures against a plain backdrop: they all waves hello, the two of them knock a ball between them",
+  "mp4": "out/a22_batch_ind4.mp4"
+ },
+ {
+  "name": "ood0",
+  "prompt": "a solitary stick figure loiters on an empty soundstage, then salutes the camera",
+  "mp4": "out/a22_batch_ood0.mp4"
+ },
+ {
+  "name": "ood1",
+  "prompt": "an empty studio, two figures, no scenery: they simply stand around doing nothing",
+  "mp4": "out/a22_batch_ood1.mp4"
+ },
+ {
+  "name": "ood2",
+  "prompt": "a crowd of six characters in a studio: three dance while three jump",
+  "mp4": "out/a22_batch_ood2.mp4"
+ },
+ {
+  "name": "ood3",
+  "prompt": "four characters in a studio, and every single one of them waves",
+  "mp4": "out/a22_batch_ood3.mp4"
+ },
+ {
+  "name": "ood4",
+  "prompt": "two characters dancing beside a huge tree in a park",
+  "mp4": "out/a22_batch_ood4.mp4"
+ }
+]

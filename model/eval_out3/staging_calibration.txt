@@ -1,0 +1,23 @@
+staging metric calibration - model/scene_staging.py
+
+hand-written (Attempt 21, the clips that look good):
+  park_meet.scene          staging 1.000
+  street_relay.scene       staging 0.825
+  mean 0.912   min 0.825
+
+model-written (Attempt 22, the clips that stack):
+  a22_batch_ood1.scene     staging 0.747
+  a22_batch_ind2.scene     staging 0.701
+  a22_batch_ind4.scene     staging 0.694
+  a22_generated3.scene     staging 0.565
+  a22_batch_ind1.scene     staging 0.411
+  a22_generated.scene      staging 0.332
+  a22_batch_ood2.scene     staging 0.151
+  a22_batch_ind0.scene     staging 0.095
+  a22_batch_ind3.scene     staging 0.092
+  a22_batch_ood3.scene     staging 0.086
+  a22_batch_ood4.scene     staging 0.000
+  mean 0.352   max 0.747   n=11
+  excluded (one-character scene, staging undefined): ['a22_batch_ood0.scene']
+
+SEPARATION: worst hand-written 0.825  >  best model-written 0.747   (margin 0.078)

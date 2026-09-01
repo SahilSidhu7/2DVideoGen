@@ -1,0 +1,52 @@
+# Full run: Qwen3-8B-Base -> AniSVG, via Soup layer streaming.
+#
+# Sized from the pilot's measured rate on this card, not from the published
+# RTX 3050 figure. Checkpoints every 200 optimizer steps so the run can be
+# stopped at any point and still leave a loadable adapter.
+#
+#   .venv-soup\Scripts\soup train --config svg/soup_full.yaml --yes
+#
+# max_length is 1024 because Soup refuses 4096 here: it predicts 13.49 GB
+# against 7.43 GB free. Layer streaming bounds the WEIGHTS; the logits are the
+# dominant term at Qwen3's 151936 vocab and streaming does nothing for them.
+# Cut Cross-Entropy is the intended fix and cannot import on any current
+# transformers - see tools/Soup/benchmarks/probe-v0.73.0, blocker 3.
+#
+# The cost of that cap is real and worth stating: 29,188 of 78,971 clips
+# survive at 1024, and a clip is ~0.7 s rather than ~1.7 s.
+
+base: Qwen/Qwen3-8B-Base
+task: sft
+backend: transformers
+
+data:
+  train: svg/data/soup_full_data/train.jsonl
+  format: alpaca
+  val_split: 0.02
+  max_length: 1024
+
+training:
+  epochs: 1
+  lr: 1e-4
+  batch_size: 1
+  gradient_accumulation_steps: 16
+  scheduler: cosine
+  warmup_ratio: 0.03
+
+  stream_layers: true
+  stream_source: auto
+  stream_buffers: 2
+  quantization: 4bit
+  gradient_checkpointing: true
+
+  logging_steps: 20
+  save_steps: 200
+  save_total_limit: 3
+
+  lora:
+    r: 32
+    alpha: 64
+    dropout: 0.05
+    target_modules: auto
+
+output: ./svg/data/soup_full

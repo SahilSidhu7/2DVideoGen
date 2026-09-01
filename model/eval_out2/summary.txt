@@ -1,0 +1,36 @@
+in_distribution        n=150
+  parse   150/150 = 100.0%
+  valid    60/150 =  40.0%  (zero structural problems, no repair)
+  render  150/150 = 100.0%  (after repair)
+  exact     0/150 =   0.0%  (byte-identical to the reference DSL)
+  ALL                    129/150 =  86.0%
+  actions_per_character  133/150 =  88.7%
+  background             124/124 = 100.0%
+  ball_interaction       146/150 =  97.3%
+  cast_count             146/146 = 100.0%
+  colors                  33/33  = 100.0%
+  props                   70/70  = 100.0%
+  action recall (partial credit) =  97.9%
+  structural problems: {'two characters share a colour': 71, 'event ends 7.9 past duration 6.3': 12, 'overlapping kicks on one ball': 10, 'event ends 10.6 past duration 10.3': 6, 'event ends 10.6 past duration 10.5': 5, 'event ends 7.7 past duration 6.3': 3, 'event ends 8.1 past duration 6.3': 2, 'event ends 7.6 past duration 6.3': 2}
+
+out_of_distribution    n=24
+  parse    24/24 = 100.0%
+  valid    13/24 =  54.2%  (zero structural problems, no repair)
+  render   24/24 = 100.0%  (after repair)
+  exact     0/24 =   0.0%  (byte-identical to the reference DSL)
+  ALL                     15/24  =  62.5%
+  actions_present         21/24  =  87.5%
+  background              24/24  = 100.0%
+  ball_interaction        23/24  =  95.8%
+  cast_count              20/24  =  83.3%
+  colors                   2/2   = 100.0%
+  props                    1/3   =  33.3%
+  action recall (partial credit) =  91.7%
+  by group (render / prompt-match / n):
+    cast_size    3/3   0/3
+    colour       2/2   2/2
+    novel_combo  6/6   5/6
+    phrasing     6/6   3/6
+    scenery      3/3   1/3
+    structure    4/4   4/4
+  structural problems: {'two characters share a colour': 7, 'event ends 7.9 past duration 6.3': 4, "kick target 'bo' is neither cast nor coord": 3, 'event ends 8.1 past duration 6.3': 2, 'kick with no ball prop': 1, 'overlapping kicks on one ball': 1, "event for unknown character 'bo'": 1, 'event ends 7.6 past duration 6.3': 1}

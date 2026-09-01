@@ -1,0 +1,224 @@
+                             v2  v2+uc     v3  v3+uc
+n                           150    150    150    150
+n_multicast                 145    145    135    134
+parse                     100.0  100.0   98.7   98.0
+valid                      40.0   72.0   56.0   80.7
+render                    100.0  100.0   98.7   98.0
+cast_count                100.0  100.0  100.0  100.0
+background                100.0  100.0  100.0  100.0
+actions_per_character      88.7   90.0   85.8   85.7
+ball_interaction           97.3   98.0  100.0  100.0
+props                     100.0  100.0  100.0  100.0
+colors                    100.0  100.0  100.0  100.0
+layout                        -      -   44.3   45.8
+ALL_nolayout               86.0   88.0   85.8   85.7
+ALL                        86.0   88.0   56.1   57.1
+dup_colour                   71      0     46      0
+staging                   0.360  0.363  0.178  0.182
+sep_score                 0.541  0.546  0.303  0.311
+span_score                0.324  0.322  0.204  0.208
+occl_score                0.215  0.220  0.027  0.027
+decl_min_sep              0.157  0.180  0.018  0.018
+min_sep                   0.069  0.074  0.010  0.010
+span_frac                 0.186  0.185  0.123  0.126
+occl_frac                 0.385  0.379  0.730  0.721
+staging_ok                0.000  0.000  0.000  0.000
+staging_spaced            0.670  0.670  0.587  0.585
+sep_score_spaced          0.831  0.833  0.749  0.748
+span_score_spaced         0.520  0.511  0.478  0.473
+occl_score_spaced         0.659  0.666  0.535  0.534
+decl_min_sep_spaced       1.217  1.218  1.227  1.228
+min_sep_spaced            0.348  0.343  0.238  0.245
+span_frac_spaced          0.309  0.303  0.309  0.303
+occl_frac_spaced          0.126  0.121  0.199  0.200
+staging_ok_spaced          19.3   17.9   17.0   15.7
+spacing_moved               143    142    135    134
+
+{
+ "v2": {
+  "file": "in_distribution_v2.json",
+  "n": 150,
+  "parse": 100.0,
+  "valid": 40.0,
+  "render": 100.0,
+  "cast_count": 100.0,
+  "background": 100.0,
+  "actions_per_character": 88.66666666666667,
+  "ball_interaction": 97.33333333333333,
+  "props": 100.0,
+  "colors": 100.0,
+  "ALL": 86.0,
+  "ALL_nolayout": 86.0,
+  "dup_colour": 71,
+  "problems": {
+   "two characters share a colour": 71,
+   "event ends 7.9 past duration 6.3": 12,
+   "overlapping kicks on one ball": 10,
+   "event ends 10.6 past duration 10.3": 6,
+   "event ends 10.6 past duration 10.5": 5,
+   "event ends 7.7 past duration 6.3": 3
+  },
+  "staging": 0.36,
+  "sep_score": 0.541,
+  "span_score": 0.324,
+  "occl_score": 0.215,
+  "decl_min_sep": 0.157,
+  "min_sep": 0.069,
+  "mean_sep": 1.15,
+  "span_frac": 0.186,
+  "occl_frac": 0.385,
+  "staging_ok": 0.0,
+  "n_multicast": 145,
+  "staging_spaced": 0.67,
+  "sep_score_spaced": 0.831,
+  "span_score_spaced": 0.52,
+  "occl_score_spaced": 0.659,
+  "decl_min_sep_spaced": 1.217,
+  "min_sep_spaced": 0.348,
+  "mean_sep_spaced": 1.834,
+  "span_frac_spaced": 0.309,
+  "occl_frac_spaced": 0.126,
+  "staging_ok_spaced": 19.310344827586206,
+  "spacing_moved": 143
+ },
+ "v2+uc": {
+  "file": "in_distribution_v2uc.json",
+  "n": 150,
+  "parse": 100.0,
+  "valid": 72.0,
+  "render": 100.0,
+  "cast_count": 100.0,
+  "background": 100.0,
+  "actions_per_character": 90.0,
+  "ball_interaction": 98.0,
+  "props": 100.0,
+  "colors": 100.0,
+  "ALL": 88.0,
+  "ALL_nolayout": 88.0,
+  "dup_colour": 0,
+  "problems": {
+   "event ends 7.9 past duration 6.3": 12,
+   "overlapping kicks on one ball": 10,
+   "event ends 10.6 past duration 10.3": 7,
+   "event ends 7.7 past duration 6.3": 4,
+   "event ends 10.6 past duration 10.5": 4,
+   "event ends 7.6 past duration 6.3": 3
+  },
+  "staging": 0.363,
+  "sep_score": 0.546,
+  "span_score": 0.322,
+  "occl_score": 0.22,
+  "decl_min_sep": 0.18,
+  "min_sep": 0.074,
+  "mean_sep": 1.142,
+  "span_frac": 0.185,
+  "occl_frac": 0.379,
+  "staging_ok": 0.0,
+  "n_multicast": 145,
+  "staging_spaced": 0.67,
+  "sep_score_spaced": 0.833,
+  "span_score_spaced": 0.511,
+  "occl_score_spaced": 0.666,
+  "decl_min_sep_spaced": 1.218,
+  "min_sep_spaced": 0.343,
+  "mean_sep_spaced": 1.805,
+  "span_frac_spaced": 0.303,
+  "occl_frac_spaced": 0.121,
+  "staging_ok_spaced": 17.93103448275862,
+  "spacing_moved": 142
+ },
+ "v3": {
+  "file": "in_distribution_v3.json",
+  "n": 150,
+  "parse": 98.66666666666667,
+  "valid": 56.0,
+  "render": 98.66666666666667,
+  "cast_count": 100.0,
+  "background": 100.0,
+  "actions_per_character": 85.8108108108108,
+  "ball_interaction": 100.0,
+  "props": 100.0,
+  "layout": 44.329896907216494,
+  "colors": 100.0,
+  "ALL": 56.08108108108108,
+  "ALL_nolayout": 85.8108108108108,
+  "dup_colour": 46,
+  "problems": {
+   "two characters share a colour": 46,
+   "overlapping kicks on one ball": 10,
+   "event for unknown character 'ell'": 3,
+   "event ends 11.1 past duration 10.7": 3,
+   "event ends 7.9 past duration 6.8": 2,
+   "event ends 12.4 past duration 10.7": 2
+  },
+  "staging": 0.178,
+  "sep_score": 0.303,
+  "span_score": 0.204,
+  "occl_score": 0.027,
+  "decl_min_sep": 0.018,
+  "min_sep": 0.01,
+  "mean_sep": 0.689,
+  "span_frac": 0.123,
+  "occl_frac": 0.73,
+  "staging_ok": 0.0,
+  "n_multicast": 135,
+  "staging_spaced": 0.587,
+  "sep_score_spaced": 0.749,
+  "span_score_spaced": 0.478,
+  "occl_score_spaced": 0.535,
+  "decl_min_sep_spaced": 1.227,
+  "min_sep_spaced": 0.238,
+  "mean_sep_spaced": 1.666,
+  "span_frac_spaced": 0.309,
+  "occl_frac_spaced": 0.199,
+  "staging_ok_spaced": 17.037037037037038,
+  "spacing_moved": 135
+ },
+ "v3+uc": {
+  "file": "in_distribution_v3uc.json",
+  "n": 150,
+  "parse": 98.0,
+  "valid": 80.66666666666667,
+  "render": 98.0,
+  "cast_count": 100.0,
+  "background": 100.0,
+  "actions_per_character": 85.71428571428571,
+  "ball_interaction": 100.0,
+  "props": 100.0,
+  "layout": 45.833333333333336,
+  "colors": 100.0,
+  "ALL": 57.142857142857146,
+  "ALL_nolayout": 85.71428571428571,
+  "dup_colour": 0,
+  "problems": {
+   "overlapping kicks on one ball": 9,
+   "event ends 7.9 past duration 6.8": 2,
+   "event ends 11.9 past duration 10.7": 2,
+   "event ends 12.4 past duration 10.7": 2,
+   "event ends 7.6 past duration 6.9": 2,
+   "event ends 7.9 past duration 6.7": 2
+  },
+  "staging": 0.182,
+  "sep_score": 0.311,
+  "span_score": 0.208,
+  "occl_score": 0.027,
+  "decl_min_sep": 0.018,
+  "min_sep": 0.01,
+  "mean_sep": 0.714,
+  "span_frac": 0.126,
+  "occl_frac": 0.721,
+  "staging_ok": 0.0,
+  "n_multicast": 134,
+  "staging_spaced": 0.585,
+  "sep_score_spaced": 0.748,
+  "span_score_spaced": 0.473,
+  "occl_score_spaced": 0.534,
+  "decl_min_sep_spaced": 1.228,
+  "min_sep_spaced": 0.245,
+  "mean_sep_spaced": 1.646,
+  "span_frac_spaced": 0.303,
+  "occl_frac_spaced": 0.2,
+  "staging_ok_spaced": 15.671641791044776,
+  "spacing_moved": 134
+ }
+}

@@ -1,0 +1,6 @@
+decode probe: model/scene_ckpt3, n=30 prompts
+mode         parse   staging  distinct x modal x share
+beam4          30/30     0.188           3       87.8%  (mode 9.4)
+greedy         30/30     0.189           3       89.8%  (mode 9.4)
+sample         30/30     0.862          55        5.1%  (mode 6.9)
+sample_lo      30/30     0.732          43        5.1%  (mode 7.1)

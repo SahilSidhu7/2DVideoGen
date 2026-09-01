@@ -1,0 +1,31 @@
+# Attempt 21 - the reference multi-character scene.
+# Two friends meet in a park, greet each other, and pass a ball between them
+# while a third character crosses the background.
+title      Two friends meet in the park
+size       854 480
+fps        30
+seconds    12.5
+background park
+
+prop tree  bigtree  at 0.55 scale 1.15
+prop tree  fartree  at 9.30 scale 0.70 y 1.55
+prop bush  bush1    at 3.40 scale 0.95
+prop rock  rock1    at 7.80 scale 0.80
+prop cloud cloud1   at 2.60 scale 1.10 y 4.60
+prop sun   sun1     at 8.70 y 4.70
+prop ball  ball     at 6.40
+
+cast ana color cyan   at 1.70 scale 1.00
+cast bo  color orange at 9.40 scale 0.94
+cast cy  color pink   at 0.90 scale 0.60
+
+# start end  who action
+0.0  3.2  ana walk to 3.90
+0.2  3.4  bo  walk to 6.60
+0.0  7.0  cy  walk to 9.60
+3.4  5.0  ana wave
+3.6  5.0  bo  wave
+5.2  7.2  bo  kick ball at ana
+8.4 10.2  ana kick ball at bo
+7.2 12.5  cy  dance
+10.6 12.4 bo  jump

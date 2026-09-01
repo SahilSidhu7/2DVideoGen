@@ -1,0 +1,16 @@
+| stated numeral | 1 | 2 | 3 | 4 | 5 |
+|---|--:|--:|--:|--:|--:|
+| "one people..." | 2 |  |  |  |  |
+| "two people..." | **2** | **2** |  |  |  |
+| "three people..." | **3** | **3** | **3** |  |  |
+| "four people..." | **4** | **4** | **4** | **4** |  |
+| "five people..." | **5** | **5** | **5** | **5** | **5** |
+| "six people..." | 4 | 4 | 4 | 4 | 5 |
+| "seven people..." | 4 | 4 | 4 | 4 | 5 |
+| "eight people..." | 4 | 4 | 4 | 4 | 5 |
+| "nine people..." | 4 | 4 | 4 | 4 | 5 |
+
+numeral read correctly: 14/35
+  1-5, the Attempt 22 range          14/15
+  6-8, new in the Attempt 23 range   0/15
+  9, one past the trained ceiling    0/5

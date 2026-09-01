@@ -1,0 +1,44 @@
+ckpt=model/checkpoints/v2-deconfounded  unique_colours=True  space=0.0  max_in=104 max_out=176
+colour processor masked at 594 decode steps
+
+in_distribution_v2s    n=150
+  parse   146/150 =  97.3%
+  valid    90/150 =  60.0%  (zero structural problems, no repair)
+  render  146/150 =  97.3%  (after repair)
+  exact     0/150 =   0.0%  (byte-identical to the reference DSL)
+  ALL                    116/146 =  79.5%
+  actions_per_character  117/146 =  80.1%
+  background             120/120 = 100.0%
+  ball_interaction       145/146 =  99.3%
+  cast_count             142/142 = 100.0%
+  colors                  33/33  = 100.0%
+  props                   69/69  = 100.0%
+  action recall (partial credit) =  95.0%
+  STAGING (n=141 multi-cast of 150): staging 0.840  [sep 0.898 span 0.767 occl 0.855]  min_sep 0.56  mean_sep 2.98  span_frac 0.485  occl_frac 0.054
+  staging >= 0.825 (worst hand-written scene): 84/141 = 59.6%
+  parse errors: {"bad cast entry ['ell', 'ot', 'blue', '29', '90']": 1, "bad cast entry ['cy', 'o', 'blue', '33', '90']": 1, "bad cast entry ['cy', 'm', 'blue', '20', '100']": 1, "bad cast entry ['ell', 'i', 'yellow', '42', '60']": 1}
+  structural problems: {'overlapping kicks on one ball': 12, "kick target 'ell' is neither cast nor coord": 3, "event for unknown character 'ell'": 2, "event for unknown character 'dee'": 2, "kick target 'dee' is neither cast nor coord": 2, 'event ends 8.4 past duration 7.1': 1, 'event ends 6.8 past duration 6.3': 1, 'event ends 8.6 past duration 7.2': 1}
+
+out_of_distribution_v2s n=24
+  parse    24/24 = 100.0%
+  valid    12/24 =  50.0%  (zero structural problems, no repair)
+  render   24/24 = 100.0%  (after repair)
+  exact     0/24 =   0.0%  (byte-identical to the reference DSL)
+  ALL                     15/24  =  62.5%
+  actions_present         20/24  =  83.3%
+  background              24/24  = 100.0%
+  ball_interaction        23/24  =  95.8%
+  cast_count              20/24  =  83.3%
+  colors                   2/2   = 100.0%
+  props                    2/3   =  66.7%
+  action recall (partial credit) =  94.0%
+  STAGING (n=20 multi-cast of 24): staging 0.850  [sep 0.904 span 0.756 occl 0.889]  min_sep 0.94  mean_sep 3.10  span_frac 0.500  occl_frac 0.037
+  staging >= 0.825 (worst hand-written scene): 12/20 = 60.0%
+  by group (render / prompt-match / n):
+    cast_size    3/3   0/3
+    colour       2/2   2/2
+    novel_combo  6/6   4/6
+    phrasing     6/6   4/6
+    scenery      3/3   2/3
+    structure    4/4   3/4
+  structural problems: {'overlapping kicks on one ball': 3, "kick target 'bo' is neither cast nor coord": 2, 'event ends 6.1 past duration 5.4': 1, 'event ends 8.3 past duration 5.4': 1, 'event ends 9.0 past duration 7.0': 1, 'event ends 9.0 past duration 6.0': 1, 'event ends 7.0 past duration 6.9': 1, 'event ends 8.3 past duration 6.9': 1}
