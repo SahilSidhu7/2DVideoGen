@@ -56,3 +56,7 @@ ARXIV_SUBMISSION.md
 # ---- old web demo: re-encoded third-party clips, unclear to redistribute ----
 webapp/videos/
 webapp/data.db
+
+# ---- Hugging Face Space working copy (duplicates project files; lives on the Hub) ----
+hf_space/
+hf_space_progress.md
