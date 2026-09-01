@@ -31,7 +31,7 @@ natural language  →  t5-small (60M, CPU)  →  scene-script DSL  →  composit
                      model/scene_infer.py    scenes/*.scene       scenescript.py         critic/evaluate.py
 ```
 
-No GPU is used anywhere in this path. Training the script writer takes **530 seconds on CPU**.
+No GPU is used anywhere in this path. Training the shipped script writer takes **548 seconds on CPU**.
 
 ## Quickstart
 
@@ -53,15 +53,28 @@ python scenescript.py scenes/park_meet.scene -o out/park.mp4 --frames out/park_f
 
 ## Results
 
+All figures below are for the shipped checkpoint, `v3-staged` — t5-small, 60M
+parameters, 6 epochs, **548 s on CPU**. Earlier checkpoints and their numbers
+are in [`model/MODELS.md`](model/MODELS.md).
+
 | | value |
 |---|---|
-| Script writer | t5-small, 60M params, 6 epochs, 530 s, CPU only |
 | Parse / render rate, unseen prompts | 100% / 100% |
-| Prompt match, in-distribution | 86.0% |
-| Prompt match, out-of-distribution | 75.0% |
 | Duplicate-colour violations | 0 / 150 (was 71 / 150) |
-| Staging, sampled vs beam search | 0.862 vs 0.188 |
+| Cast size 6–8 read correctly | 15 / 15 |
 | Critic pass rate, generated clips | 9 / 10 |
+
+**Decoding is a real trade, not a free win.** The same weights behave differently
+depending on how you decode, and neither setting dominates:
+
+| | beam search | sampling (+ rerank) |
+|---|---|---|
+| Prompt match, in-distribution | **85.7%** | 13–20 pts lower |
+| Prompt match, out-of-distribution | 70.8% | **75.0%** |
+| Staging score | 0.182 | **0.862** |
+
+Sampling is the default here because staging is what makes a clip watchable. Use
+beam search if you care more about obeying the prompt literally.
 
 ## Three findings
 
