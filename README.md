@@ -1,8 +1,10 @@
 # 2DVideoGen
 
-**A 60M-parameter model that writes animation scripts, and a renderer that turns them into video — trained and run entirely on one laptop.**
+**A model that writes animation scripts, and a renderer that turns them into video — trained and run entirely on one laptop.**
 
-Twenty-three logged attempts at small-scale 2D animation generation on a single 8 GB consumer GPU with a damaged cooling fan, so every GPU run is capped at ~50% duty. Roughly half the attempts failed. The failures are logged with their real causes in [`ATTEMPTS.md`](ATTEMPTS.md), because they carry more transferable information than the successes.
+Twenty-four logged attempts at small-scale 2D animation generation on a single 8 GB consumer GPU with a damaged cooling fan, so every GPU run is capped at ~50% duty. Roughly half the attempts failed. The failures are logged with their real causes in [`ATTEMPTS.md`](ATTEMPTS.md), because they carry more transferable information than the successes.
+
+**The project is closed.** Attempt 24 tested the last untried lever — capacity — and the answer is on this page: 3.7× the parameters improved every aggregate and did not make the video better. See [`DATASETS.md`](DATASETS.md) for what everything was trained on and [`PRACTICES.md`](PRACTICES.md) for the working rules that survived.
 
 ---
 
@@ -20,7 +22,35 @@ Twenty-three logged attempts at small-scale 2D animation generation on a single 
 
 ![First model-written scene](docs/media/a22_generated.gif)
 
-Full-resolution: [`out/a23_six.mp4`](out/a23_six.mp4) · [`out/a21_park.mp4`](out/a21_park.mp4) · [`out/a22_generated.mp4`](out/a22_generated.mp4)
+**Attempt 24 — the same prompt, at 220M parameters.** 3.7× the model, byte-identical data. Smoother (warp 0.0064 vs 0.0077), less motion (5.92% vs 6.82%), same critic verdict. A tie.
+
+![Six characters, 220M model](docs/media/a24_six.gif)
+
+Full-resolution: [`out/a24_six.mp4`](out/a24_six.mp4) · [`out/a23_six.mp4`](out/a23_six.mp4) · [`out/a21_park.mp4`](out/a21_park.mp4) · [`out/a22_generated.mp4`](out/a22_generated.mp4). Frame-by-frame comparison: [`out/a23_vs_a24_sheet.png`](out/a23_vs_a24_sheet.png)
+
+---
+
+## Did scaling up help?
+
+![Loss vs quality](docs/media/bench_loss_vs_quality.png)
+
+**`eval_loss` fell for the first time in the sequence — and it was never the metric.** For three checkpoints in a row it rose while out-of-distribution accuracy rose with it, because each dataset was higher-entropy than the last.
+
+![60M vs 220M](docs/media/bench_60m_vs_220m.png)
+
+| sampling + rerank, the shipped configuration | t5-small 60M | **t5-base 220M** |
+|---|--:|--:|
+| in-distribution, every stated field | 46.0% | **56.7%** |
+| actions per character | 72.7% | **89.3%** |
+| valid, zero problems, no repair | 94.0% | **99.3%** |
+| staging | 0.879 | **0.911** |
+| out of distribution (n=24) | 75.0% | **79.2%** |
+
+Every aggregate improved. The rendered clip did not. **The bottleneck was never capacity** — deconfounding a dataset (Attempt 22) and changing one decoder flag (Attempt 23) each moved this project further than tripling the model did.
+
+![Staging under two decoders](docs/media/bench_staging_decode.png)
+
+What capacity *did* buy: near-perfect structural validity, and the end of a tradeoff recorded as permanent — at 220M, sampling scores higher on action fidelity (89.3%) than the 60M model under beam search (85.7%).
 
 ---
 
@@ -31,7 +61,7 @@ natural language  →  t5-small (60M, CPU)  →  scene-script DSL  →  composit
                      model/scene_infer.py    scenes/*.scene       scenescript.py         critic/evaluate.py
 ```
 
-No GPU is used anywhere in this path. Training the shipped script writer takes **548 seconds on CPU**.
+No GPU is used anywhere in this path. Training the 60M script writer takes **548 seconds on CPU**; the 220M one needs the GPU, under `tools/gpuguard.py`, at batch 4 × grad-accum 4 (batch 16 OOMs an 8 GB card).
 
 ## Quickstart
 
@@ -102,6 +132,8 @@ beam search if you care more about obeying the prompt literally.
 | [`paper/RESEARCH.md`](paper/RESEARCH.md) · [`RESEARCH2.md`](paper/RESEARCH2.md) | Literature surveys, with hardware costs and what was ruled out. |
 | [`critic/README.md`](critic/README.md) | The evaluation harness: 8 metrics, thresholds, and the reason for each. |
 | [`model/MODELS.md`](model/MODELS.md) | Checkpoint provenance: data, command, runtime, measured rates. |
+| [`DATASETS.md`](DATASETS.md) | Every dataset used, its licence, and how to regenerate it. |
+| [`PRACTICES.md`](PRACTICES.md) | The ten working rules that survived 24 attempts. |
 | `scenescript.py` | Scene compositor — cast, timeline, props, occlusion. CPU only. |
 | `model/` | Script-writing model: grammar, synthesis, training, inference, probes. |
 | `critic/` | The evaluator. Independently reproduced a logged 23.6× flicker figure as 23.59×. |

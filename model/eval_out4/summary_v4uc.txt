@@ -1,0 +1,44 @@
+ckpt=model/scene_ckpt4  unique_colours=True  space=0.0  max_in=160 max_out=256
+colour processor masked at 2695 decode steps
+
+in_distribution_v4uc   n=150
+  parse   150/150 = 100.0%
+  valid   135/150 =  90.0%  (zero structural problems, no repair)
+  render  150/150 = 100.0%  (after repair)
+  exact     0/150 =   0.0%  (byte-identical to the reference DSL)
+  ALL                     74/150 =  49.3%
+  actions_per_character  139/150 =  92.7%
+  background             129/129 = 100.0%
+  ball_interaction       150/150 = 100.0%
+  cast_count             141/141 = 100.0%
+  colors                  33/33  = 100.0%
+  layout                  29/99  =  29.3%
+  props                   70/70  = 100.0%
+  action recall (partial credit) =  98.6%
+  STAGING (n=137 multi-cast of 150): staging 0.689  [sep 0.783 span 0.644 occl 0.638]  min_sep 0.59  mean_sep 2.72  span_frac 0.434  occl_frac 0.126
+  staging >= 0.825 (worst hand-written scene): 47/137 = 34.3%
+  structural problems: {'event ends 5.9 past duration 5.7': 4, 'event ends 9.4 past duration 9.3': 2, 'event ends 8.1 past duration 6.8': 1, 'overlapping kicks on one ball': 1, 'event ends 8.6 past duration 8.4': 1, 'event ends 7.6 past duration 6.6': 1, "event for unknown character 'ell'": 1, "kick target 'ell' is neither cast nor coord": 1}
+
+out_of_distribution_v4uc n=24
+  parse    24/24 = 100.0%
+  valid    22/24 =  91.7%  (zero structural problems, no repair)
+  render   24/24 = 100.0%  (after repair)
+  exact     0/24 =   0.0%  (byte-identical to the reference DSL)
+  ALL                     19/24  =  79.2%
+  actions_present         21/24  =  87.5%
+  background              24/24  = 100.0%
+  ball_interaction        24/24  = 100.0%
+  cast_count              23/24  =  95.8%
+  colors                   2/2   = 100.0%
+  props                    2/3   =  66.7%
+  action recall (partial credit) =  96.0%
+  STAGING (n=20 multi-cast of 24): staging 0.714  [sep 0.804 span 0.664 occl 0.672]  min_sep 1.94  mean_sep 3.26  span_frac 0.477  occl_frac 0.143
+  staging >= 0.825 (worst hand-written scene): 12/20 = 60.0%
+  by group (render / prompt-match / n):
+    cast_size    3/3   3/3
+    colour       2/2   2/2
+    novel_combo  6/6   4/6
+    phrasing     6/6   5/6
+    scenery      3/3   2/3
+    structure    4/4   3/4
+  structural problems: {"kick target 'bo' is neither cast nor coord": 2}

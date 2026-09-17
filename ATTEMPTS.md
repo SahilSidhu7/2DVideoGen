@@ -2927,3 +2927,120 @@ What it still cannot do is read "on the left". It stages well because its prior
 is good and because the decoder finally samples from it - not because anybody
 told it where to stand. Attempt 22's sentence is answered; the sentence that
 replaces it is that **this model composes, and does not yet take direction.**
+
+---
+
+### Attempt 24 - more parameters, and what they did and did not buy
+
+Attempt 23 closed with a model that composes but does not take direction. The
+obvious lever left untried in this project is **capacity**: every attempt in
+the sequence so far used `t5-small` (60M). This attempt trains `t5-base`
+(222.9M, 3.7x) and changes **nothing else** - the same `scene3_train.jsonl` and
+`scene3_val.jsonl` that produced `v3-staged`, the same 6 epochs, the same
+effective batch of 16, the same `lr` 3e-4, the same `--max-in 160 --max-out
+256`. A capacity ablation is only worth running if capacity is the only thing
+that moved.
+
+**Prediction, stated before the measurement** (per `paper/RESEARCH2.md` §7):
+more parameters raise prompt-match a few points, do not fix staging under beam
+search (Attempt 23 established that as a decoding property), and do not move
+spatial-language obedience, which Attempt 23 falsified as a data property.
+
+#### 1. The hardware wall, first
+
+`t5-base` at the v3 batch size does not fit on the 8 GB card:
+
+```
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 44.00 MiB.
+GPU 0 has a total capacity of 8.00 GiB of which 0 bytes is free.
+```
+
+and the HF `Trainer` had claimed the GPU silently, without the duty guard this
+project requires. Both are now impossible by construction in `model/train.py`:
+`use_cpu=not args.gpu` makes CPU the explicit default rather than an accident
+of what `Trainer` finds, and a `GuardCallback(TrainerCallback)` enters
+`tools.gpuguard.Guard` into the training loop (`on_step_end` -> `guard.step()`),
+which a for-loop-based guard could not do. Fitting the model then took
+`--grad-checkpoint` plus batch 4 x `--grad-accum` 4, which holds the effective
+batch at 16 and leaves the optimisation identical.
+
+**Reported honestly:** the run held `busy 594s / idle 594s = 50% duty, 0
+cooldowns, clock lock off`. The clock lock needs an elevated shell and was
+never available, so this run had one of the guard's two protections, not both.
+
+Training was killed three times by the environment mid-run and resumed from
+epoch checkpoints; `--resume` and `save_total_limit=2` exist because the first
+kill landed mid-save and left a checkpoint directory holding nothing but a
+`.tmp` file. Final `eval_loss` **0.9468**, against v3's 1.0042 - and this
+project's standing lesson is that this number does not decide anything.
+
+#### 2. The measurement
+
+Same cells as Attempt 23, same val set (`md5 a8f6c5c7`), `_v4uc` (beam4 +
+colour processor) and `_v4sr` (sampling, `--rerank 4`).
+
+| sampling + rerank, the shipped configuration | v3 60M | **v4 220M** |
+|---|--:|--:|
+| in-distribution, every stated field | 46.0% | **56.7%** |
+| actions per character | 72.7% | **89.3%** |
+| valid, zero problems, no repair | 94.0% | **99.3%** |
+| staging | 0.879 | **0.911** |
+| staging >= the worse hand-written clip | 75.2% | **86.1%** |
+| out of distribution, every stated field (n=24) | 75.0% | **79.2%** |
+| out-of-distribution staging | 0.890 | **0.946** |
+| out-of-distribution action recall | **94.8%** | 94.0% |
+
+Under beam4 the picture is different and more interesting: staging moves
+**0.182 -> 0.689** and `staging >= 0.825` moves **0/134 -> 47/137**, while
+in-distribution `layout` *falls* 45.8% -> 29.3% and in-distribution
+prompt-match falls 57.1% -> 49.3%.
+
+#### 3. Scoring the prediction
+
+| # | prediction | verdict |
+|---|---|---|
+| 1 | prompt-match rises a few points | **right, and understated.** +10.7 points in distribution under sampling (150 prompts), +4.2 out of distribution - though at n=24 that is a single prompt. |
+| 2 | capacity does not fix staging under beam | **falsified.** 0.182 -> 0.689. Attempt 23 read beam-search collapse as a property of decoding; it is partly a property of *a 60M model's* decoding. A larger model's mode is itself staged. |
+| 3 | spatial language does not move | **confirmed, and worse under beam.** `layout` 45.8% -> 29.3% under beam, 36.4% -> 38.4% under sampling. Capacity does not buy direction-following, which is what Attempt 23 predicted for the opposite reason. |
+| -- | *(not predicted, found)* | **the decoding trade largely dissolves.** Attempt 23 recorded that sampling costs 13-20 points of action fidelity. At 220M, sampling scores **89.3%** on actions per character - higher than v3 under *beam* (85.7%). The trade README documents is a small-model artefact. |
+
+#### 4. The deliverable, and why it is a tie
+
+`out/a24_six.mp4`, from Attempt 23's six-character prompt at the same seed and
+flags, scored by `critic/` with Attempt 23's caption:
+
+| | v3 `a23_six.mp4` | v4 `a24_six.mp4` |
+|---|--:|--:|
+| critic verdict | USABLE | USABLE |
+| warp error | 0.0077 | **0.0064** |
+| motion coverage | **6.82%** | 5.92% |
+| identity worst | 0.9993 | **0.9999** |
+| CLIPSIM | **0.344** | 0.341 |
+| timeline events | **16** | 14 |
+
+**The tables improved and the clip did not.** Both render six characters, both
+leave five of six individually readable, and the failure simply moved: v3
+stacks three characters at x 3.6/3.7/3.8 and loses one in the centre tangle;
+v4 stacks two at 9.4/9.5 and loses one off the right edge. v4 also emitted
+`fay kick ball at fay` - a character kicking a ball at herself, a class of
+error `validate()` does not catch - and a kick that starts while the ball is
+still in flight. `--rerank 4` selects on staging score and cannot see
+edge-clipping, so it shipped the stacked pair in both.
+
+This is the same shape as Attempt 23's cast-size result: **the wall moved
+rather than disappeared.**
+
+Artefacts: `model/checkpoints/v4-base/` (weights, the v3 data that produced
+them, both summaries, `run_provenance.json`); `model/eval_out4/`;
+`model/scene_train4.log` (all three segments); `scenes/a24_six.scene`;
+`out/a24_six.mp4`; `out/a23_vs_a24_sheet.png`; `critic/out/a24_six/`.
+
+**Standing.** 3.7x the parameters, on identical data, bought a better model on
+every aggregate the project measures and a clip a human cannot tell apart. The
+honest reading is that **the bottleneck was never capacity** - Attempts 22 and
+23 moved the project further by deconfounding a dataset and changing a decoder
+flag than this attempt moved it by tripling the model. What capacity did buy is
+robustness: 99.3% structurally clean without repair, and the removal of a
+decoding trade-off that had been recorded as a permanent cost. The project
+stops here, with the two things it could never do still undone: it does not
+take spatial direction, and it does not beat a hand-written script on richness.

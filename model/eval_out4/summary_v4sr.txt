@@ -1,0 +1,44 @@
+ckpt=model/scene_ckpt4  unique_colours=True  space=0.0  max_in=160 max_out=256
+colour processor masked at 882 decode steps
+
+in_distribution_v4sr   n=150
+  parse   150/150 = 100.0%
+  valid   149/150 =  99.3%  (zero structural problems, no repair)
+  render  150/150 = 100.0%  (after repair)
+  exact     0/150 =   0.0%  (byte-identical to the reference DSL)
+  ALL                     85/150 =  56.7%
+  actions_per_character  134/150 =  89.3%
+  background             129/129 = 100.0%
+  ball_interaction       150/150 = 100.0%
+  cast_count             141/141 = 100.0%
+  colors                  33/33  = 100.0%
+  layout                  38/99  =  38.4%
+  props                   70/70  = 100.0%
+  action recall (partial credit) =  98.3%
+  STAGING (n=137 multi-cast of 150): staging 0.911  [sep 0.921 span 0.920 occl 0.892]  min_sep 0.93  mean_sep 3.92  span_frac 0.660  occl_frac 0.037
+  staging >= 0.825 (worst hand-written scene): 118/137 = 86.1%
+  structural problems: {'event ends 12.3 past duration 11.7': 1}
+
+out_of_distribution_v4sr n=24
+  parse    24/24 = 100.0%
+  valid    22/24 =  91.7%  (zero structural problems, no repair)
+  render   24/24 = 100.0%  (after repair)
+  exact     0/24 =   0.0%  (byte-identical to the reference DSL)
+  ALL                     19/24  =  79.2%
+  actions_present         21/24  =  87.5%
+  background              24/24  = 100.0%
+  ball_interaction        24/24  = 100.0%
+  cast_count              23/24  =  95.8%
+  colors                   2/2   = 100.0%
+  props                    2/3   =  66.7%
+  action recall (partial credit) =  94.0%
+  STAGING (n=20 multi-cast of 24): staging 0.946  [sep 0.967 span 0.957 occl 0.915]  min_sep 2.16  mean_sep 4.28  span_frac 0.669  occl_frac 0.028
+  staging >= 0.825 (worst hand-written scene): 17/20 = 85.0%
+  by group (render / prompt-match / n):
+    cast_size    3/3   3/3
+    colour       2/2   2/2
+    novel_combo  6/6   4/6
+    phrasing     6/6   5/6
+    scenery      3/3   2/3
+    structure    4/4   3/4
+  structural problems: {"kick target 'bo' is neither cast nor coord": 2}

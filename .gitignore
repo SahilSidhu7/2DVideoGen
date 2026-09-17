@@ -37,9 +37,10 @@ svg/out/
 critic/out/
 critic/tmp/
 
-# Keep the showcase videos, drop the frame dumps they were made from.
+# Keep the showcase videos and comparison figures, drop the frame dumps.
 out/*
 !out/*.mp4
+!out/a23_vs_a24_sheet.png
 
 # ---- logs and archives ----
 *.log
