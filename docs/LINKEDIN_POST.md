@@ -1,69 +1,63 @@
 # LinkedIn — two posts
 
-Post 1 goes up first (video). Post 2 follows 2–3 days later (graphs), and
-links back to post 1.
+Post 1 (video) goes first. Post 2 (graphs) follows 2–3 days later and links back.
 
 ---
 
-## POST 1 — the story (upload as a VIDEO post)
+## POST 1 — the experiment (upload as a VIDEO post)
 
-**Media:** one video — `out/2dvideogen_reel.mp4` (44 s, 1.1 MB).
-All three clips stitched with title cards: Attempt 22 → Attempt 23 →
-Attempt 24 → closing card. Built by `out/stitch/`; re-runnable.
-
----
-
-I tripled the size of my model to make this animation better.
-
-It came out exactly the same.
+**Media:** `out/2dvideogen_reel.mp4` — 44 s, 1.1 MB. Three clips with title
+cards: Attempt 22 → Attempt 23 → Attempt 24 → closing card.
 
 ---
 
-For a few months I've been trying to get a laptop to turn a sentence into 2D
-animation. Type "two friends meet in the park, one waves, then they kick a ball
-around" — get an actual mp4.
+Can you fine-tune a *small* model to generate 2D video? Not a big one. A small
+one, on a laptop.
 
-The constraint that shaped everything: one laptop, an 8GB GPU, a broken cooling
-fan. Every GPU run throttled to 50%, stopping if the chip hits 70°C.
+That was the whole experiment. Here's how far it got.
 
-That killed my first plan — Stable Diffusion frames, styled anime, the obvious
-route. Single frames looked gorgeous. In motion it flickered 25× worse than my
-pass bar, and the module meant to smooth it made the characters stop following
-their pose guides entirely. Two fixes that should have stacked cancelled out.
+---
 
-So I gave up on generating pixels and generated *instructions* instead. A small
-model writes a scene script — who's on stage, where they stand, what they do and
-when — and a renderer I wrote draws it. 60M parameters. Trains in nine minutes
-on a CPU.
+No custom architecture, no training from scratch. I took t5-small — 60M
+parameters, an ordinary off-the-shelf model — and fine-tuned it to write
+**animation scripts** instead of text. Who's on stage, where they stand, what
+they do, when. A renderer turns that script into an mp4.
 
-Worth saying plainly: **this problem is already solved commercially.** Sora,
-Veo, Runway will hand you a better-looking clip from the same sentence, today.
-What they won't hand you is something you can edit. When their model puts a
-character in the wrong spot, there's nothing to fix. Mine writes a text file
-where the wrong spot is a number on line 9 — and re-renders identically every
-time. That was the bet: give up quality, buy control.
+That's it. That's the trick. The model never touches a pixel.
 
-That worked. So I did what everyone does when something works but feels small:
-made the model 3.7× bigger. Same data, same settings.
+Why bother, when Sora and Veo already do text-to-video far better? Two reasons.
+One: those need a datacenter, this trains in **nine minutes on a CPU**. Two:
+their output is final, mine is a text file you can edit — when a character ends
+up in the wrong spot, it's a number on line 9, not a reroll.
+
+**I used Claude Code for most of the build.** The training and eval harnesses,
+the renderer, the debugging. It caught a CUDA OOM and a silent GPU grab that
+would have cooked my laptop's already-broken cooling fan. I'd call it pair
+programming where I set the direction and checked the measurements.
+
+Then I tried the obvious upgrade: same data, same settings, a 3.7× bigger model.
+220M instead of 60M.
 
 Every benchmark went up. Prompt accuracy 46% → 57%. Valid output 94% → 99%.
 
-Then I put the frames side by side and couldn't tell them apart. The bigger one
-was smoother, the smaller one moved more, both stacked two characters on top of
-each other, and the new one had a character kick a ball at herself.
+The video looked exactly the same. Watch the reel — the last two clips are the
+two model sizes, same prompt. I can't tell them apart either.
 
-Months of work, one honest summary: **the bottleneck was never model size.**
-Cleaning up my training data helped more. Changing *one decoder setting* helped
-more than that.
+So: a fine-tuned 60M model *can* generate coherent 2D animation from a sentence.
+It's rough, it's stick figures, and it's nowhere near what the big systems do —
+but it runs on hardware you already own.
 
-Public, failures and all — 24 attempts, half of them dead ends, each with the
-real reason it died.
+**What's next:** I want to try training something from scratch for actual anime
+output, deliberately sized to fit in small VRAM. Fine-tuning a text model got me
+further than I expected. I think the ceiling is architecture, not effort.
+
+All public — 24 attempts, half of them failures, each with the real reason.
 
 🔗 github.com/SahilSidhu7/2DVideoGen
 
 ---
 
-## POST 2 — the graphs (upload as an IMAGE post, 2–3 days later)
+## POST 2 — what went wrong (upload as an IMAGE post, 2–3 days later)
 
 **Media, in order:**
 1. `docs/media/bench_loss_vs_quality.png`
@@ -72,38 +66,38 @@ real reason it died.
 
 ---
 
-Last week I posted about an animation model that didn't get better when I made
-it bigger. Here's the part that actually cost me time: three separate occasions
-where my own measurements confidently lied to me.
+Last week I posted about fine-tuning a 60M model to generate 2D animation on a
+laptop. The build was the easy half — I had Claude Code for that.
+
+The hard half was that my own measurements lied to me three times.
 
 **1. My loss function was wrong for three checkpoints straight.**
 Graph 1. Loss went *up* — 0.924 → 0.947 → 1.004 — while real accuracy went
 25% → 62% → 71%. Each dataset was harder than the last, so worse loss meant a
-better model every single time. If I'd trusted the number on the screen, I'd
-have shipped the worst of the four.
+better model every time. Trusting the number on screen would have shipped the
+worst of the four.
 
 **2. The model "couldn't count."**
-Ask for six characters, get three. I assumed a capacity limit and started
-planning a bigger model. Then I checked the data: in 5,681 of 5,688 training
-examples, the number of phrases in the sentence happened to equal the number of
-characters. It had learned to count phrases. It had never once been asked to
-read the number. I fixed the data — not the model — and the gap dropped from 66
-points to 24.
+Ask for six characters, get three. I assumed it was too small and started
+planning a bigger one. Then I checked the data: in 5,681 of 5,688 examples, the
+number of phrases in the sentence happened to equal the number of characters. It
+had learned to count phrases. It was never once asked to read the number. Fixed
+the data, not the model — gap dropped from 66 points to 24.
 
 **3. The worst bug wasn't a bug.**
-Characters kept piling up on the same spot. I wrote it up as a failure to learn
-staging. It was beam search doing its job: reporting the single most likely
+Characters kept piling onto the same spot. I wrote it up as a failure to learn
+staging. It was beam search doing its job — reporting the single most likely
 answer from a distribution that was already fine. Same weights, switched to
-sampling — 0.19 → 0.86. Graph 2.
+sampling: 0.19 → 0.86. Graph 2.
 
-Three times I was about to fix the wrong thing. Each one was caught by
-distrusting a number that looked too clean.
+Three times I was one step from fixing the wrong thing. Each was caught by
+re-running a measurement I didn't believe.
 
-I used Claude Code throughout — harnesses, debugging, write-ups. It caught a
-silent GPU grab that would have cooked my broken fan. It also couldn't have told
-me any of the three things above; those came from re-running the measurement
-while suspicious.
+That's the part AI assistance doesn't cover. Claude wrote most of my code and
+caught real bugs in it. It could not have told me my metric was measuring the
+wrong thing — that only showed up because a number looked too clean and I went
+back to check.
 
-Has a metric ever confidently lied to you? I'd like to hear it.
+Has a metric ever confidently lied to you?
 
 🔗 github.com/SahilSidhu7/2DVideoGen
