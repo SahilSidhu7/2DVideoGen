@@ -1,109 +1,104 @@
-# LinkedIn post — 2DVideoGen
+# LinkedIn — two posts
 
-**Media order (LinkedIn carousel / multi-image post):**
-
-1. `docs/media/bench_loss_vs_quality.png` — the hook graph
-2. `docs/media/a20_anime_diffusion.gif` — the pretty failure (Attempt 20)
-3. `docs/media/a22_generated.gif` — first end-to-end generated clip (Attempt 22)
-4. `docs/media/a24_six.gif` — the 220M model, six characters (Attempt 24)
-5. `docs/media/bench_60m_vs_220m.png` — 60M vs 220M
-6. `docs/media/bench_staging_decode.png` — the decoder finding
+Post 1 goes up first (video). Post 2 follows 2–3 days later (graphs), and
+links back to post 1.
 
 ---
 
-## Post
+## POST 1 — the story (upload as a VIDEO post)
 
-I spent 24 attempts trying to make a laptop generate 2D animation from a
-sentence. Then I tripled the model size to fix it.
-
-Every benchmark improved. The video looked exactly the same.
-
-That's the part I want to talk about.
+**Media:** upload the three mp4s so they autoplay.
+`out/a22_generated.mp4` → `out/a23_six.mp4` → `out/a24_six.mp4`
+(LinkedIn allows one video per post — if you want all three, stitch them
+with a 1-second title card each, or lead with `out/a24_six.mp4` alone.)
 
 ---
 
-**The setup:** one laptop. 8GB GPU with a broken cooling fan, so every GPU run
-is throttled to 50% duty by a script that watches the die temperature. Half of
-the 24 attempts failed. I logged all of them.
+I tripled the size of my model to make this animation better.
 
-**What I built:** a model that reads "two friends meet in the park, one waves,
-then they kick a ball around" and writes a scene script — cast, positions,
-colours, a timeline of events — which a renderer turns into an actual mp4.
-60M parameters. Trained in 548 seconds. On CPU.
+It came out exactly the same.
 
-**What I tried first, and killed:** the obvious route — Stable Diffusion +
-ControlNet + AnimateDiff, styled anime frames. Slide 2 is one frame of it. It
-looks good. It's also a still, because in motion it flickered 25× over the pass
-bar, and adding the motion module made the character *stop following the pose
-guide entirely*. Two objectives that were supposed to compound interfered
-instead. I closed that route by measurement and wrote down why.
+---
 
-**Then the scaling test.** The pipeline worked but felt small, so I did the
-thing everyone does: same data, same hyperparameters, 3.7× the parameters.
-60M → 220M.
+For a few months I've been trying to get a laptop to turn a sentence into 2D
+animation. Type "two friends meet in the park, one waves, then they kick a ball
+around" — get an actual mp4.
 
-The results (slide 5):
-→ prompt accuracy 46% → 57%
-→ actions per character 73% → 89%
-→ structurally valid without repair 94% → 99%
-→ staging quality 0.879 → 0.911
+The constraint that shaped everything: one laptop, an 8GB GPU, and a broken
+cooling fan. Every GPU run is throttled to 50% and stops if the chip hits 70°C.
+That single fact killed my first plan — Stable Diffusion frames, styled anime,
+the obvious route. Individual frames looked gorgeous. In motion it flickered 25×
+worse than the bar, and when I added the module that was supposed to smooth it,
+the characters stopped following their pose guides entirely. Two fixes that were
+meant to stack cancelled each other out instead.
 
-Real gains, all of them. Then I rendered the same scene with both models and
-put the frames side by side.
+So I gave up on generating pixels and generated *instructions* instead. A small
+model writes a scene script — who's on stage, where they stand, what they do and
+when — and a renderer I wrote draws it. 60M parameters. Trains in nine minutes
+on a CPU.
 
-A tie. The bigger model was smoother; the smaller one had more movement. Both
-made the same mistake — two characters standing on top of each other — just in
-a different place on screen. The new one also had a character kick a ball at
-herself.
+That worked. Then I did what everyone does when something works but feels small:
+made the model 3.7× bigger. Same data, same settings, more parameters.
 
-**Four things this taught me, and the first three cost me the most time:**
+Every benchmark went up. Prompt accuracy 46% → 57%. Valid output 94% → 99%.
 
-**1. My loss function lied to me for three checkpoints in a row.** Slide 1.
-Loss went UP — 0.924 → 0.947 → 1.004 — while real-world accuracy went
-25% → 62% → 71%. Each new dataset was harder than the last, so "worse" loss
-meant a better model every time. If I'd optimised the number on the screen I'd
-have shipped the worst model of the four.
+Then I rendered the same scene with both models, put the frames side by side,
+and couldn't tell them apart. The bigger one was smoother. The smaller one moved
+more. Both stacked two characters on top of each other — just in different
+places. The new one also had a character kick a ball at herself.
 
-**2. A model can look incapable when the data never asked.** Mine seemed unable
-to count a cast of six. It wasn't. In 5,681 of 5,688 training examples, the
-number of clauses in the sentence happened to equal the number of characters.
-It had learned to count clauses. It had never once been asked to read the
-numeral. I fixed the data, not the model, and the generalisation gap fell from
-66 points to 24.
+Months of work, and the honest summary is: **the bottleneck was never the model
+size.** Cleaning up my training data helped more. Changing *one decoder setting*
+helped more than that.
 
-**3. The bug wasn't in the model. It was in one decoder setting.** Characters
-kept stacking on top of each other. I wrote it up as a model failure. It was
-beam search reporting the most likely answer from a distribution that was
-already fine. Same weights, switched to sampling: staging 0.19 → 0.86.
-(Slide 6 — and notice the 220M model doesn't need the trick at all.)
-
-**4. Capacity was never the bottleneck.** Deconfounding a dataset and changing
-a decoder flag moved this project further than tripling the model did. The
-scale-up bought robustness — near-perfect structural validity, and it removed a
-tradeoff I'd recorded as permanent. It did not buy a better-looking video.
-
-**What it still can't do:** it does not understand "stand on the left." I
-supervised it, measured it, and got 2.7 points over a control — noise. And the
-best-looking clip in the whole project is still the one I wrote by hand.
-
-So: a failure, by the goal I set. But four findings I'd never have gotten from
-a project that worked on the first try — and all of them are about *the
-measurement*, not the model.
-
-I used Claude Code throughout — building the training and eval harnesses,
-catching a CUDA OOM and a silent GPU grab that would have cooked my broken fan,
-and drafting the write-ups. It wrote code and prose. Every number here came out
-of a script that actually ran.
-
-Everything is public: 24 attempts, the failures with their real causes, the
-retractions, and the four times my own evaluator gave me a confident wrong
-answer.
+It's public, failures and all — 24 attempts, half of them dead ends, each with
+the real reason it died.
 
 🔗 github.com/SahilSidhu7/2DVideoGen
 
 ---
 
-If you've had a metric confidently lie to you, I'd like to hear it. I'm fairly
-sure mine isn't done.
+## POST 2 — the graphs (upload as an IMAGE post, 2–3 days later)
 
-#MachineLearning #AI #ComputerVision #DeepLearning #BuildInPublic
+**Media, in order:**
+1. `docs/media/bench_loss_vs_quality.png`
+2. `docs/media/bench_staging_decode.png`
+3. `docs/media/bench_60m_vs_220m.png`
+
+---
+
+Last week I posted about an animation model that didn't get better when I made
+it bigger. Here's the part that actually cost me time: three separate occasions
+where my own measurements confidently lied to me.
+
+**1. My loss function was wrong for three checkpoints straight.**
+Graph 1. Loss went *up* — 0.924 → 0.947 → 1.004 — while real accuracy went
+25% → 62% → 71%. Each dataset was harder than the last, so worse loss meant a
+better model every single time. If I'd trusted the number on the screen, I'd
+have shipped the worst of the four.
+
+**2. The model "couldn't count."**
+Ask for six characters, get three. I assumed a capacity limit and started
+planning a bigger model. Then I checked the data: in 5,681 of 5,688 training
+examples, the number of phrases in the sentence happened to equal the number of
+characters. It had learned to count phrases. It had never once been asked to
+read the number. I fixed the data — not the model — and the gap dropped from 66
+points to 24.
+
+**3. The worst bug wasn't a bug.**
+Characters kept piling up on the same spot. I wrote it up as a failure to learn
+staging. It was beam search doing its job: reporting the single most likely
+answer from a distribution that was already fine. Same weights, switched to
+sampling — 0.19 → 0.86. Graph 2.
+
+Three times I was about to fix the wrong thing. Each one was caught by
+distrusting a number that looked too clean.
+
+I used Claude Code throughout — harnesses, debugging, write-ups. It caught a
+silent GPU grab that would have cooked my broken fan. It also couldn't have told
+me any of the three things above; those came from re-running the measurement
+while suspicious.
+
+Has a metric ever confidently lied to you? I'd like to hear it.
+
+🔗 github.com/SahilSidhu7/2DVideoGen
