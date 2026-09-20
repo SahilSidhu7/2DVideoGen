@@ -61,3 +61,4 @@ webapp/data.db
 # ---- Hugging Face Space working copy (duplicates project files; lives on the Hub) ----
 hf_space/
 hf_space_progress.md
+!out/2dvideogen_reel.mp4

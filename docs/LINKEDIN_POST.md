@@ -7,10 +7,9 @@ links back to post 1.
 
 ## POST 1 — the story (upload as a VIDEO post)
 
-**Media:** upload the three mp4s so they autoplay.
-`out/a22_generated.mp4` → `out/a23_six.mp4` → `out/a24_six.mp4`
-(LinkedIn allows one video per post — if you want all three, stitch them
-with a 1-second title card each, or lead with `out/a24_six.mp4` alone.)
+**Media:** one video — `out/2dvideogen_reel.mp4` (44 s, 1.1 MB).
+All three clips stitched with title cards: Attempt 22 → Attempt 23 →
+Attempt 24 → closing card. Built by `out/stitch/`; re-runnable.
 
 ---
 
@@ -24,35 +23,41 @@ For a few months I've been trying to get a laptop to turn a sentence into 2D
 animation. Type "two friends meet in the park, one waves, then they kick a ball
 around" — get an actual mp4.
 
-The constraint that shaped everything: one laptop, an 8GB GPU, and a broken
-cooling fan. Every GPU run is throttled to 50% and stops if the chip hits 70°C.
-That single fact killed my first plan — Stable Diffusion frames, styled anime,
-the obvious route. Individual frames looked gorgeous. In motion it flickered 25×
-worse than the bar, and when I added the module that was supposed to smooth it,
-the characters stopped following their pose guides entirely. Two fixes that were
-meant to stack cancelled each other out instead.
+The constraint that shaped everything: one laptop, an 8GB GPU, a broken cooling
+fan. Every GPU run throttled to 50%, stopping if the chip hits 70°C.
+
+That killed my first plan — Stable Diffusion frames, styled anime, the obvious
+route. Single frames looked gorgeous. In motion it flickered 25× worse than my
+pass bar, and the module meant to smooth it made the characters stop following
+their pose guides entirely. Two fixes that should have stacked cancelled out.
 
 So I gave up on generating pixels and generated *instructions* instead. A small
 model writes a scene script — who's on stage, where they stand, what they do and
 when — and a renderer I wrote draws it. 60M parameters. Trains in nine minutes
 on a CPU.
 
-That worked. Then I did what everyone does when something works but feels small:
-made the model 3.7× bigger. Same data, same settings, more parameters.
+Worth saying plainly: **this problem is already solved commercially.** Sora,
+Veo, Runway will hand you a better-looking clip from the same sentence, today.
+What they won't hand you is something you can edit. When their model puts a
+character in the wrong spot, there's nothing to fix. Mine writes a text file
+where the wrong spot is a number on line 9 — and re-renders identically every
+time. That was the bet: give up quality, buy control.
+
+That worked. So I did what everyone does when something works but feels small:
+made the model 3.7× bigger. Same data, same settings.
 
 Every benchmark went up. Prompt accuracy 46% → 57%. Valid output 94% → 99%.
 
-Then I rendered the same scene with both models, put the frames side by side,
-and couldn't tell them apart. The bigger one was smoother. The smaller one moved
-more. Both stacked two characters on top of each other — just in different
-places. The new one also had a character kick a ball at herself.
+Then I put the frames side by side and couldn't tell them apart. The bigger one
+was smoother, the smaller one moved more, both stacked two characters on top of
+each other, and the new one had a character kick a ball at herself.
 
-Months of work, and the honest summary is: **the bottleneck was never the model
-size.** Cleaning up my training data helped more. Changing *one decoder setting*
-helped more than that.
+Months of work, one honest summary: **the bottleneck was never model size.**
+Cleaning up my training data helped more. Changing *one decoder setting* helped
+more than that.
 
-It's public, failures and all — 24 attempts, half of them dead ends, each with
-the real reason it died.
+Public, failures and all — 24 attempts, half of them dead ends, each with the
+real reason it died.
 
 🔗 github.com/SahilSidhu7/2DVideoGen
 

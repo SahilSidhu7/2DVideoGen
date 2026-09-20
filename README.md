@@ -123,6 +123,24 @@ beam search if you care more about obeying the prompt literally.
 - **Styled anime output is out of reach** at this hardware budget. That route is closed by measurement, not by opinion.
 - **No user study and no baseline comparison against another system.** Both are real gaps.
 
+## Does this already exist?
+
+**Yes - and it is worth being blunt about it.** Text-to-video generation is a solved-enough commercial product: Sora, Veo, Runway, Kling, Pika and others will take a sentence and return a far better-looking clip than anything in this repository. If the goal is "get a nice video from a prompt", use one of those. This project does not compete with them and never did.
+
+What they do not give you, and what this project is actually about:
+
+| | text-to-video models | this |
+|---|---|---|
+| output | pixels, final | a **scene script** you can read, diff and edit, then render deterministically |
+| control | prompt, then luck | named characters, explicit positions, an explicit event timeline |
+| re-render | new sample, new result | same script, same frames, every time |
+| hardware | datacenter | one laptop; the 60M model trains in 548 s on **CPU** |
+| failure mode | opaque | a parse error, a validator problem, a line of DSL you can point at |
+
+The intermediate representation is the whole point. When a diffusion model puts a character in the wrong place there is nothing to edit; here the wrong place is a number in a text file.
+
+**The honest caveat:** this project ran **no user study and no head-to-head comparison** against any of those systems, so the table above is an argument about design, not a measured result. The prior art that *was* surveyed - AnimateDiff, AnimateAnyone, MagicAnimate, Sakuga-42M and others, with hardware costs and reasons for exclusion - is in [`paper/RESEARCH.md`](paper/RESEARCH.md) and [`paper/RESEARCH2.md`](paper/RESEARCH2.md). Attempts 18-20 were an attempt to use that prior art directly, and that route is closed by measurement.
+
 ## Repository
 
 | path | what it is |
