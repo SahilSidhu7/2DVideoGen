@@ -49,9 +49,9 @@ Media, in order: `docs/media/bench_loss_vs_quality.png`,
 `docs/media/bench_staging_decode.png`, `docs/media/bench_60m_vs_220m.png`
 
 ```text
-Last week I posted about fine-tuning a 60M model to generate 2D animation on a laptop, and said plainly that Claude Code wrote most of the code.
+Earlier this week I posted about fine-tuning a 60M model to generate 2D animation on a laptop, and said plainly that Claude Code wrote most of the code.
 
-So here's what was actually left for me to do: the measuring. And my measurements lied to me three separate times.
+Same goes for what's below, to be clear: I asked it to check the loss curves, run the comparisons and build these graphs. It did. What I brought was the suspicion that the numbers were wrong — and three times, they were.
 
 1. My loss function was wrong for three checkpoints in a row.
 
@@ -67,9 +67,9 @@ Characters kept piling onto the same spot. I logged it as the model failing to l
 
 Three times I was one step away from fixing the wrong thing. Each one got caught the same way — a number looked too clean, and I went back to check it.
 
-That's the part the AI assistance didn't cover. Claude wrote most of the code and found real bugs in it. It could not tell me that my metric was measuring the wrong thing.
+None of those three came from the code being wrong, which is the thing I keep thinking about. Claude wrote the code, ran the evals and drew these graphs faster than I could have. It answered every question I asked it accurately. It just had no reason to ask whether the question was the right one.
 
-Which is roughly where I've landed: writing the code stopped being the bottleneck a while ago. Knowing what to measure, and refusing to believe a clean result, hasn't.
+Which is roughly where I've landed: writing the code stopped being the bottleneck a while ago. Deciding what deserves a second look hasn't.
 
 Has a metric ever confidently lied to you?
 
