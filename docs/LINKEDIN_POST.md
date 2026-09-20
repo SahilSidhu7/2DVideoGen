@@ -25,15 +25,23 @@ they do, when. A renderer turns that script into an mp4.
 
 That's it. That's the trick. The model never touches a pixel.
 
-Why bother, when Sora and Veo already do text-to-video far better? Two reasons.
-One: those need a datacenter, this trains in **nine minutes on a CPU**. Two:
-their output is final, mine is a text file you can edit — when a character ends
-up in the wrong spot, it's a number on line 9, not a reroll.
+**The training data is the part people ask about.** There isn't a scraped
+dataset behind this. I wrote a generator that produces prompt/script pairs and
+trained on **6,000 of them** — synthetic, made on my own machine. For the
+diffusion route I tried first, I used only public-domain footage: COCO photos
+for pose extraction, Eadweard Muybridge's 1887 motion studies for gait, and
+lapsed-copyright Fleischer cartoons (Superman, Betty Boop) for animation style.
+Licensing was a selection rule, not an afterthought. Full provenance is in the
+repo.
 
-**I used Claude Code for most of the build.** The training and eval harnesses,
-the renderer, the debugging. It caught a CUDA OOM and a silent GPU grab that
-would have cooked my laptop's already-broken cooling fan. I'd call it pair
-programming where I set the direction and checked the measurements.
+Why bother, when Sora and Veo do this far better? They need a datacenter; this
+trains in **nine minutes on a CPU**. And their output is final, while mine is a
+text file you can edit — a character in the wrong spot is a number on line 9,
+not a reroll.
+
+**I used Claude Code for most of the build** — harnesses, renderer, debugging.
+It caught a silent GPU grab that would have cooked my laptop's already-broken
+cooling fan. Pair programming, where I set direction and checked measurements.
 
 Then I tried the obvious upgrade: same data, same settings, a 3.7× bigger model.
 220M instead of 60M.
@@ -44,12 +52,12 @@ The video looked exactly the same. Watch the reel — the last two clips are the
 two model sizes, same prompt. I can't tell them apart either.
 
 So: a fine-tuned 60M model *can* generate coherent 2D animation from a sentence.
-It's rough, it's stick figures, and it's nowhere near what the big systems do —
-but it runs on hardware you already own.
+Rough, stick figures, nowhere near the big systems — but it runs on hardware you
+already own.
 
-**What's next:** I want to try training something from scratch for actual anime
-output, deliberately sized to fit in small VRAM. Fine-tuning a text model got me
-further than I expected. I think the ceiling is architecture, not effort.
+**Next:** training something from scratch for actual anime output, sized to fit
+small VRAM. Fine-tuning a text model got me further than expected. I think the
+ceiling here is architecture, not effort.
 
 All public — 24 attempts, half of them failures, each with the real reason.
 
@@ -79,10 +87,11 @@ worst of the four.
 
 **2. The model "couldn't count."**
 Ask for six characters, get three. I assumed it was too small and started
-planning a bigger one. Then I checked the data: in 5,681 of 5,688 examples, the
-number of phrases in the sentence happened to equal the number of characters. It
-had learned to count phrases. It was never once asked to read the number. Fixed
-the data, not the model — gap dropped from 66 points to 24.
+planning a bigger one. Then I checked the data I'd generated myself: in 5,681 of
+5,688 examples, the number of phrases in the sentence happened to equal the
+number of characters. It had learned to count phrases. It was never once asked
+to read the number. I fixed my generator, not the model — gap dropped from 66
+points to 24. Synthetic data doesn't mean clean data.
 
 **3. The worst bug wasn't a bug.**
 Characters kept piling onto the same spot. I wrote it up as a failure to learn
