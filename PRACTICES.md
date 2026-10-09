@@ -100,3 +100,23 @@ refactoring the training/eval harnesses, diagnosing the CUDA OOM and the
 silent GPU claim, building the comparison figures, and drafting documentation.
 Every number in this repository comes from a script in this repository that was
 actually executed - the model wrote code and prose, it did not supply results.
+
+## 11. Commit messages
+
+The history already follows one convention; `tools/commit_msg_lint.py` now
+checks it so new commits keep to it. Subject: capitalized, imperative, 72
+characters or fewer, no trailing period, no `type:` prefix. Then a blank line
+and a body, wrapped at about 72, that says *why*. Trailers (`Co-Authored-By`,
+`Claude-Session`, `Nightshift-*`) are fine, and URLs, trailers and indented or
+fenced code are exempt from the line limit.
+
+A good one from the log: `Correct README figures that mixed three checkpoints`.
+
+History is not rewritten - master is published, and rewording it would mean a
+force-push. The linter reports two old outliers (`628a95e`, a `paper:` prefix,
+and `0510928`, an 82-character subject) and they stay as they are.
+
+Opt in once per clone with `git config core.hooksPath .githooks`. To check a
+branch before pushing: `python3 tools/commit_msg_lint.py --range
+origin/master..HEAD`. `--fix MSGFILE` applies only mechanical fixes (case,
+period, prefix, blank line) and never re-wraps prose.
