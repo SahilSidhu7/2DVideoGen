@@ -157,6 +157,21 @@ The intermediate representation is the whole point. When a diffusion model puts 
 | `critic/` | The evaluator. Independently reproduced a logged 23.6× flicker figure as 23.59×. |
 | `scenes/` | Scene scripts, hand-written and generated. |
 
+## Documentation map
+
+| where | what is in it |
+|---|---|
+| [`ATTEMPTS.md`](ATTEMPTS.md) · [`DATASETS.md`](DATASETS.md) · [`PRACTICES.md`](PRACTICES.md) | The attempt log, the datasets, and the working rules |
+| [`critic/`](critic/README.md) | The evaluation harness |
+| [`model/`](model/README.md) | The script-writing model (checkpoint provenance in [`MODELS.md`](model/MODELS.md)) |
+| [`svg/`](svg/README.md) | The AniSVG vector-animation lane |
+| [`webapp/`](webapp/README.md) | The web demo |
+| [`scenes/`](scenes/README.md) | The scene-script format and the scene files |
+| [`tools/`](tools/README.md) | `gpuguard.py`, the thermal and duty-cycle guard |
+| [`release/`](release/README.md) | The published AniSVG clips and manifest |
+| [`paper/`](paper/README.md) | The paper, the literature surveys and the arXiv source |
+| [`docs/`](docs/README.md) | The LinkedIn posts and the media used in this page |
+
 ## A note on the evaluator
 
 Four separate times, a metric or a decoding choice produced a confident wrong answer: perceptual similarity scored known-bad blobs *above* a correct control; a single stochastic detection compared against a different crop basis cost a clip its verdict, twice; pose estimators return *no person* on every stick figure this project produces, including the known-good ones; and beam search was mistaken for a model defect. Each was caught and documented. That list is the most transferable thing here.
