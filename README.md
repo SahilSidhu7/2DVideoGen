@@ -157,6 +157,10 @@ The intermediate representation is the whole point. When a diffusion model puts 
 | `critic/` | The evaluator. Independently reproduced a logged 23.6× flicker figure as 23.59×. |
 | `scenes/` | Scene scripts, hand-written and generated. |
 
+## Changelog
+
+[`CHANGELOG.md`](CHANGELOG.md) is generated from the git history, grouped by date. Regenerate it with `python3 tools/changelog.py -o CHANGELOG.md`.
+
 ## A note on the evaluator
 
 Four separate times, a metric or a decoding choice produced a confident wrong answer: perceptual similarity scored known-bad blobs *above* a correct control; a single stochastic detection compared against a different crop basis cost a clip its verdict, twice; pose estimators return *no person* on every stick figure this project produces, including the known-good ones; and beam search was mistaken for a model defect. Each was caught and documented. That list is the most transferable thing here.
