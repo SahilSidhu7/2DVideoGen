@@ -47,7 +47,8 @@ _MOTION_BACKEND = os.environ.get("EQV_MOTION", "ar")
 
 
 def _motion_mod():
-    import motion_ar, motion_model
+    import motion_ar
+    import motion_model
     return motion_ar if _MOTION_BACKEND == "ar" else motion_model
 
 

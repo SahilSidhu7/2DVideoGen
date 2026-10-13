@@ -6,12 +6,14 @@ emits the string Attempt 22 recorded for it.  Writes model/checkpoints/verify.js
 from __future__ import annotations
 import os
 os.environ.setdefault("USE_TF", "0")
-import json, sys, time
+import json
+import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT)); sys.path.insert(0, str(ROOT / "model"))
-import scene_grammar as SG
+import scene_grammar as SG  # noqa: F401
 from scene_infer import SceneWriter
 
 # the two prompts Attempt 22 published a raw string for, plus a control.
