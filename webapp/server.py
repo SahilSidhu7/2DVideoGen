@@ -13,7 +13,6 @@ DB; rendered mp4s live in webapp/videos/. Rendering runs in a background thread
 from __future__ import annotations
 
 import argparse
-import json
 import sqlite3
 import threading
 import time
@@ -33,7 +32,7 @@ VIDEOS.mkdir(exist_ok=True)
 import sys
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "model"))
-import geovid          # noqa: E402
+import geovid          # noqa: E402,F401
 import grammar as G    # noqa: E402
 import render as R      # noqa: E402
 from infer import PromptModel  # noqa: E402

@@ -415,7 +415,6 @@ def detect(img, detector=None):
     """
     from controlnet_aux import OpenposeDetector
     det = detector or OpenposeDetector.from_pretrained("lllyasviel/Annotators")
-    from PIL import Image
     a = np.asarray(img.convert("RGB"))
     poses = det.detect_poses(a[:, :, ::-1])       # detector wants BGR
     if not poses:

@@ -89,7 +89,8 @@ def build_reel(clips, out_mp4, width, origin, label_lines, loops, hold, fps=15):
             frames.extend([stamped[-1]] * hold)
     if not frames:
         return None
-    import shutil, tempfile
+    import shutil
+    import tempfile
     tmp = tempfile.mkdtemp(prefix="rel_")
     try:
         for i, im in enumerate(frames):

@@ -15,7 +15,6 @@ spec into a full scene dict that geovid.Scene renders.
 """
 from __future__ import annotations
 
-import math
 import random
 
 # --------------------------------------------------------------------------- #
