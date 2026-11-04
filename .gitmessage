@@ -1,0 +1,13 @@
+
+# Subject above: imperative, sentence case, no period, 72 chars max (aim
+# for 60). Optional prefix: a lowercase area ("paper: add ...") or
+# "Attempt N: ..." for attempt-log commits.
+#
+# Leave the line after the subject blank, then explain why, not what,
+# wrapped at 72 columns. For a correction, say what was wrong.
+#
+# Trailers go last, one per line, and may run past 72 columns:
+#   Co-Authored-By: Name <email>
+#   Claude-Session: https://...
+#
+# Lines starting with '#' are dropped. Conventions: docs/COMMITS.md

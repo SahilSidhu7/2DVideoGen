@@ -156,6 +156,7 @@ The intermediate representation is the whole point. When a diffusion model puts 
 | `model/` | Script-writing model: grammar, synthesis, training, inference, probes. |
 | `critic/` | The evaluator. Independently reproduced a logged 23.6× flicker figure as 23.59×. |
 | `scenes/` | Scene scripts, hand-written and generated. |
+| [`docs/COMMITS.md`](docs/COMMITS.md) | Commit message convention. Opt in to the check with `git config core.hooksPath .githooks` and `git config commit.template .gitmessage`. |
 
 ## A note on the evaluator
 
