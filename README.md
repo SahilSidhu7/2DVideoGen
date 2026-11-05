@@ -145,17 +145,31 @@ The intermediate representation is the whole point. When a diffusion model puts 
 
 | path | what it is |
 |---|---|
-| [`ATTEMPTS.md`](ATTEMPTS.md) | The primary source. All 23 attempts, with failures and retractions. Start here. |
+| [`ATTEMPTS.md`](ATTEMPTS.md) | The primary source. All 24 attempts, with failures and retractions. Start here. |
 | [`paper/PAPER.md`](paper/PAPER.md) | The written-up paper. |
+| [`paper/SCALING.md`](paper/SCALING.md) | Parameters or data? What actually moved the model, across the whole project. |
 | [`paper/RESEARCH.md`](paper/RESEARCH.md) · [`RESEARCH2.md`](paper/RESEARCH2.md) | Literature surveys, with hardware costs and what was ruled out. |
 | [`critic/README.md`](critic/README.md) | The evaluation harness: 8 metrics, thresholds, and the reason for each. |
 | [`model/MODELS.md`](model/MODELS.md) | Checkpoint provenance: data, command, runtime, measured rates. |
+| [`model/README.md`](model/README.md) | The earlier prompt → DSL spec → `geovid` equation-video model. |
+| [`model/PIPELINE.md`](model/PIPELINE.md) | Two-stage learned equation generator: a trained model emits every frame's equations. |
+| [`model/REAL_DATA.md`](model/REAL_DATA.md) | Real-data pipeline (GPU): real photos and video into the equation skeleton. |
 | [`DATASETS.md`](DATASETS.md) | Every dataset used, its licence, and how to regenerate it. |
 | [`PRACTICES.md`](PRACTICES.md) | The ten working rules that survived 24 attempts. |
+| [`scenes/README.md`](scenes/README.md) | The `.scene` script format: directives, actions, props, colours, coordinates. |
+| [`tools/README.md`](tools/README.md) | `gpuguard.py`, the 50%-duty thermal guard every GPU loop runs under. |
 | `scenescript.py` | Scene compositor — cast, timeline, props, occlusion. CPU only. |
+| `stickman.py` | The articulated stick-figure rig (walk/run/jump/kick/wave/dance), emitted as fresh equations every frame. |
+| `geovid.py` | The equation rasteriser everything renders into: JSON scene of parametric/explicit/polar/field layers → video. |
+| `render.py` | One place that turns a validated grammar spec into a video; shared by the web app and the CLI. |
+| `prompt2video.py` | Plain-English prompt → DSL spec → `geovid` equation video (rule-based fallback if no checkpoint). |
 | `model/` | Script-writing model: grammar, synthesis, training, inference, probes. |
 | `critic/` | The evaluator. Independently reproduced a logged 23.6× flicker figure as 23.59×. |
-| `scenes/` | Scene scripts, hand-written and generated. |
+| `scenes/` | Scene scripts, hand-written and generated. See [`scenes/README.md`](scenes/README.md). |
+| `svg/` | The AniSVG pipeline: 2D animation as vector frames. See [`svg/README.md`](svg/README.md). |
+| `webapp/` | Chat-style web UI over the prompt → video pipeline. See [`webapp/README.md`](webapp/README.md). |
+| `release/` | AniSVG clips: two model-generated sets (`v1-8b-icons`, `v2-1.7b-icons`) and two procedural training-corpus sets, each with an `.mp4`; provenance in `MANIFEST.json`. |
+| `tools/` | Hardware guard for GPU work. See [`tools/README.md`](tools/README.md). |
 
 ## A note on the evaluator
 
