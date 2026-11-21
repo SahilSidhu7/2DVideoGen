@@ -52,7 +52,7 @@ def probe(w, numerals=range(1, 10)):
             raw = w.raw(p)
             try:
                 n = len(SG.dsl_to_spec(raw)["cast"])
-            except SG.DSLError as e:
+            except SG.DSLError:
                 n = None
             out.append({"numeral": k, "clauses": c, "prompt": p,
                         "cast": n, "raw": raw})

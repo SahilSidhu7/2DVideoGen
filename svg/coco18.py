@@ -415,7 +415,6 @@ def detect(img, detector=None):
     """
     from controlnet_aux import OpenposeDetector
     det = detector or OpenposeDetector.from_pretrained("lllyasviel/Annotators")
-    from PIL import Image
     a = np.asarray(img.convert("RGB"))
     poses = det.detect_poses(a[:, :, ::-1])       # detector wants BGR
     if not poses:
@@ -438,13 +437,11 @@ def _rig_clip(action, n_frames=16, width=256, seed=3):
     recovered joints against - a far tighter check than any pose estimator,
     because it is exact by construction rather than estimated.
     """
-    import random
     from anisvg import Anim
     from anime_chars import build_figure, to_canvas
     from lottie_to_anisvg import encode
     from stickman import StickFigure
 
-    rng = random.Random(seed)
     fig = StickFigure(width=854, height=480)
     style, facing, skirt = "short", 1, False
 

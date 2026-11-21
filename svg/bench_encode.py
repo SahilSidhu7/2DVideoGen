@@ -34,7 +34,9 @@ def main():
 
     from transformers import AutoTokenizer
     tok = AutoTokenizer.from_pretrained("Qwen/Qwen3-0.6B-Base")
-    n = lambda s: len(tok(s)["input_ids"])
+
+    def n(s):
+        return len(tok(s)["input_ids"])
 
     tot = dict(raw=0, absolute=0, relative=0, delta=0)
     frames = 0

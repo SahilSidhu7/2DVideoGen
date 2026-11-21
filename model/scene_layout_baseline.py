@@ -48,8 +48,8 @@ def score(path, val_path=None):
         if p.suffix == ".json":
             src = json.loads(p.read_text(encoding="utf-8"))
         else:
-            src = [json.loads(l) for l in
-                   p.read_text(encoding="utf-8").splitlines() if l.strip()]
+            src = [json.loads(line) for line in
+                   p.read_text(encoding="utf-8").splitlines() if line.strip()]
     by_prompt = {}
     if src:
         for r in src:

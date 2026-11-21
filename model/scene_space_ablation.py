@@ -51,7 +51,7 @@ def _decl_min_sep(m):
 
 def replay(path, space=1.25):
     d = json.loads(Path(path).read_text(encoding="utf-8"))
-    before, after, moved, layout_b, layout_a = [], [], 0, [0, 0], [0, 0]
+    before, after, moved = [], [], 0
     rows = []
     for r in d["rows"]:
         if not r.get("parsed"):

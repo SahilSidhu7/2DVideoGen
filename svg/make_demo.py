@@ -58,8 +58,8 @@ def main():
     ap.add_argument("--max-clips", type=int, default=6)
     args = ap.parse_args()
 
-    captions = [json.loads(l)["caption"]
-                for l in open(args.val, encoding="utf-8")]
+    captions = [json.loads(line)["caption"]
+                for line in open(args.val, encoding="utf-8")]
     picked = []
     for path in sorted(glob.glob(os.path.join(args.gen, "g*.anisvg"))):
         idx = int(os.path.basename(path)[1:4])
@@ -101,7 +101,7 @@ def main():
     rows = (n + cols - 1) // cols
     probe = Image.new("RGB", (10, 10))
     d0 = ImageDraw.Draw(probe)
-    cap_h = 4 + 14 * max(len(wrap(d0, l, fnt, args.tile - 8)) for l in labels)
+    cap_h = 4 + 14 * max(len(wrap(d0, lbl, fnt, args.tile - 8)) for lbl in labels)
     cell_w, cell_h = args.tile, args.tile + cap_h
     total = max(len(s) for s in strips)
 

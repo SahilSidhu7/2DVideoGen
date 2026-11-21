@@ -227,7 +227,7 @@ def main():
 
     captions = list(args.caption)
     if args.eval:
-        rows = [json.loads(l) for l in open(args.val, encoding="utf-8")][:args.eval]
+        rows = [json.loads(line) for line in open(args.val, encoding="utf-8")][:args.eval]
         captions = [r["caption"] for r in rows]
     if not captions:
         captions = ["a black line-drawn cat waving its paw",

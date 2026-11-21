@@ -491,7 +491,7 @@ def cmd_demo(args):
 def cmd_demos(args):
     print("built-in demos:")
     for k, v in DEMOS.items():
-        types = ", ".join(sorted({l.get("type", "parametric") for l in v["layers"]}))
+        types = ", ".join(sorted({layer.get("type", "parametric") for layer in v["layers"]}))
         print(f"  {k:14s} [{types}]")
 
 

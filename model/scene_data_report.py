@@ -44,8 +44,8 @@ def _pearson(a, b):
 
 
 def report(path, stage_n=600, tok_n=400, tokenizer=None):
-    rows = [json.loads(l) for l in
-            Path(path).read_text(encoding="utf-8").splitlines() if l.strip()]
+    rows = [json.loads(line) for line in
+            Path(path).read_text(encoding="utf-8").splitlines() if line.strip()]
     out = ["%s  n=%d" % (Path(path).name, len(rows))]
 
     sizes = Counter()

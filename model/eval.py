@@ -24,8 +24,8 @@ def main():
     ap.add_argument("--rules-only", action="store_true")
     args = ap.parse_args()
 
-    rows = [json.loads(l) for l in Path(args.val).read_text(
-        encoding="utf-8").splitlines() if l.strip()][:args.n]
+    rows = [json.loads(line) for line in Path(args.val).read_text(
+        encoding="utf-8").splitlines() if line.strip()][:args.n]
     model = PromptModel(None if args.rules_only else args.ckpt)
     print(f"backend: {'model' if model.ok else 'rules'}  n={len(rows)}")
 

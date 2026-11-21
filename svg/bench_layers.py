@@ -2,7 +2,6 @@
 import argparse
 import os
 import sys
-import time
 
 import numpy as np
 from PIL import Image
@@ -41,7 +40,10 @@ def main():
 
     from transformers import AutoTokenizer
     tok = AutoTokenizer.from_pretrained("Qwen/Qwen3-0.6B-Base")
-    n = lambda s: len(tok(s)["input_ids"])
+
+    def n(s):
+        return len(tok(s)["input_ids"])
+
     tmp = "svg/data/_layer.png"
     os.makedirs("svg/data", exist_ok=True)
 
@@ -56,7 +58,9 @@ def main():
         pal, idxs = prep_idx(seg, args.width, args.colors)
         hexes = P.to_hex(pal)
         cache = {}
-        pal_index = lambda h: cache.setdefault(h, P.index_of(hexes, h))
+
+        def pal_index(h):
+            return cache.setdefault(h, P.index_of(hexes, h))
 
         bg = L.background(idxs)
         L.to_image(bg, pal).save(tmp)

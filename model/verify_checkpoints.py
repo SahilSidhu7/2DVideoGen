@@ -11,7 +11,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT)); sys.path.insert(0, str(ROOT / "model"))
-import scene_grammar as SG
 from scene_infer import SceneWriter
 
 # the two prompts Attempt 22 published a raw string for, plus a control.

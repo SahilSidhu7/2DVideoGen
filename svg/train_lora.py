@@ -30,7 +30,7 @@ class Clips(Dataset):
     """Caption + AniSVG body, with the prompt masked out of the loss."""
 
     def __init__(self, path, tok, max_len):
-        self.rows = [json.loads(l) for l in open(path, encoding="utf-8") if l.strip()]
+        self.rows = [json.loads(line) for line in open(path, encoding="utf-8") if line.strip()]
         self.tok = tok
         self.max_len = max_len
 

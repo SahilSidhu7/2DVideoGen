@@ -95,7 +95,7 @@ def stats(text, tok, scale=100.0):
 
 
 if __name__ == "__main__":
-    import argparse, glob, gzip, json, os, sys
+    import argparse, gzip, json, os, sys
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
     ap = argparse.ArgumentParser()

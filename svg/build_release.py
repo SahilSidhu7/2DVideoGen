@@ -72,7 +72,7 @@ def render_clip(text, width):
 
 def build_reel(clips, out_mp4, width, origin, label_lines, loops, hold, fps=15):
     """One video per version, each clip stamped with its origin."""
-    fnt, small = font(15), font(12)
+    small = font(12)
     frames = []
     for (imgs, cap) in clips:
         stamped = []

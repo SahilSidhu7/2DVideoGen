@@ -49,8 +49,8 @@ MAX_IN, MAX_OUT = 64, 48   # Attempt 2 defaults; overridable on the CLI
 
 class PairDS(Dataset):
     def __init__(self, path, tok):
-        self.rows = [json.loads(l) for l in Path(path).read_text(
-            encoding="utf-8").splitlines() if l.strip()]
+        self.rows = [json.loads(line) for line in Path(path).read_text(
+            encoding="utf-8").splitlines() if line.strip()]
         self.tok = tok
 
     def __len__(self):

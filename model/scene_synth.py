@@ -176,7 +176,6 @@ def make_prompt(sp, rng, group_act=None):
                 group_layout = f
                 break
 
-    bits = []
     # ---- who
     say_n = rng.random() < 0.95
     noun = rng.choice(CAST_NOUN_1 if n == 1 else CAST_NOUN)
@@ -248,7 +247,10 @@ def make_prompt(sp, rng, group_act=None):
                   else ("%s %s" % (cl, rng.choice(LAYOUT_SAY[f["kind"]]))))
         clauses.append(cl)
         n_described += 1
-    rng_join = lambda: rng.choice(JOIN)
+
+    def rng_join():
+        return rng.choice(JOIN)
+
     body = clauses[0] if clauses else ""
     for c in clauses[1:]:
         body += rng_join() + c

@@ -70,8 +70,8 @@ def main():
 
     w = SceneWriter(a.ckpt, max_out=a.max_out, max_in=a.max_in)
     w.torch.manual_seed(a.seed)
-    rows = [json.loads(l) for l in
-            Path(a.val).read_text(encoding="utf-8").splitlines() if l.strip()]
+    rows = [json.loads(line) for line in
+            Path(a.val).read_text(encoding="utf-8").splitlines() if line.strip()]
     rows = rows[:a.n]
 
     res = {m: {"staging": [], "parse": 0, "xs": []} for m in MODES}

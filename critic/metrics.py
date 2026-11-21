@@ -579,7 +579,6 @@ def _load_clip(model_name="openai/clip-vit-base-patch32"):
     """
     if model_name in _CLIP_CACHE:
         return _CLIP_CACHE[model_name]
-    import torch
     from transformers import CLIPModel, CLIPProcessor
     model = CLIPModel.from_pretrained(model_name)
     model.to("cpu").eval()

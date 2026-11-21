@@ -248,8 +248,8 @@ def main():
                     sample=a.sample, top_p=a.top_p,
                     temperature=a.temperature, seed=a.seed, rerank=a.rerank)
     out = Path(a.out)
-    val = [json.loads(l) for l in
-           Path(a.val).read_text(encoding="utf-8").splitlines() if l.strip()]
+    val = [json.loads(line) for line in
+           Path(a.val).read_text(encoding="utf-8").splitlines() if line.strip()]
     val = val[:a.n]
     ood = json.loads(Path(a.ood).read_text(encoding="utf-8"))
 
